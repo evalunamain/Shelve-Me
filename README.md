@@ -1,12 +1,12 @@
 Shelf Life
 ==========
-## Goodreads Clone.
+### Goodreads Clone.
 
 A place for readers to connect with other readers, discuss books and find new reading material.
 
 Use Ruby/Rails for underlying database structure and associations. Javascript/JQuery for user interaction and notifications. Backbone to manipulate the DOM, allow for more responsive views without having to reload an entire new page.
 
-### Phase I (MVP)
+#### Phase I (MVP)
 - user signup (authors and readers)
 - users can add books (uniqueness based on ISBN)
 - users can leave reviews of books
@@ -14,7 +14,7 @@ Use Ruby/Rails for underlying database structure and associations. Javascript/JQ
 - users can create bookshelves (read/to-read/currently-reading and personalized)
 - users can become friends with other users
 
-### Phase II
+#### Phase II
 - users can comment on and rate other reviews
 - users can add quotes
 - users can save quotes
@@ -27,7 +27,7 @@ Use Ruby/Rails for underlying database structure and associations. Javascript/JQ
 - user lists
 - reading progress
 
-##Schema
+##Database Schema
 
 ###User
 - name
