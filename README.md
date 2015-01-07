@@ -27,50 +27,50 @@ Use Ruby/Rails for underlying database structure and associations. Javascript/JQ
 - user lists
 - reading progress
 
-##Database Schema
+###Database Schema
 
-###User
+####User
 - name
 - email
 - password digest
 - session token
 
-###Friends(join table)
+####Friends(join table)
 - user id
 - user id
 
-###Follows(join table)
+####Follows(join table)
 - user id
 - user id
 
-###Books
+####Books
 - cover
 - author
 - title
 - isbn
 
-###Read books
+####Read books
 - book id
 - user id
 
 
-###Reviews
+####Reviews
 - title
 - description
 - user id
 - book id
 
-###Ratings
+####Ratings
 - rating
 - user id
 - book id
 
-###Quotes
+####Quotes
 - text
 - book id
 - submitter id
 
-###Liked quotes(join table)
+####Liked quotes(join table)
 - user id
 - quote id
 
