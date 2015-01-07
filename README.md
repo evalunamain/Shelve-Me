@@ -39,10 +39,6 @@ Use Ruby/Rails for underlying database structure and associations. Javascript/JQ
 - user id
 - user id
 
-####Follows(join table)
-- user id
-- user id
-
 ####Books
 - cover
 - author
