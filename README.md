@@ -1,5 +1,11 @@
-shelf-life
+Shelf Life
 ==========
+Goodreads Clone.
+
+A place for readers to connect with other readers, discuss books and find new reading material.
+
+Use Ruby/Rails for underlying database structure and associations. Javascript/JQuery for user interaction and notifications. Backbone to manipulate the DOM, allow for more responsive views without having to reload an entire new page.
+
 Phase I (MVP)
 - user signup (authors and readers)
 - users can add books (uniqueness based on ISBN)
