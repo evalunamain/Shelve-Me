@@ -1,0 +1,4 @@
+<h3>Users Index </h3>
+<% @users.each do |user| %>
+<a href="<%= user_url(user) %>"><%= user.name %></a>
+<% end %>

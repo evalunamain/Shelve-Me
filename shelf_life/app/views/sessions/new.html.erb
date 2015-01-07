@@ -1,0 +1,19 @@
+<section class="new-session">
+
+  <form action="<%= session_url %>" method="post" class="new-session">
+    <%= auth_token %>
+    <fieldset class="form-fieldset">
+      <h3>Sign In</h3>
+      <div class="input">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="user[email]"></input>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="user[password]"></input>
+      </div>
+
+      <div class="submit">
+        <button>Sign In</button>
+      </div>
+    </fieldset>
+  </form>
+  <section>

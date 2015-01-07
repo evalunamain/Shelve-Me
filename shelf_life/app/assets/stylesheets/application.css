@@ -13,3 +13,125 @@
  *= require_tree .
  *= require_self
  */
+
+ /*Reset */
+
+html, body, h1, h2, h3, a, form, label, input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: inherit;
+  background: transparent
+}
+
+ul {
+  list-style: none
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*General Styles*/
+h3 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+button,
+input[type="submit"] {
+  position: relative;
+  padding: 5px 10px;
+  color: #000;
+  border: 1px solid #ccc;
+  background: #eee;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #292421;
+}
+
+/*Header*/
+.header {
+  background: #E9C2A6;
+  color: #000;
+  border-bottom: 1px solid #ccc;
+}
+
+.header button {
+  float: right;
+  margin: 5px 40px 7px 0;
+}
+
+.header-name {
+  float: left;
+}
+
+/*New User Form */
+
+.form-fieldset {
+  /*float: left;*/
+  margin: 20px auto;
+  padding: 20px;
+  width: 500px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-fieldset > h3 {
+  padding: 0 200px;
+}
+
+.input {
+  margin: 0 0 20px 0;
+}
+
+.input > label {
+  display: block;
+  font-weight: 700;
+  padding: 10px 0 10px 0;
+}
+
+.input > input,
+.input > textarea {
+  display: block;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: calc(100% - 22px);
+  border-radius: 5px;
+}
+
+.submit {
+  margin: 20px 0 0 0;
+  padding: 0 0 3px 0;
+}
+
+.submit > button {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  border: 1px solid #A0522D;
+  background: #CD6839;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #8A360F;
+}
