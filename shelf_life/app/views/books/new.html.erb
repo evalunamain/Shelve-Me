@@ -5,7 +5,7 @@
     <fieldset class="form-fieldset">
       <div class="form-title"><h3>Add a Book</h3></div>
       <div class="input">
-        <label for="author">Author ID</label>
+        <!-- <label for="author">Author ID</label>
         <input type="text"
           id="author"
           name="book[author_id]"
@@ -23,7 +23,7 @@
           class=" <% if @book.errors.messages[:title] %>
           <%= "error" %>
           <% end %>">
-        </input>
+        </input> -->
 
         <label for="isbn">ISBN</label>
         <input type="text"
@@ -35,8 +35,8 @@
           <% end %>">
         </input>
 
-        <label for="cover">Cover url</label>
-        <input type="text" id="cover" name="book[cover]"></input>
+        <!-- <label for="cover">Cover url</label>
+        <input type="text" id="cover" name="book[cover]"></input> -->
       </div>
 
       <div class="submit">

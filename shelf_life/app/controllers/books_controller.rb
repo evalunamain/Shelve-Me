@@ -2,11 +2,12 @@ class BooksController < ApplicationController
   before_action :ensure_owner, only: [:edit, :destroy]
 
   def new
-
+    @book ||= Book.new
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = Book.find_by_isbn(params[:book][:isbn])
+
     if @book.save
       redirect_to book_url(@book)
     else
@@ -15,6 +16,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
   def edit
