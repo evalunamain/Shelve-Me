@@ -29,48 +29,48 @@ Use Ruby/Rails for underlying database structure and associations. Javascript/JQ
 
 ##Schema
 
-User
--name
--email
--password digest
--session token
+###User
+- name
+- email
+- password digest
+- session token
 
-Friends(join table)
--user id
--user id
+###Friends(join table)
+- user id
+- user id
 
-Follows(join table)
--user if
--user id
+###Follows(join table)
+- user id
+- user id
 
-Books
--cover
--author
--title
--isbn
+###Books
+- cover
+- author
+- title
+- isbn
 
-Read books
+###Read books
 - book id
 - user id
 
 
-Reviews
--title
--description
--user id
--book id
+###Reviews
+- title
+- description
+- user id
+- book id
 
-Ratings
--rating
--user id
--book id
+###Ratings
+- rating
+- user id
+- book id
 
-Quotes
--text
--book id (/author id?)
--submitter id
+###Quotes
+- text
+- book id
+- submitter id
 
-Liked quotes(join table)
--user id
--quote id
+###Liked quotes(join table)
+- user id
+- quote id
 
