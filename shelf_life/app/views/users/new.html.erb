@@ -3,13 +3,36 @@
   <form action="<%= users_url %>" method="post" class="new-user">
     <%= auth_token %>
     <fieldset class="form-fieldset">
-      <h3>Sign Up</h3>
+      <div class="form-title"><h3>Sign Up</h3></div>
       <div class="input"><label for="name">Name</label>
-        <input type="text" id="name" name="user[name]"></input>
+        <input type="text"
+          id="name"
+          name="user[name]"
+          placeholder="<%= @user.errors.messages[:name] ? @user.errors.messages[:name][0] : @user.name %>"
+          class=" <% if @user.errors.messages[:name] %>
+          <%= "error" %>
+          <% end %>">
+        </input>
+
         <label for="email">Email</label>
-        <input type="text" id="email" name="user[email]"></input>
+        <input type="text"
+          id="email"
+          name="user[email]"
+          placeholder="<%= @user.errors.messages[:email] ? @user.errors.messages[:email][0] : @user.name %>"
+          class=" <% if @user.errors.messages[:email] %>
+          <%= "error" %>
+          <% end %>">
+        </input>
+
         <label for="password">Password</label>
-        <input type="password" id="password" name="user[password]"></input>
+        <input type="password"
+          id="password"
+          name="user[password]"
+          placeholder="<%= @user.errors.messages[:password] ? @user.errors.messages[:password][0] : @user.name %>"
+          class=" <% if @user.errors.messages[:password] %>
+          <%= "error" %>
+          <% end %>">
+        </input>
       </div>
 
       <div class="submit">

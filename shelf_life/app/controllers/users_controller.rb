@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user ||= User.new
   end
 
   def create
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
       debugger
       redirect_to users_url
     else
+      flash.now[:errors] = @user.errors.full_messages
+      
       render :new
     end
   end

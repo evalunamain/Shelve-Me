@@ -16,7 +16,7 @@
 
  /*Reset */
 
-html, body, h1, h2, h3, a, form, label, input {
+html, body, div, h1, h2, h3, a, form, label, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -36,14 +36,11 @@ input[type="text"],
 input[type="submit"],
 textarea,
 button {
+  background:inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-button,
-input[type="submit"] {
-  cursor: pointer;
-}
 
 .group:after {
   content: "";
@@ -57,21 +54,47 @@ h3 {
   font-size: 24px;
 }
 
+body {
+  background: #FFFAF8;
+}
+
 button,
 input[type="submit"] {
   position: relative;
   padding: 5px 10px;
   color: #000;
   border: 1px solid #ccc;
-  background: #eee;
+  background: #FFEEDA;
   border-radius: 5px;
-  box-shadow: 0 3px 0 0 #292421;
+  box-shadow: 0 3px 0 0 #664B42;
 }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 50px #FFEEDA inset;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.input .error {
+  border: 2px solid red;
+  font-style: italic
+}
+
+.input input:focus {
+  border: 2px solid #ccc;
+  -webkit-box-shadow: 0 0 0px 50px #FFEEDA inset;
+  outline: none;
+  font-style: normal;
+}
+
 
 /*Header*/
 .header {
-  background: #E9C2A6;
-  color: #000;
+  background: #450000;
+  color: #FFEEDA;
   border-bottom: 1px solid #ccc;
 }
 
@@ -82,22 +105,26 @@ input[type="submit"] {
 
 .header-name {
   float: left;
+  margin: 6px 0px 0px 40px;
 }
 
 /*New User Form */
 
 .form-fieldset {
-  /*float: left;*/
+  position: relative;
   margin: 20px auto;
   padding: 20px;
   width: 500px;
-  background: #eee;
+  background: #FFFAF8;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.form-fieldset > h3 {
-  padding: 0 200px;
+.form-title {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
 }
 
 .input {
@@ -128,10 +155,10 @@ input[type="submit"] {
 .submit > button {
   position: relative;
   padding: 10px 20px;
-  color: #fff;
+  color: #450000;
   border: 1px solid #A0522D;
-  background: #CD6839;
+  background: #FFEEDD;
   font-weight: 700;
   border-radius: 5px;
-  box-shadow: 0 3px 0 0 #8A360F;
+  box-shadow: 0 3px 0 0 #450000;
 }
