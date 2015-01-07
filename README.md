@@ -32,6 +32,7 @@ Use Ruby/Rails for underlying database structure and associations. Javascript/JQ
 ####User
 - name
 - email
+- picture
 - password digest
 - session token
 
