@@ -5,6 +5,7 @@
   </section>
   <section class="book-info">
     <h3 class="title"><%= @book.title %></h3>
+    <a href=" <%= author_url(@author) %>" class="author"><%= @author.name %></a>
     <p><%= @book.description %>
 
     </p>
