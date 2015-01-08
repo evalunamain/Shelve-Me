@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :authors, only: [:show]
   resources :friendships, only: [:create, :destroy]
   resources :friendship_activations, only: [:edit]
+  resources :shelves
+  resources :shelved_books, only: [:create]
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108163632) do
+ActiveRecord::Schema.define(version: 20150108230349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,26 @@ ActiveRecord::Schema.define(version: 20150108163632) do
     t.boolean  "accepted",         default: false, null: false
     t.string   "activation_token"
   end
+
+  create_table "shelved_books", force: true do |t|
+    t.integer  "shelf_id"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shelved_books", ["book_id"], name: "index_shelved_books_on_book_id", using: :btree
+  add_index "shelved_books", ["shelf_id"], name: "index_shelved_books_on_shelf_id", using: :btree
+
+  create_table "shelves", force: true do |t|
+    t.text     "title",      default: "to-read"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shelves", ["title"], name: "index_shelves_on_title", using: :btree
+  add_index "shelves", ["user_id"], name: "index_shelves_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",            null: false

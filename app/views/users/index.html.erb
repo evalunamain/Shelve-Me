@@ -1,4 +1,4 @@
-<ul class="friends">
+<ul class="index friends">
   <h3>Users Index </h3>
 
   <% @users.each do |user| %>
@@ -11,7 +11,6 @@
         <%= auth_token %>
         <input type="submit" value="Add as friend">
       </form>
-      <%#= button_to "Add as friend", edit_friendship_url(user.id) %>
     <% end %>
     </li>
   <% end %>

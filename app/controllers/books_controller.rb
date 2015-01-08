@@ -8,15 +8,14 @@ class BooksController < ApplicationController
 
   def new
     @book ||= Book.new
-
   end
 
   def create
-    @book = current_user.submitted_books.find_by_isbn(params[:book][:isbn])
+    @book = Book.find_by_isbn(params[:book][:isbn])
 
     if !@book
       @book = Book.new
-      @book.errors.messages[:isbn] = ["Please enter a valid ISBN10"]
+      # @book.errors.messages[:isbn] = ["Please enter a valid ISBN10"]
       render :new
     elsif @book.save
       redirect_to book_url(@book)

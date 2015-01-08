@@ -15,7 +15,7 @@ class Friendship < ActiveRecord::Base
     # TODO: Use BCrypt
     if self.activation_token == token
       inverse_friendship = Friendship.find_by(user_id: self.friend_id, friend_id: self.user_id)
-  
+
       transaction do
         inverse_friendship.accepted = true
         inverse_friendship.save

@@ -7,7 +7,13 @@
     <h3 class="title"><%= @book.title %></h3>
     <a href=" <%= author_url(@author) %>" class="author"><%= @author.name %></a>
     <p><%= @book.description %>
-
+    <% if signed_in? %>
+    <form action="<%= shelved_books_url %>" method="post">
+      <%= auth_token %>
+      <input type="hidden" name="shelved_book[book_id]" value="<%= @book.id %>">
+      <input type="submit" value="Add to to-read shelf">
+    </form>
+    <% end %>
     </p>
   </section>
 </section>

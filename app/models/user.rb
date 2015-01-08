@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 
   has_many :friendship_requests, -> { requested }, class_name: "Friendship", foreign_key: :user_id
 
+  has_many :shelves
+  has_many :shelved_books, through: :shelves
+  has_many :books, through: :shelved_books
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil unless user && user.is_password?(password)

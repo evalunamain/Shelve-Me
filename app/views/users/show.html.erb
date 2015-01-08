@@ -38,9 +38,9 @@
   <% end %>
 </section>
 
-<ul class="profile uploaded-books">
+<ul class="profile shelved-books">
   <h2><strong>Your Books</h2></strong>
-  <% @user.submitted_books && @user.submitted_books.each do |book| %>
+  <% @user.books && @user.books.each do |book| %>
     <li>
       <a href="<%= book_url(book) %>"><h2><%= book.title %></h2></a>
       <img src="<%= book.cover %>">

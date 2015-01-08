@@ -2,10 +2,13 @@ class Book < ActiveRecord::Base
   validates :title, :author_id, :isbn, :description, presence: true
 
   belongs_to :author
+  has_many :shelved_books
+  has_many :shelves, through: :shelved_books
   attr_reader :author
 
   # https://github.com/phoet/asin
   def self.find_by_isbn(isbn)
+    # start with new book object.
     book = Book.find_by(isbn: isbn)
     book ? book : self.create_through_isbn(isbn)
   end
@@ -22,7 +25,7 @@ class Book < ActiveRecord::Base
     description = find_description(items)
     cover = find_cover(items);
     author = find_author(items);
-    
+
     book = Book.new({
       title: title,
       isbn: isbn,
