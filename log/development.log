@@ -25363,3 +25363,63 @@ Processing by UsersController#show as HTML
   [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books"  WHERE "books"."submitter_id" = $1  [["submitter_id", 2]]
   Rendered users/show.html.erb within layouts/application (8.2ms)
 Completed 200 OK in 123ms (Views: 116.5ms | ActiveRecord: 2.6ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-01-08 17:25:50 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"8Z3KJhJF3iAFV5ozCTd2ueMzsqLv48sMkHXPnnJ6n5A="}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'xfaKWYjDXS_2IrJWVUWKyA' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."password_digest" = '$2a$10$QDlbih5x.6WfbDTjSgswleIfg7CYFpu12ns8x7KReRwcS8biLSgta' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."session_token" = 'IAwhEt3HpB7gW_k1CeU_Kw' AND "users"."id" != 2) LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."name" = 'Lieke' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."email" = 'lieke@mail.com' AND "users"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = 2[0m  [["session_token", "IAwhEt3HpB7gW_k1CeU_Kw"], ["updated_at", "2015-01-08 22:25:50.462395"]]
+  [1m[35m (38.8ms)[0m  COMMIT
+Redirected to http://localhost:3030/session/new
+Completed 302 Found in 73ms (ActiveRecord: 43.6ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-01-08 17:25:50 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 205ms (Views: 203.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-08 17:25:53 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (4.4ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
+Completed 200 OK in 172ms (Views: 117.1ms | ActiveRecord: 3.3ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-08 17:25:57 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"8Z3KJhJF3iAFV5ozCTd2ueMzsqLv48sMkHXPnnJ6n5A=", "book"=>{"isbn"=>"0765365278"}}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Redirected to http://localhost:3030/session/new
+Filter chain halted as :require_log_in rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-01-08 17:25:57 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.4ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
+Completed 200 OK in 119ms (Views: 117.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-08 17:26:04 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 119ms (Views: 117.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2015-01-08 17:26:06 -0500
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.5ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (1.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 119ms (Views: 117.4ms | ActiveRecord: 1.0ms)

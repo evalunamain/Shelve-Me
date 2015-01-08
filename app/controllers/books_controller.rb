@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :require_log_in, only: [:create]
   before_action :ensure_owner, only: [:edit, :destroy]
 
   def index
