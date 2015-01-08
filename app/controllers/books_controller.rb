@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   before_action :ensure_owner, only: [:edit, :destroy]
 
+  def index
+    @books = Book.all
+  end
+
   def new
     @book ||= Book.new
 

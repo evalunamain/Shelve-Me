@@ -90,6 +90,15 @@ input[type="submit"] {
   font-style: normal;
 }
 
+a.title {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  margin: 10px 0 0 10px;
+  padding: 10px;
+}
+
 
 /*Header*/
 .header {
@@ -211,20 +220,31 @@ ul.profile-nav {
 	font-weight: bold;
 }
 
-/*User Profile*/
-.profile {
+/*Show pages */
+.profile, .index {
   display: block;
   padding: 20px;
 }
 
-.profile a {
+.profile a, .index a {
   display: block;
   padding: 10px 0px 5px 5px;
 }
-.profile li {
+.profile li, .index li {
   padding: 5px;
 }
 
-.profile h2 {
+.profile h2, .index h2 {
   padding-bottom: 10px;
+  font-weight: bold
+}
+
+.book-overview {
+  float: left;
+  position: relative
+}
+
+.book-overview img {
+  margin: auto;
+  display: block
 }

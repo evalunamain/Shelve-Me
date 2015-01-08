@@ -1,0 +1,9 @@
+<ul class="index books">
+  <h2><strong>All Books</h2></strong>
+  <% @books.each do |book| %>
+  <li class="book-overview">
+    <a href="<%= book_url(book) %>"><h2><%= book.title %></h2></a>
+    <img src="<%= book.cover %>">
+  </li>
+  <% end %>
+</ul>
