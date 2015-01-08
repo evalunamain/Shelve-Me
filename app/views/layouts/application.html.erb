@@ -7,15 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header class="header group">
-  <% if signed_in? %>
-    <h2 class="header-name"><%= "Welcome " + current_user.name %></h2>
-    <form action="<%= session_url %>" method="post">
-      <%= auth_token %>
-      <input name="_method" type="hidden" value="delete">
-      <button class="log-out">Log Out</button>
-    </form>
-  <% end %>
+	<header class="header group">
+		<h2 class="header-name">Shelf Life</h2>
+			
+
+		<nav class="nav-header">
+			<a class="explore" href="<%= new_book_url %>">Explore</a>
+			<ul class="profile-nav">
+			  <% if signed_in? %>
+		    
+			    <form action="<%= session_url %>" method="post" class="group">
+			      <%= auth_token %>
+						<a class="header-profile" href="<%= user_url(current_user) %>"><%= current_user.name.capitalize %></a>
+			      <input name="_method" type="hidden" value="delete">
+			      <button class="log-out">Sign Out</button>
+			    </form>
+				<% else%>
+	    
+			    <form action="<%= new_user_url %>" method="get" class="group">
+			      <%= auth_token %>
+			      <button class="log-in">Sign Up</button>
+			    </form>
+			  <% end %>
+			</ul>
+	</nav>
 </header>
 
 <%= yield %>

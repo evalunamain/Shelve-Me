@@ -16,7 +16,7 @@
 
  /*Reset */
 
-html, body, div, h1, h2, h3, a, form, label, input {
+html, body, div, h1, h2, h3, a, form, label, ul, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -96,19 +96,53 @@ input[type="submit"] {
   background: #450000;
   color: #FFEEDA;
   border-bottom: 1px solid #ccc;
-}
-
-.header button {
-  float: right;
-  margin: 5px 40px 7px 0;
+	padding: 5px;
 }
 
 .header-name {
-  float: left;
-  margin: 6px 0px 0px 40px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	font-size: 18px;
+	float: left;
+	padding: 10px;
+  margin: 0px 0px 0px 40px;
 }
 
-/*New User Form */
+.nav-header {
+	float: right;
+}
+
+a.explore {
+	float: left;
+	padding: 10px 25px 10px 25px;
+	border-left: 2px solid #FFEEDA;
+}
+
+ul.profile-nav {
+	float: left;
+	padding: 5px 10px;
+	position: relative;
+	border-left: 2px solid #FFEEDA;
+}
+
+
+.header-profile {
+	display: inline-block;
+	padding-top: 5px;
+	margin: 0 20px 0 15px;
+	font-weight: bold;
+}
+
+
+.header-nav form {
+	display: inline-block;
+}
+
+.header-nav button {
+	float: right;
+}
+
+/*Form */
 
 .form-fieldset {
   position: relative;
@@ -161,4 +195,18 @@ input[type="submit"] {
   font-weight: 700;
   border-radius: 5px;
   box-shadow: 0 3px 0 0 #450000;
+}
+
+.submit a {
+	
+	padding: 10px;
+	font-size: 14px;
+	float: right;
+}
+
+.submit strong{
+	display: inline-block;
+	padding: 5px;
+	font-size: 16px;
+	font-weight: bold;
 }
