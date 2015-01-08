@@ -13,14 +13,14 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       debugger
-      redirect_to users_url
+      redirect_to user_url(@user)
     else
       render :new
     end
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:friends).find(params[:id])
   end
 
   def edit

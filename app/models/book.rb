@@ -22,10 +22,7 @@ class Book < ActiveRecord::Base
     description = find_description(items)
     cover = find_cover(items);
     author = find_author(items);
-
-    # cover = items.first.image_sets.image_set.medium_image.url
-    # author = items.first.item_attributes.author.first
-
+    
     book = Book.new({
       title: title,
       isbn: isbn,

@@ -1,4 +1,18 @@
-<h3>Users Index </h3>
-<% @users.each do |user| %>
-<a href="<%= user_url(user) %>"><%= user.name %></a>
-<% end %>
+<ul class="friends">
+  <h3>Users Index </h3>
+
+  <% @users.each do |user| %>
+    <% next if user == current_user %>
+    <li><a href="<%= user_url(user) %>"><%= user.name %></a>
+
+    <% if current_user && user.id != current_user.id %>
+      <form action="<%= friendships_url %>" method="post">
+        <input type="hidden" name="friendship[friend_id]" value="<%= user.id %>">
+        <%= auth_token %>
+        <input type="submit" value="Add as friend">
+      </form>
+      <%#= button_to "Add as friend", edit_friendship_url(user.id) %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :books
   resources :authors, only: [:show]
+  resources :friendships, only: [:create, :destroy]
+  resources :friendship_activations, only: [:edit]
 end

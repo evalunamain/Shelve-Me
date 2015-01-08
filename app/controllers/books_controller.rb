@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.find_by_isbn(params[:book][:isbn])
+    @book = current_user.submitted_books.find_by_isbn(params[:book][:isbn])
 
     if !@book
       @book = Book.new
