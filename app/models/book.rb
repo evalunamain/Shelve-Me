@@ -13,6 +13,9 @@ class Book < ActiveRecord::Base
   def self.create_through_isbn(isbn)
     client = ASIN::Client.instance
     items = client.lookup(isbn)
+    if (items.empty?)
+      return
+    end
 
     title = items.first.item_attributes.title
     isbn = items.first.item_attributes.isbn
