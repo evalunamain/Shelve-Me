@@ -25,7 +25,7 @@ class Friendship < ActiveRecord::Base
       end
     end
   end
-
+  
   def set_activation_token
     self.activation_token ||= SecureRandom.urlsafe_base64(16)
   end

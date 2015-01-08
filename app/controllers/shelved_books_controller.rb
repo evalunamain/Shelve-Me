@@ -8,7 +8,7 @@ class ShelvedBooksController < ApplicationController
 
     @shelved_book = shelf.shelved_books.new(shelved_book_params)
     if @shelved_book.save
-      redirect_to books_url(@shelved_book.book_id)
+      redirect_to book_url(@shelved_book.book_id)
     else
       fail
     end

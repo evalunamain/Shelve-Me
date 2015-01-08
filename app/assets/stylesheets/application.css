@@ -90,12 +90,19 @@ input[type="submit"] {
   font-style: normal;
 }
 
+.title {
+  display: block;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0px 0 10px 10px;
+  padding: 10px;
+}
+
 a.title {
   display: inline-block;
-  font-weight: bold;
-  font-size: 16px;
+  font-size :16px;
   border: 1px solid #ccc;
-  margin: 10px 0 0 10px;
+  margin: 10px 0 10px 10px;
   padding: 10px;
 }
 

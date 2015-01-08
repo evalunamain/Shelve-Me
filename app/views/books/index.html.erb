@@ -3,7 +3,7 @@
   <% @books.each do |book| %>
   <li class="book-overview">
     <a href="<%= book_url(book) %>"><h2><%= book.title %></h2></a>
-    <img src="<%= book.cover %>">
+    <a href="<%= book_url(book) %>"><img src="<%= book.cover %>"></a>
   </li>
   <% end %>
 </ul>
