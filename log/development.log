@@ -27456,3 +27456,1052 @@ Processing by UsersController#show as HTML
   [1m[35mBook Load (0.4ms)[0m  SELECT "books".* FROM "books" INNER JOIN "shelved_books" ON "books"."id" = "shelved_books"."book_id" INNER JOIN "shelves" ON "shelved_books"."shelf_id" = "shelves"."id" WHERE "shelves"."user_id" = $1  [["user_id", 1]]
   Rendered users/show.html.erb within layouts/application (7.9ms)
 Completed 200 OK in 165ms (Views: 155.3ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 09:17:38 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (13.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActiveRecord::PendingMigrationError - 
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+:
+  activerecord (4.1.7) lib/active_record/migration.rb:389:in `check_pending!'
+  activerecord (4.1.7) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/24fb042036e2a039/variables" for 127.0.0.1 at 2015-01-09 09:17:39 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFriendships (20150108154504)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (37.9ms)[0m  [1mCREATE TABLE "friendships" ("id" serial primary key, "user_id" integer NOT NULL, "friend_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX  "index_friendships_on_user_id_and_friend_id" ON "friendships"  ("user_id", "friend_id")
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150108154504"]]
+  [1m[35m (1.6ms)[0m  COMMIT
+Migrating to RemoveIndexFromFriendships (20150108162842)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (77.9ms)[0m  DROP INDEX "index_friendships_on_user_id_and_friend_id"
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150108162842"]]
+  [1m[35m (19.9ms)[0m  COMMIT
+Migrating to AddAcceptionStatusToFriendships (20150108163215)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (42.0ms)[0m  ALTER TABLE "friendships" ADD COLUMN "accepted" boolean DEFAULT 'f' NOT NULL
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "friendships" ADD COLUMN "token" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150108163215"]]
+  [1m[36m (2.1ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveTokenFromFriendships (20150108163632)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE "friendships" DROP "token"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "friendships" ADD COLUMN "activation_token" character varying(255)
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150108163632"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Migrating to CreateShelves (20150108223344)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (6.0ms)[0m  CREATE TABLE "shelves" ("id" serial primary key, "title" text DEFAULT 'to-read', "user_id" integer, "book_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX  "index_shelves_on_user_id" ON "shelves"  ("user_id")[0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_shelves_on_title" ON "shelves"  ("title")
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_shelves_on_book_id" ON "shelves"  ("book_id")[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150108223344"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveBookIdFromShelves (20150108230318)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (2.1ms)[0m  [1mALTER TABLE "shelves" DROP "book_id"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150108230318"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateShelvedBooks (20150108230349)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "shelved_books" ("id" serial primary key, "shelf_id" integer, "book_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_shelved_books_on_shelf_id" ON "shelved_books"  ("shelf_id")
+  [1m[36m (29.2ms)[0m  [1mCREATE  INDEX  "index_shelved_books_on_book_id" ON "shelved_books"  ("book_id")[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150108230349"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 09:18:01 -0500
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (3.4ms)
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1[0m
+Completed 200 OK in 483ms (Views: 463.0ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:18:04 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (26.8ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1
+Completed 200 OK in 274ms (Views: 256.9ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2015-01-09 09:18:05 -0500
+Processing by BooksController#index as HTML
+  [1m[36mBook Load (1.3ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.erb within layouts/application (3.9ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1
+Completed 200 OK in 250ms (Views: 246.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:18:16 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1[0m
+Completed 200 OK in 242ms (Views: 239.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:22:59 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>"B000FC2ROU"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1
+Redirected to http://localhost:3030/session/new
+Filter chain halted as :require_log_in rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-01-09 09:22:59 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1[0m
+Completed 200 OK in 217ms (Views: 216.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2015-01-09 09:23:03 -0500
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (1.8ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'LaEC3XgHtVc9xNJzq5Tg3Q' LIMIT 1
+Completed 200 OK in 252ms (Views: 241.3ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-01-09 09:23:10 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "user"=>{"name"=>"Eva", "email"=>"eva@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (15.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."password_digest" = '$2a$10$NjqfTSmrlLvZN9pvOsZ3SeQfTNHO7s8MM5dk..GiSfayPfiZSvaSq' LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."session_token" = 'Jighc1hEyuvnYqwVVdZXsw' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."name" = 'Eva' LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'eva@mail.com' LIMIT 1[0m
+  [1m[35mSQL (32.7ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "session_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", "2015-01-09 14:23:10.844611"], ["email", "eva@mail.com"], ["name", "Eva"], ["password_digest", "$2a$10$NjqfTSmrlLvZN9pvOsZ3SeQfTNHO7s8MM5dk..GiSfayPfiZSvaSq"], ["session_token", "Jighc1hEyuvnYqwVVdZXsw"], ["updated_at", "2015-01-09 14:23:10.844611"]]
+  [1m[36m (13.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (13.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."password_digest" = '$2a$10$NjqfTSmrlLvZN9pvOsZ3SeQfTNHO7s8MM5dk..GiSfayPfiZSvaSq' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."session_token" = 'jW302bsokmqILDXAgcomTQ' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."name" = 'Eva' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."email" = 'eva@mail.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = 1[0m  [["session_token", "jW302bsokmqILDXAgcomTQ"], ["updated_at", "2015-01-09 14:23:10.945130"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+
+***** Debugger requested, but was not available (ensure the debugger gem is listed in Gemfile/installed as gem): Start server with --debugger to enable *****
+
+Redirected to http://localhost:3030/users/1
+Completed 302 Found in 282ms (ActiveRecord: 80.7ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-01-09 09:23:10 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (21.1ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mFriendship Load (0.7ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mBook Load (90.2ms)[0m  [1mSELECT "books".* FROM "books" INNER JOIN "shelved_books" ON "books"."id" = "shelved_books"."book_id" INNER JOIN "shelves" ON "shelved_books"."shelf_id" = "shelves"."id" WHERE "shelves"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered users/show.html.erb within layouts/application (172.7ms)
+Completed 200 OK in 547ms (Views: 336.8ms | ActiveRecord: 141.9ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:23:13 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.5ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1
+Completed 200 OK in 266ms (Views: 264.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:23:15 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>"B000FC2ROU"}}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+  [1m[35mBook Load (0.8ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."isbn" = 'B000FC2ROU' LIMIT 1
+  [1m[36mAuthor Load (0.8ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Haruki Murakami' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "authors" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-01-09 14:23:15.999758"], ["name", "Haruki Murakami"], ["updated_at", "2015-01-09 14:23:15.999758"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered books/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 1006ms (Views: 222.8ms | ActiveRecord: 7.4ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:25:10 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>"075640407X"}}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+  [1m[35mBook Load (0.6ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."isbn" = '075640407X' LIMIT 1
+  [1m[36mAuthor Load (5.4ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Patrick Rothfuss' LIMIT 1[0m
+  [1m[35m (1.7ms)[0m  BEGIN
+  [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO "authors" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-01-09 14:25:10.429205"], ["name", "Patrick Rothfuss"], ["updated_at", "2015-01-09 14:25:10.429205"]]
+  [1m[35m (11.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (49.3ms)[0m  INSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["author_id", 3], ["cover", "http://ecx.images-amazon.com/images/I/51EX74M%2B34L._SL160_.jpg"], ["created_at", "2015-01-09 14:25:10.445410"], ["description", "Told in Kvothe's own voice, this is the tale of the magically gifted young man who grows to be the most notorious wizard his world has ever seen.The intimate narrative of his childhood in a troupe of traveling players, his years spent as a near-feral orphan in a crime-ridden city, his daringly brazen yet successful bid to enter a legendary school of magic, and his life as a fugitive after the murder of a king form a gripping coming-of-age story unrivaled in recent literature. A high-action story written with a poet's hand, The Name of the Wind is a masterpiece that will transport readers into the body and mind of a wizard. "], ["isbn", "075640407X"], ["title", "The Name of the Wind (Kingkiller Chronicles, Day 1)"], ["updated_at", "2015-01-09 14:25:10.445410"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3030/books/3
+Completed 302 Found in 373ms (ActiveRecord: 72.0ms)
+
+
+Started GET "/books/3" for 127.0.0.1 at 2015-01-09 09:25:10 -0500
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBook Load (0.5ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1
+  Rendered books/show.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 299ms (Views: 293.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:26:30 -0500
+Processing by BooksController#new as HTML
+Completed 500 Internal Server Error in 8ms
+
+ArgumentError - Unknown validator: 'MessageValidator':
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:118:in `rescue in block in validates'
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:115:in `block in validates'
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:111:in `validates'
+  app/models/book.rb:3:in `<class:Book>'
+  app/models/book.rb:1:in `<top (required)>'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:443:in `block in load_file'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:633:in `new_constants_in'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:442:in `load_file'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:342:in `require_or_load'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:480:in `load_missing_constant'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:180:in `const_missing'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:512:in `load_missing_constant'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:180:in `const_missing'
+  app/controllers/books_controller.rb:10:in `new'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.7) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.7) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.7) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.7) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:26:30 -0500
+Processing by BooksController#new as HTML
+Completed 500 Internal Server Error in 9ms
+
+ArgumentError - Unknown validator: 'MessageValidator':
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:118:in `rescue in block in validates'
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:115:in `block in validates'
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:111:in `validates'
+  app/models/book.rb:3:in `<class:Book>'
+  app/models/book.rb:1:in `<top (required)>'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:443:in `block in load_file'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:633:in `new_constants_in'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:442:in `load_file'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:342:in `require_or_load'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:480:in `load_missing_constant'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:180:in `const_missing'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:512:in `load_missing_constant'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:180:in `const_missing'
+  app/controllers/books_controller.rb:10:in `new'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.7) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.7) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.7) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.7) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/c471a34a5eea78ad/variables" for 127.0.0.1 at 2015-01-09 09:26:31 -0500
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:27:20 -0500
+Processing by BooksController#new as HTML
+Completed 500 Internal Server Error in 9ms
+
+ArgumentError - Unknown validator: 'MessageValidator':
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:118:in `rescue in block in validates'
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:115:in `block in validates'
+  activemodel (4.1.7) lib/active_model/validations/validates.rb:111:in `validates'
+  app/models/book.rb:3:in `<class:Book>'
+  app/models/book.rb:1:in `<top (required)>'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:443:in `block in load_file'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:633:in `new_constants_in'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:442:in `load_file'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:342:in `require_or_load'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:480:in `load_missing_constant'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:180:in `const_missing'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:512:in `load_missing_constant'
+  activesupport (4.1.7) lib/active_support/dependencies.rb:180:in `const_missing'
+  app/controllers/books_controller.rb:10:in `new'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.7) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.7) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.7) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.7) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/6a0e8cec067c993b/variables" for 127.0.0.1 at 2015-01-09 09:27:21 -0500
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:28:55 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (7.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+Completed 200 OK in 333ms (Views: 316.7ms | ActiveRecord: 8.0ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:28:57 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>""}}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1
+  [1m[36mBook Load (2.1ms)[0m  [1mSELECT  "books".* FROM "books"  WHERE "books"."isbn" = '' LIMIT 1[0m
+  Rendered books/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 446ms (Views: 177.6ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:29:04 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>"075640407X"}}
+  [1m[35mUser Load (2.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1
+  [1m[36mBook Load (0.8ms)[0m  [1mSELECT  "books".* FROM "books"  WHERE "books"."isbn" = '075640407X' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3030/books/3
+Completed 302 Found in 10ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/books/3" for 127.0.0.1 at 2015-01-09 09:29:04 -0500
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBook Load (0.8ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mAuthor Load (0.6ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1
+  Rendered books/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 299ms (Views: 280.3ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:29:09 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+Completed 200 OK in 200ms (Views: 197.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:29:22 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (6.9ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1
+Completed 200 OK in 277ms (Views: 262.6ms | ActiveRecord: 7.2ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:29:26 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>"asd dsfghd jfhh"}}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+  [1m[35mBook Load (0.7ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."isbn" = 'asd dsfghd jfhh' LIMIT 1
+  Rendered books/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 500ms (Views: 328.6ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-01-09 09:29:50 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0="}
+  [1m[36mUser Load (28.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'jW302bsokmqILDXAgcomTQ' LIMIT 1[0m
+  [1m[35m (2.9ms)[0m  BEGIN
+  [1m[36mUser Exists (12.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."password_digest" = '$2a$10$NjqfTSmrlLvZN9pvOsZ3SeQfTNHO7s8MM5dk..GiSfayPfiZSvaSq' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."session_token" = 'esDufytdCE3_STZc8RHOYg' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."name" = 'Eva' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."email" = 'eva@mail.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = 1[0m  [["session_token", "esDufytdCE3_STZc8RHOYg"], ["updated_at", "2015-01-09 14:29:50.865332"]]
+  [1m[35m (9.0ms)[0m  COMMIT
+Redirected to http://localhost:3030/session/new
+Completed 302 Found in 79ms (ActiveRecord: 54.7ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-01-09 09:29:50 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 281ms (Views: 278.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users/new?authenticity_token=KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G%2BheX0%3D" for 127.0.0.1 at 2015-01-09 09:29:52 -0500
+Processing by UsersController#new as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0="}
+  Rendered users/new.html.erb within layouts/application (1.6ms)
+  [1m[35mUser Load (2.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
+Completed 200 OK in 259ms (Views: 254.9ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-01-09 09:29:54 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "user"=>{"name"=>"", "email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."password_digest" = '$2a$10$YfB3sJggZp8.CacVEYvkGOFni.DI8DKO676GeETqFJyXLj3CxgMp.' LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."session_token" = '-g7eqU2aB6dccbxD01FElg' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."name" = '' LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = '' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  Rendered users/new.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 416ms (Views: 202.0ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:30:48 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (6.1ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
+Completed 200 OK in 261ms (Views: 247.7ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:30:49 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 226ms (Views: 224.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:30:51 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>""}}
+  [1m[35mUser Load (2.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
+Redirected to http://localhost:3030/session/new
+Filter chain halted as :require_log_in rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-01-09 09:30:51 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1[0m
+Completed 200 OK in 231ms (Views: 229.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-01-09 09:30:56 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "user"=>{"email"=>"eva@mail.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (1.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" = 'eva@mail.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."password_digest" = '$2a$10$NjqfTSmrlLvZN9pvOsZ3SeQfTNHO7s8MM5dk..GiSfayPfiZSvaSq' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE ("users"."name" = 'Eva' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."email" = 'eva@mail.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = 1  [["session_token", "ZM3i767WcLdcgqDs6vaXtA"], ["updated_at", "2015-01-09 14:30:56.413755"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3030/users
+Completed 302 Found in 95ms (ActiveRecord: 8.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2015-01-09 09:30:56 -0500
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+  Rendered users/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 161ms (Views: 159.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:30:58 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.6ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1
+Completed 200 OK in 217ms (Views: 215.3ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:30:59 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>""}}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+  [1m[35mBook Load (2.4ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."isbn" = '' LIMIT 1
+Completed 500 Internal Server Error in 164ms
+
+RuntimeError - :
+  app/controllers/books_controller.rb:18:in `create'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.7) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.7) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.7) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.7) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/9f097784377914ee/variables" for 127.0.0.1 at 2015-01-09 09:30:59 -0500
+
+
+Started POST "/__better_errors/9f097784377914ee/eval" for 127.0.0.1 at 2015-01-09 09:31:02 -0500
+
+
+Started POST "/__better_errors/9f097784377914ee/eval" for 127.0.0.1 at 2015-01-09 09:31:04 -0500
+
+
+Started POST "/__better_errors/9f097784377914ee/eval" for 127.0.0.1 at 2015-01-09 09:31:10 -0500
+
+
+Started GET "/new" for 127.0.0.1 at 2015-01-09 09:32:35 -0500
+
+ActionController::RoutingError (No route matches [GET] "/new"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.8ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (40.6ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (358.4ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:32:38 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (6.8ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+Completed 200 OK in 284ms (Views: 264.6ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:32:39 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.6ms)
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1
+Completed 200 OK in 235ms (Views: 233.3ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:32:42 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>""}}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+  [1m[35mBook Load (0.7ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."isbn" = '' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered books/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 533ms (Views: 224.3ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:33:05 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>""}}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+  [1m[35mBook Load (0.7ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."isbn" = '' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 251ms
+
+RuntimeError - :
+  app/controllers/books_controller.rb:25:in `create'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.7) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.7) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.7) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.7) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/022bc05bf608dd25/variables" for 127.0.0.1 at 2015-01-09 09:33:05 -0500
+
+
+Started POST "/__better_errors/022bc05bf608dd25/eval" for 127.0.0.1 at 2015-01-09 09:33:07 -0500
+
+
+Started POST "/__better_errors/022bc05bf608dd25/eval" for 127.0.0.1 at 2015-01-09 09:33:09 -0500
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:35:14 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (12.4ms)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+Completed 200 OK in 434ms (Views: 398.7ms | ActiveRecord: 10.4ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:35:15 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (0.5ms)
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1
+Completed 200 OK in 275ms (Views: 272.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-01-09 09:35:20 -0500
+Processing by BooksController#new as HTML
+  Rendered books/new.html.erb within layouts/application (9.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+Completed 200 OK in 383ms (Views: 366.9ms | ActiveRecord: 7.2ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2015-01-09 09:35:21 -0500
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"KHPNNQxMkJoKFD5h61iB7QOwlmWHla4iZuEn4G+heX0=", "book"=>{"isbn"=>""}}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1
+  [1m[36mBook Load (0.8ms)[0m  [1mSELECT  "books".* FROM "books"  WHERE "books"."isbn" = '' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered books/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 502ms (Views: 235.3ms | ActiveRecord: 2.0ms)
+  [1m[36mSQL (2.1ms)[0m  [1mDELETE FROM "books"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mAuthor Load (0.8ms)[0m  SELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Brandon Sanderson' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (14.5ms)[0m  INSERT INTO "authors" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-01-09 14:37:01.397866"], ["name", "Brandon Sanderson"], ["updated_at", "2015-01-09 14:37:01.397866"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (25.5ms)[0m  [1mINSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["author_id", 4], ["cover", "http://ecx.images-amazon.com/images/I/51RoBAb1oyL._SL160_.jpg"], ["created_at", "2015-01-09 14:37:01.427256"], ["description", "Brandon Sanderson's The Stormlight Archive sequence began in 2010 with the New York Times bestseller The Way of Kings . Now, the eagerly anticipated Words of Radiance continues the epic story and answers many of your questions. Six years ago, the Assassin in White, a hireling of the inscrutable Parshendi, assassinated the Alethi king on the very night a treaty between men and Parshendi was being celebrated. So began the Vengeance Pact among the highprinces of Alethkar and the War of Reckoning against the Parshendi. Now the Assassin is active again, murdering rulers all over the world of Roshar, using his baffling powers to thwart every bodyguard and elude all pursuers. Among his prime targets is Highprince Dalinar, widely considered the power behind the Alethi throne. His leading role in the war would seem reason enough, but the Assassin’s master has much deeper motives. Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status \"darkeyes.\" Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl. Brilliant but troubled Shallan strives along a parallel path. Despite being broken in ways she refuses to acknowledge, she bears a terrible burden: to somehow prevent the return of the legendary Voidbringers and the civilization-ending Desolation that will follow. The secrets she needs can be found at the Shattered Plains, but just arriving there proves more difficult than she could have imagined. Meanwhile, at the heart of the Shattered Plains, the Parshendi are making an epochal decision. Hard pressed by years of Alethi attacks, their numbers ever shrinking, they are convinced by their war leader, Eshonai, to risk everything on a desperate gamble with the very supernatural forces they once fled. The possible consequences for Parshendi and humans alike, indeed, for Roshar itself, are as dangerous as they are incalculable. The doors of the Stormlight Archive first opened to us with The Way of Kings . Read that book – now available in all formats – and then Words of Radiance , and you can be part of the adventure every dazzling step of the way. "], ["isbn", "0765326361"], ["title", "Words of Radiance (The Stormlight Archive, Book 2) (Stormlight Archive, The)"], ["updated_at", "2015-01-09 14:37:01.427256"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Brandon Sanderson' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["author_id", 4], ["cover", "http://ecx.images-amazon.com/images/I/51WC999OnyL._SL160_.jpg"], ["created_at", "2015-01-09 14:37:01.669869"], ["description", "Widely acclaimed for his work completing Robert Jordan’s Wheel of Time saga, Brandon Sanderson now begins a grand cycle of his own, one every bit as ambitious and immersive. Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter. It has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them. One such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable. Brightlord Dalinar Kholin commands one of those other armies. Like his brother, the late king, he is fascinated by an ancient text called The Way of Kings . Troubled by over-powering visions of ancient times and the Knights Radiant, he has begun to doubt his own sanity. Across the ocean, an untried young woman named Shallan seeks to train under an eminent scholar and notorious heretic, Dalinar’s niece, Jasnah. Though she genuinely loves learning, Shallan’s motives are less than pure. As she plans a daring theft, her research for Jasnah hints at secrets of the Knights Radiant and the true cause of the war. The result of over ten years of planning, writing, and world-building, The Way of Kings is but the opening movement of the Stormlight Archive, a bold masterpiece in the making. Speak again the ancient oaths, Life before death. Strength before weakness. Journey before Destination. and return to men the Shards they once bore. The Knights Radiant must stand again. "], ["isbn", "0765326353"], ["title", "The Way of Kings (Stormlight Archive, The)"], ["updated_at", "2015-01-09 14:37:01.669869"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Brandon Sanderson' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["author_id", 4], ["cover", "http://ecx.images-amazon.com/images/I/512UVPBQPKL._SL160_.jpg"], ["created_at", "2015-01-09 14:37:01.883317"], ["description", "Fresh from the success of The Way of Kings, Brandon Sanderson, best known for completing Robert Jordan’s Wheel of Time®, takes a break to return to the world of the bestselling Mistborn series. Three hundred years after the events of the Mistborn trilogy, Scadrial is now on the verge of modernity, with railroads to supplement the canals, electric lighting in the streets and the homes of the wealthy, and the first steel-framed skyscrapers racing for the clouds. Kelsier, Vin, Elend, Sazed, Spook, and the rest are now part of history—or religion. Yet even as science and technology are reaching new heights, the old magics of Allomancy and Feruchemy continue to play a role in this reborn world. Out in the frontier lands known as the Roughs, they are crucial tools for the brave men and women attempting to establish order and justice. One such is Waxillium Ladrian, a rare Twinborn, who can Push on metals with his Allomancy and use Feruchemy to become lighter or heavier at will.  After twenty years in the Roughs, Wax has been forced by family tragedy to return to the metropolis of Elendel. Now he must reluctantly put away his guns and assume the duties and dignity incumbent upon the head of a noble house. Or so he thinks, until he learns the hard way that the mansions and elegant tree-lined streets of the city can be even more dangerous than the dusty plains of the Roughs. "], ["isbn", "0765330423"], ["title", "The Alloy of Law: A Mistborn Novel"], ["updated_at", "2015-01-09 14:37:01.883317"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Jeffrey Eugenides' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "authors" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-01-09 14:37:02.074232"], ["name", "Jeffrey Eugenides"], ["updated_at", "2015-01-09 14:37:02.074232"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["author_id", 5], ["cover", "http://ecx.images-amazon.com/images/I/5123Up%2BbjYL._SL160_.jpg"], ["created_at", "2015-01-09 14:37:02.076491"], ["description", "This beautiful and sad first novel, recently adapted for a major motion picture, tells of a band of teenage sleuths who piece together the story of a twenty-year old family tragedy begun by the youngest daughter’s spectacular demise by self-defenstration, which inaugurates “the year of the suicides.” "], ["isbn", "0374284385"], ["title", "The Virgin Suicides: A Novel"], ["updated_at", "2015-01-09 14:37:02.076491"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35mAuthor Load (0.5ms)[0m  SELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Jonathan Safran Foer' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-01-09 14:37:02.472036"], ["name", "Jonathan Safran Foer"], ["updated_at", "2015-01-09 14:37:02.472036"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["author_id", 6], ["cover", "http://ecx.images-amazon.com/images/I/51CKyadXNfL._SL160_.jpg"], ["created_at", "2015-01-09 14:37:02.475782"], ["description", "Jonathan Safran Foer emerged as one of the most original writers of his generation with his best-selling debut novel, Everything Is Illuminated. Now, with humor, tenderness, and awe, he confronts the traumas of our recent history. What he discovers is solace in that most human quality, imagination. Meet Oskar Schell, an inventor, Francophile, tambourine player, Shakespearean actor, jeweler, pacifist, correspondent with Stephen Hawking and Ringo Starr. He is nine years old. And he is on an urgent, secret search through the five boroughs of New York. His mission is to find the lock that fits a mysterious key belonging to his father, who died in the World Trade Center on 9/11. An inspired innocent, Oskar is alternately endearing, exasperating, and hilarious as he careens from Central Park to Coney Island to Harlem on his search. Along the way he is always dreaming up inventions to keep those he loves safe from harm. What about a birdseed shirt to let you fly away? What if you could actually hear everyone's heartbeat? His goal is hopeful, but the past speaks a loud warning in stories of those who've lost loved ones before. As Oskar roams New York, he encounters a motley assortment of humanity who are all survivors in their own way. He befriends a 103-year-old war reporter, a tour guide who never leaves the Empire State Building, and lovers enraptured or scorned. Ultimately, Oskar ends his journey where it began, at his father's grave. But now he is accompanied by the silent stranger who has been renting the spare room of his grandmother's apartment. They are there to dig up his father's empty coffin. "], ["isbn", "0618329706"], ["title", "Extremely Loud and Incredibly Close"], ["updated_at", "2015-01-09 14:37:02.475782"]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Haruki Murakami' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["author_id", 2], ["cover", "http://ecx.images-amazon.com/images/I/41F2ZqVyWRL._SL160_.jpg"], ["created_at", "2015-01-09 14:37:02.752185"], ["description", "With Kafka on the Shore, Haruki Murakami gives us a novel every bit as ambitious and expansive as The Wind-Up Bird Chronicle, which has been acclaimed both here and around the world for its uncommon ambition and achievement, and whose still-growing popularity suggests that it will be read and admired for decades to come. This magnificent new novel has a similarly extraordinary scope and the same capacity to amaze, entertain, and bewitch the reader. A tour de force of metaphysical reality, it is powered by two remarkable characters: a teenage boy, Kafka Tamura, who runs away from home either to escape a gruesome oedipal prophecy or to search for his long-missing mother and sister; and an aging simpleton called Nakata, who never recovered from a wartime affliction and now is drawn toward Kafka for reasons that, like the most basic activities of daily life, he cannot fathom. Their odyssey, as mysterious to them as it is to us, is enriched throughout by vivid accomplices and mesmerizing events. Cats and people carry on conversations, a ghostlike pimp employs a Hegel-quoting prostitute, a forest harbors soldiers apparently unaged since World War II, and rainstorms of fish (and worse) fall from the sky. There is a brutal murder, with the identity of both victim and perpetrator a riddle–yet this, along with everything else, is eventually answered, just as the entwined destinies of Kafka and Nakata are gradually revealed, with one escaping his fate entirely and the other given a fresh start on his own. Extravagant in its accomplishment, Kafka on the Shore displays one of the world’s truly great storytellers at the height of his powers."], ["isbn", "1400043662"], ["title", "Kafka on the Shore"], ["updated_at", "2015-01-09 14:37:02.752185"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."name" = 'Patrick Rothfuss' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("author_id", "cover", "created_at", "description", "isbn", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["author_id", 3], ["cover", "http://ecx.images-amazon.com/images/I/51EX74M%2B34L._SL160_.jpg"], ["created_at", "2015-01-09 14:37:02.918916"], ["description", "Told in Kvothe's own voice, this is the tale of the magically gifted young man who grows to be the most notorious wizard his world has ever seen.The intimate narrative of his childhood in a troupe of traveling players, his years spent as a near-feral orphan in a crime-ridden city, his daringly brazen yet successful bid to enter a legendary school of magic, and his life as a fugitive after the murder of a king form a gripping coming-of-age story unrivaled in recent literature. A high-action story written with a poet's hand, The Name of the Wind is a masterpiece that will transport readers into the body and mind of a wizard. "], ["isbn", "075640407X"], ["title", "The Name of the Wind (Kingkiller Chronicles, Day 1)"], ["updated_at", "2015-01-09 14:37:02.918916"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+
+
+Started GET "/books" for 127.0.0.1 at 2015-01-09 09:37:08 -0500
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (1.0ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (16.6ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+Completed 200 OK in 433ms (Views: 414.0ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2015-01-09 09:37:55 -0500
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (1.3ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (5.6ms)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+Completed 200 OK in 481ms (Views: 476.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2015-01-09 09:39:00 -0500
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.7ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (3.1ms)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'ZM3i767WcLdcgqDs6vaXtA' LIMIT 1[0m
+Completed 200 OK in 314ms (Views: 312.0ms | ActiveRecord: 1.5ms)

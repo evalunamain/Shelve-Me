@@ -34,6 +34,8 @@ gem 'rack'
 
 gem 'figaro'
 
+gem 'backbone-on-rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

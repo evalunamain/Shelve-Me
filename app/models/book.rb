@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
-  validates :title, :author_id, :isbn, :description, presence: true
+  validates :title, :author_id, :description, :isbn, presence: true
+  # validates :isbn, message: "Must be a valid ISBN10"
 
   belongs_to :author
   has_many :shelved_books
@@ -17,7 +18,7 @@ class Book < ActiveRecord::Base
     client = ASIN::Client.instance
     items = client.lookup(isbn)
     if (items.empty?)
-      return
+      return Book.new
     end
 
     title = items.first.item_attributes.title

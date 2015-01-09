@@ -248,6 +248,8 @@ ul.profile-nav {
 
 .book-overview {
   float: left;
+  max-width: 200px;
+  height: 260px;
   position: relative
 }
 
