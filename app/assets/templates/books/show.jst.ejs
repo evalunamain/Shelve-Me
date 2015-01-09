@@ -1,13 +1,11 @@
-<a href="#books">Books Index</a>
-<section class="book-cover">
+<a href="#books" class="title">Books Index</a>
+<section class="profile">
   <img src="<%= book.escape('cover') %>">
-</section>
 
-<section class="book-info">
   <h3 class="title"> <%= book.escape('title') %></h3>
-
+  <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
   <p><%= book.escape('description') %>
-    <a href="#/authors/" class="author">Author</a>
+
     <form action="" method="post">
       <input type="hidden" name="shelved_book[book_id]" value="<%= book.id %>">
       <input type="submit" value="Add to to-read shelf">

@@ -3,6 +3,8 @@ ShelfLife.Collections.Books = Backbone.Collection.extend({
 
   model: ShelfLife.Models.Book,
 
+  comparator: "title",
+
   getOrFetch: function (id){
     var book = this.get(id);
     var books = this;

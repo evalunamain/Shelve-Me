@@ -35,11 +35,11 @@ class Book < ActiveRecord::Base
     })
   end
 
-  def authorname=(author)
-    author = Author.find_by(name: @author)
+  def authorname=(authorname)
+    author = Author.find_by(name: authorname)
 
     if author.nil?
-      author = Author.new(name: @author)
+      author = Author.new(name: authorname)
       author.save
     end
 

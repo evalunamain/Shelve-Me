@@ -94,8 +94,8 @@ input[type="submit"] {
   display: block;
   font-weight: bold;
   font-size: 24px;
-  margin: 0px 0 10px 10px;
-  padding: 10px;
+  margin: 0px 0 10px 0px;
+  padding: 10px 0px;
 }
 
 a.title {
@@ -214,7 +214,6 @@ ul.profile-nav {
 }
 
 .submit a {
-
 	padding: 10px;
 	font-size: 14px;
 	float: right;
@@ -233,10 +232,10 @@ ul.profile-nav {
   padding: 20px;
 }
 
-.profile a, .index a {
+/*.index a {
   display: block;
   padding: 10px 0px 5px 5px;
-}
+}*/
 .profile li, .index li {
   padding: 5px;
 }
@@ -248,12 +247,20 @@ ul.profile-nav {
 
 .book-overview {
   float: left;
-  max-width: 200px;
+  width: 225px;
   height: 260px;
-  position: relative
+  position: relative;
+}
+
+.book-overview a {
+  text-align: center
 }
 
 .book-overview img {
   margin: auto;
   display: block
+}
+
+.book-info {
+
 }

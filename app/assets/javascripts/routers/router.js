@@ -4,10 +4,11 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
+    "": "bookIndex",
     "books": "bookIndex",
     "books/new": "bookNew",
-    "books/:id": "bookShow"
+    "books/:id": "bookShow",
+    "authors/:id": "authorShow"
   },
 
   index: function (){
@@ -23,7 +24,11 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
   },
 
   bookNew: function (){
+    var newBookView = new ShelfLife.Views.BooksNew({
+      model: new ShelfLife.Models.Book
+    });
 
+    this._swapView(newBookView);
   },
 
   bookShow: function (id){
@@ -31,7 +36,17 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
     var bookShow = new ShelfLife.Views.BookShow({
       model: book
     });
+
     this._swapView(bookShow);
+  },
+
+  authorShow: function (id){
+    var author = ShelfLife.Collections.authors.getOrFetch(id);
+    author.books().fetch();
+    var authorShowView = new ShelfLife.Views.AuthorShow({
+      model: author, collection: author.books()
+    });
+    this._swapView(authorShowView);
   },
 
   _swapView: function (view){

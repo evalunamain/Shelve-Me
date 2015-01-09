@@ -4,9 +4,9 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 
   tagName: "section",
 
-  className: "book-profile",
 
   initialize: function () {
+
     this.listenTo(this.model, 'sync', this.render);
   },
 
@@ -16,6 +16,15 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
+
+
+  render2: function (){
+    var content = this.template({book: this.model});
+    debugger
+    this.$el.html(content);
+    return this;
+  },
+
 
 
 });
