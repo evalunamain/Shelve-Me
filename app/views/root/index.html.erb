@@ -1,1 +1,6 @@
-<section id="main"></div>
+<section id="main"></section>
+<script>
+  <% if signed_in? %>
+  window.ShelfLife.userId = <%= current_user.id %>
+  <% end %>
+</script>

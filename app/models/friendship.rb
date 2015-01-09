@@ -1,9 +1,11 @@
 class Friendship < ActiveRecord::Base
   validates :user_id, :friend_id, presence: true
   # validates :activation_token, uniqueness: true
+  validate :can_not_befriend_self
 
   belongs_to :user
   belongs_to :friend, class_name: "User", foreign_key: :friend_id
+
 
   scope :accepted, -> {where(:accepted => true) }
 
@@ -25,7 +27,13 @@ class Friendship < ActiveRecord::Base
       end
     end
   end
-  
+
+  def can_not_befriend_self
+    if user_id == friend_id
+      errors.add(:friend_id, "can't befriend yourself")
+    end
+  end
+
   def set_activation_token
     self.activation_token ||= SecureRandom.urlsafe_base64(16)
   end

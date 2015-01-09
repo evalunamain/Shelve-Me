@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require serializejson.min.js
 //= require shelf_life
 //= require_tree ../templates
 //= require_tree ./utils

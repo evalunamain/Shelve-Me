@@ -15,5 +15,12 @@ ShelfLife.Models.User = Backbone.Model.extend({
     }
 
     return response;
+  },
+
+  isFriend: function (user){
+
+    var friend = this.friends().get(user.id);
+
+    return !!friend
   }
 });

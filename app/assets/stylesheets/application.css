@@ -264,3 +264,9 @@ ul.profile-nav {
 .book-info {
 
 }
+
+/*User index*/
+.friend-toggle {
+  margin: 5px;
+  display: inline-block;
+}

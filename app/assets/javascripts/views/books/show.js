@@ -18,13 +18,4 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
   },
 
 
-  render2: function (){
-    var content = this.template({book: this.model});
-    debugger
-    this.$el.html(content);
-    return this;
-  },
-
-
-
 });

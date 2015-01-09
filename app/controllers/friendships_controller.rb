@@ -1,5 +1,6 @@
 class FriendshipsController < ApplicationController
   def create
+    
     friendship = Friendship.new({
       user_id: current_user.id,
       friend_id: params[:friendship][:friend_id]
@@ -27,7 +28,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    
+
   end
 
   private
