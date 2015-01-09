@@ -1,4 +1,4 @@
-ShelfLife.Models.Book = Backbone.Model.extend({
+ShelfLife.Models.Friendship = Backbone.Model.extend({
   urlRoot: 'api/friendship',
 
   friend: function(){

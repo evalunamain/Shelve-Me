@@ -10,8 +10,6 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 
   },
 
-
-
   render: function (){
     this.attachFriends();
     var content = this.template({user: this.model});
@@ -27,12 +25,4 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
   },
 
 
-
-
-  addBookView: function (book) {
-    var bookView = new ShelfLife.Views.BookItem({
-      model: book
-    });
-    this.addSubview('ul.index', bookView);
-  },
 });

@@ -35,6 +35,7 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
 
   bookShow: function (id){
     var book = ShelfLife.Collections.books.getOrFetch(id);
+    
     var bookShow = new ShelfLife.Views.BookShow({
       model: book
     });

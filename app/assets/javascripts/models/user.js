@@ -36,7 +36,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
     }
 
     return this._friendships
-  }
+  },
 
   friends: function (){
     if (!this._friends) {

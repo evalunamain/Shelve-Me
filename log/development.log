@@ -44011,3 +44011,742 @@ Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:20:15 -0500
 Processing by Api::UsersController#index as JSON
   [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
 Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:40:22 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 910ms (Views: 908.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:40:36 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 366ms (Views: 365.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:40:37 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (1.0ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (8.0ms)
+Completed 200 OK in 24ms (Views: 8.9ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:40:37 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[35mBook Load (0.8ms)[0m  SELECT "books".* FROM "books"
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:40:40 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.7ms)[0m  [1mSELECT "books".* FROM "books"[0m
+Completed 200 OK in 18ms (Views: 16.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/friendship/22" for 127.0.0.1 at 2015-01-09 18:40:41 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/22"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (5.9ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:40:44 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[35mBook Load (1.0ms)[0m  SELECT "books".* FROM "books"
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/friendship/22" for 127.0.0.1 at 2015-01-09 18:40:48 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/22"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.2ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (10.7ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:40:50 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (1.5ms)[0m  [1mSELECT "books".* FROM "books"[0m
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:42:09 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 386ms (Views: 384.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:42:10 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (6.5ms)
+Completed 200 OK in 18ms (Views: 8.3ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:42:10 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.8ms)[0m  [1mSELECT "books".* FROM "books"[0m
+Completed 200 OK in 15ms (Views: 12.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:42:11 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:42:31 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 373ms (Views: 371.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:42:32 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (1.2ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (5.8ms)
+Completed 200 OK in 17ms (Views: 6.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:42:32 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (5.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:43:04 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 380ms (Views: 378.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:43:05 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (15.1ms)
+Completed 200 OK in 32ms (Views: 19.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:43:05 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.4ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (9.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:43:16 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 370ms (Views: 368.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:43:17 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (12.1ms)
+Completed 200 OK in 21ms (Views: 11.6ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:43:17 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.3ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (8.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:43:37 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 370ms (Views: 368.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:43:38 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (3.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (1.0ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (7.2ms)
+Completed 200 OK in 22ms (Views: 8.1ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:43:38 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.3ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (9.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:44:08 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 399ms (Views: 397.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:44:09 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (6.8ms)
+Completed 200 OK in 17ms (Views: 8.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:44:09 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (5.0ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:45:21 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.7ms)[0m  [1mSELECT "books".* FROM "books"[0m
+Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:45:23 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 295ms (Views: 293.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:45:23 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (9.9ms)
+Completed 200 OK in 19ms (Views: 10.8ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:45:23 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.1ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (7.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:45:49 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 409ms (Views: 407.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:45:49 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (9.1ms)
+Completed 200 OK in 19ms (Views: 9.2ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:45:49 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (6.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:49:52 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 383ms (Views: 381.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:49:53 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.8ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (15.8ms)
+Completed 200 OK in 38ms (Views: 17.3ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:49:53 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (9.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:50:24 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 386ms (Views: 384.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:50:25 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (6.1ms)
+Completed 200 OK in 17ms (Views: 7.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/books/18" for 127.0.0.1 at 2015-01-09 18:50:25 -0500
+Processing by Api::BooksController#show as JSON
+  Parameters: {"id"=>"18"}
+  [1m[35mBook Load (0.4ms)[0m  SELECT  "books".* FROM "books"  WHERE "books"."id" = $1 LIMIT 1  [["id", 18]]
+  [1m[36mShelvedBook Load (1.9ms)[0m  [1mSELECT "shelved_books".* FROM "shelved_books"  WHERE "shelved_books"."book_id" IN (18)[0m
+  [1m[35mAuthor Load (0.4ms)[0m  SELECT  "authors".* FROM "authors"  WHERE "authors"."id" = $1 LIMIT 1  [["id", 14]]
+  Rendered api/books/show.json.jbuilder (22.2ms)
+Completed 200 OK in 44ms (Views: 21.3ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:51:14 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 1004ms (Views: 1001.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:51:15 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.7ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (9.3ms)
+Completed 200 OK in 26ms (Views: 14.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/friendship/18" for 127.0.0.1 at 2015-01-09 18:51:15 -0500
+
+ActionController::RoutingError (No route matches [GET] "/api/friendship/18"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.2ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (9.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:51:28 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 374ms (Views: 372.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:51:29 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (2.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.8ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (7.2ms)
+Completed 200 OK in 19ms (Views: 8.1ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/api/books/18" for 127.0.0.1 at 2015-01-09 18:51:29 -0500
+Processing by Api::BooksController#show as JSON
+  Parameters: {"id"=>"18"}
+  [1m[36mBook Load (0.4ms)[0m  [1mSELECT  "books".* FROM "books"  WHERE "books"."id" = $1 LIMIT 1[0m  [["id", 18]]
+  [1m[35mShelvedBook Load (0.8ms)[0m  SELECT "shelved_books".* FROM "shelved_books"  WHERE "shelved_books"."book_id" IN (18)
+  [1m[36mAuthor Load (0.4ms)[0m  [1mSELECT  "authors".* FROM "authors"  WHERE "authors"."id" = $1 LIMIT 1[0m  [["id", 14]]
+  Rendered api/books/show.json.jbuilder (2.6ms)
+Completed 200 OK in 16ms (Views: 10.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:51:35 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[35mBook Load (0.9ms)[0m  SELECT "books".* FROM "books"
+Completed 200 OK in 13ms (Views: 10.6ms | ActiveRecord: 0.9ms)
