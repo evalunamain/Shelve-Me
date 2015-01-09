@@ -43404,3 +43404,610 @@ Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:07:42 -0500
 Processing by Api::UsersController#index as JSON
   [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
 Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:09:28 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  Rendered api/users/show.json.jbuilder (1.6ms)
+Completed 200 OK in 15ms (Views: 3.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:09:28 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-01-09 18:11:27 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mBook Load (0.4ms)[0m  [1mSELECT "books".* FROM "books" INNER JOIN "shelved_books" ON "books"."id" = "shelved_books"."book_id" INNER JOIN "shelves" ON "shelved_books"."shelf_id" = "shelves"."id" WHERE "shelves"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered users/show.html.erb within layouts/application (35.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 469ms (Views: 456.3ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/users/api/books" for 127.0.0.1 at 2015-01-09 18:11:28 -0500
+
+ActionController::RoutingError (No route matches [GET] "/users/api/books"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.2ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (14.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:14:01 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (16.0ms)
+Completed 200 OK in 80ms (Views: 16.8ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-01-09 18:14:08 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mFriendship Load (0.2ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mFriendship Load (0.2ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT "books".* FROM "books" INNER JOIN "shelved_books" ON "books"."id" = "shelved_books"."book_id" INNER JOIN "shelves" ON "shelved_books"."shelf_id" = "shelves"."id" WHERE "shelves"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered users/show.html.erb within layouts/application (37.6ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 355ms (Views: 346.2ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/users/api/books" for 127.0.0.1 at 2015-01-09 18:14:09 -0500
+
+ActionController::RoutingError (No route matches [GET] "/users/api/books"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.2ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (6.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2015-01-09 18:14:12 -0500
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered users/index.html.erb within layouts/application (25.9ms)
+Completed 500 Internal Server Error in 30ms
+
+NameError - undefined local variable or method `friendships_url' for #<#<Class:0x007f87265a0460>:0x007f8723b00228>:
+  app/views/users/index.html.erb:9:in `block in _app_views_users_index_html_erb___2049530372972696143_70109198192520'
+  activerecord (4.1.7) lib/active_record/relation/delegation.rb:46:in `each'
+  app/views/users/index.html.erb:4:in `_app_views_users_index_html_erb___2049530372972696143_70109198192520'
+  actionview (4.1.7) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.1.7) lib/active_support/notifications.rb:161:in `instrument'
+  actionview (4.1.7) lib/action_view/template.rb:339:in `instrument'
+  actionview (4.1.7) lib/action_view/template.rb:143:in `render'
+  actionview (4.1.7) lib/action_view/renderer/template_renderer.rb:55:in `block (2 levels) in render_template'
+  actionview (4.1.7) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionview (4.1.7) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionview (4.1.7) lib/action_view/renderer/template_renderer.rb:54:in `block in render_template'
+  actionview (4.1.7) lib/action_view/renderer/template_renderer.rb:62:in `render_with_layout'
+  actionview (4.1.7) lib/action_view/renderer/template_renderer.rb:53:in `render_template'
+  actionview (4.1.7) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionview (4.1.7) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.1.7) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.1.7) lib/action_view/rendering.rb:99:in `_render_template'
+  actionpack (4.1.7) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.1.7) lib/action_view/rendering.rb:82:in `render_to_body'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.1.7) lib/action_controller/metal/renderers.rb:32:in `render_to_body'
+  actionpack (4.1.7) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.1.7) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.1.7) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.1.7) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.7) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.7) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.7) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.7) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.7) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.7) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.7) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.7) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.7) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.7) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.7) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.7) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.7) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.7) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/4704446b99c367b4/variables" for 127.0.0.1 at 2015-01-09 18:14:12 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:14:17 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 315ms (Views: 313.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:14:17 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (21.4ms)
+Completed 200 OK in 34ms (Views: 28.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/books" for 127.0.0.1 at 2015-01-09 18:14:17 -0500
+Processing by Api::BooksController#index as JSON
+  [1m[35mBook Load (0.9ms)[0m  SELECT "books".* FROM "books"
+Completed 200 OK in 20ms (Views: 16.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:14:18 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (5.8ms)
+Completed 200 OK in 11ms (Views: 6.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:14:18 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:14:19 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/api/friendships/" for 127.0.0.1 at 2015-01-09 18:14:21 -0500
+Processing by Api::FriendshipsController#create as JSON
+  Parameters: {"friend_id"=>"9"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "friendships" ("created_at", "friend_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2015-01-09 23:14:21.393265"], ["friend_id", 9], ["updated_at", "2015-01-09 23:14:21.393265"], ["user_id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "friendships" ("activation_token", "created_at", "friend_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["activation_token", "7bMC_YA7QEfehwQtPlegsQ"], ["created_at", "2015-01-09 23:14:21.394969"], ["friend_id", 1], ["updated_at", "2015-01-09 23:14:21.394969"], ["user_id", 9]]
+  [1m[35m (12.6ms)[0m  COMMIT
+Completed 200 OK in 23ms (Views: 0.3ms | ActiveRecord: 13.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:14:30 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (8.4ms)
+Completed 200 OK in 20ms (Views: 8.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:16:37 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.8ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (7.9ms)
+Completed 200 OK in 27ms (Views: 19.8ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:16:42 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 2533ms (Views: 2531.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-01-09 18:16:44 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (3.9ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mBook Load (5.0ms)[0m  SELECT "books".* FROM "books" INNER JOIN "shelved_books" ON "books"."id" = "shelved_books"."book_id" INNER JOIN "shelves" ON "shelved_books"."shelf_id" = "shelves"."id" WHERE "shelves"."user_id" = $1  [["user_id", 1]]
+  Rendered users/show.html.erb within layouts/application (18.8ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 395ms (Views: 371.9ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:16:45 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (21.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (10.1ms)
+Completed 200 OK in 44ms (Views: 10.5ms | ActiveRecord: 24.4ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:16:45 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (10.5ms)
+Completed 200 OK in 21ms (Views: 12.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:16:45 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:18:16 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 1047ms (Views: 1045.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:18:24 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 369ms (Views: 367.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:18:26 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (2.2ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (6.4ms)
+Completed 200 OK in 19ms (Views: 7.9ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:18:26 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (6.8ms)
+Completed 200 OK in 15ms (Views: 7.4ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:18:26 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:19:14 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 961ms (Views: 959.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:19:16 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (2.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.8ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (9.3ms)
+Completed 200 OK in 40ms (Views: 29.6ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:19:16 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (1.1ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (9.7ms)
+Completed 200 OK in 21ms (Views: 10.8ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:19:16 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:19:34 -0500
+Processing by RootController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1[0m
+  Rendered root/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 360ms (Views: 358.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:19:35 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (3.1ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (6.0ms)
+Completed 200 OK in 23ms (Views: 7.1ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:19:35 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (9)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (8.3ms)
+Completed 200 OK in 16ms (Views: 9.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:19:35 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-01-09 18:20:10 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT "books".* FROM "books" INNER JOIN "shelved_books" ON "books"."id" = "shelved_books"."book_id" INNER JOIN "shelves" ON "shelved_books"."shelf_id" = "shelves"."id" WHERE "shelves"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered users/show.html.erb within layouts/application (9.4ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 496ms (Views: 488.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/users/api/books" for 127.0.0.1 at 2015-01-09 18:20:11 -0500
+
+ActionController::RoutingError (No route matches [GET] "/users/api/books"):
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/var/rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendered /usr/local/var/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (7.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-09 18:20:14 -0500
+Processing by RootController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'FRJiuDXFud6BF2_ToRlNTA' LIMIT 1
+  Rendered root/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 705ms (Views: 703.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:20:15 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (4.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (1.7ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (16.1ms)
+Completed 200 OK in 37ms (Views: 20.0ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-01-09 18:20:15 -0500
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships"  WHERE "friendships"."user_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (9)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."activation_token" IS NULL AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND "friendships"."accepted" = 't'[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1 AND ("friendships"."activation_token" IS NOT NULL) AND "friendships"."accepted" = 'f'  [["user_id", 1]]
+  Rendered api/users/show.json.jbuilder (10.1ms)
+Completed 200 OK in 25ms (Views: 11.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-01-09 18:20:15 -0500
+Processing by Api::UsersController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.6ms)

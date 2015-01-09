@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :pending_friends, through: :pending_friendships, source: :friend
 
   has_many :friendship_requests, -> { requested }, class_name: "Friendship", foreign_key: :user_id
+  has_many :requesting_friends, through: :friendship_requests, source: :friend
 
   has_many :shelves
   has_many :shelved_books, through: :shelves
