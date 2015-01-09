@@ -22,7 +22,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_url(@book)
     else
-      
+
       render :new
     end
   end

@@ -5,7 +5,6 @@ class Book < ActiveRecord::Base
   belongs_to :author
   has_many :shelved_books
   has_many :shelves, through: :shelved_books
-  attr_reader :author
 
   # https://github.com/phoet/asin
   def self.find_by_isbn(isbn)
@@ -30,10 +29,21 @@ class Book < ActiveRecord::Base
     book = Book.new({
       title: title,
       isbn: isbn,
-      author: author,
+      authorname: author,
       description: description,
       cover: cover
     })
+  end
+
+  def authorname=(author)
+    author = Author.find_by(name: @author)
+
+    if author.nil?
+      author = Author.new(name: @author)
+      author.save
+    end
+
+    self.author_id = author.id
   end
 
   def self.find_cover(items)
@@ -63,17 +73,7 @@ class Book < ActiveRecord::Base
     self.remove_html_tags(description)
   end
 
-  def author=(author)
-    @author = author
-    author = Author.find_by(name: @author)
 
-    if author.nil?
-      author = Author.new(name: @author)
-      author.save
-    end
-
-    self.author_id = author.id
-  end
 
    def self.remove_html_tags(description)
     tags = /<("[^"]*"|'[^']*'|[^'">])*>/

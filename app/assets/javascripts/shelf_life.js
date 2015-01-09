@@ -4,7 +4,10 @@ window.ShelfLife = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new ShelfLife.Routers.Router({
+      $rootEl: $('#main')
+    })
+    Backbone.history.start()
   }
 };
 
