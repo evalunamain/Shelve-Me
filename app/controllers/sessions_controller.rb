@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    
+
   end
 
   def create
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
     if user
       sign_in(user)
-      redirect_to users_url
+      redirect_to root_url
     else
       flash.now[:errors] = ["Invalid username or password"]
       render :new

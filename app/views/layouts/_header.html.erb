@@ -18,6 +18,10 @@
         <%= auth_token %>
         <button class="log-in">Sign Up</button>
       </form>
+      <form action="<%= new_session_url %>" method="get" class="group">
+        <%= auth_token %>
+        <button class="log-in">Sign In</button>
+      </form>
       <% end %>
     </ul>
   </nav>

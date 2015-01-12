@@ -13,8 +13,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)
-      debugger
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       render :new
     end
