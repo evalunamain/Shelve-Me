@@ -13,8 +13,7 @@ class Api::BooksController < ApplicationController
   end
 
   def create
-		fail
-    @book = Book.find_by_isbn(params[:book][:isbn])
+	   @book = Book.find_by_isbn(params[:book][:isbn])
 
     if @book.save
       render json: @book

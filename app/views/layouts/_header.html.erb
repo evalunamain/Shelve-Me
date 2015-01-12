@@ -2,7 +2,7 @@
   <a href="<%= root_url %>" class="header-name">Shelf Life</a>
 
   <nav class="nav-header">
-    <a class="explore" href="#books/new">Explore</a>
+    <a class="explore" href="books/new">Explore</a>
     <ul class="profile-nav">
       <% if signed_in? %>
 
@@ -14,10 +14,10 @@
       </form>
       <% else%>
 
-      <form action="<%= new_user_url %>" method="get" class="group">
+      <!-- <form action="<%= new_user_url %>" method="get" class="group">
         <%= auth_token %>
         <button class="log-in">Sign Up</button>
-      </form>
+      </form> -->
       <form action="<%= new_session_url %>" method="get" class="group">
         <%= auth_token %>
         <button class="log-in">Sign In</button>
