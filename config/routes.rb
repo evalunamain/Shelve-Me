@@ -19,6 +19,8 @@ ShelfLife::Application.routes.draw do
     resources :friendship_activations, only: [:create]
 		
     resources :shelves
-    resources :shelved_books, only: [:create]
+    resources :shelved_books, only: [:create] do
+			delete 'destroy', on: :collection
+		end 
   end
 end

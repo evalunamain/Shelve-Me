@@ -9,6 +9,6 @@ class ShelvesController < ApplicationController
 
   private
   def shelf_params
-    params.require(:shelf).permit(:titl)
+    params.require(:shelf).permit(:title)
   end
 end

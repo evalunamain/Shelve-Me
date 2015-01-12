@@ -17,8 +17,7 @@ class Api::BooksController < ApplicationController
 
     if @book.save
       render json: @book
-    else
-
+		else
       render json: @book.errors.full_messages, status: :unproccesable_entity
     end
   end

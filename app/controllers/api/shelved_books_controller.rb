@@ -1,22 +1,29 @@
 class Api::ShelvedBooksController < ApplicationController
+	before_action :require_log_in
+	
   def create
-    shelf = Shelf.find_by(title: params[:shelved_book][:shelf])
+    shelf = current_user.shelves.find(params[:shelf_id])
 
-    if (!shelf)
-      shelf = current_user.shelves.new({title: params[:shelved_book][:shelf]})
-			shelf.save
-    end
-
-    @shelved_book = shelf.shelved_books.new(book_id: params[:shelved_book][:book_id])
+    @shelved_book = shelf.shelved_books.new(book_id: params[:book_id])
     if @shelved_book.save
       render json: params
     else
      render json: params, status: :unprocessable_entity
     end
   end
-
-  private
-  def shelved_book_params
-    params.require(:shelved_book).permit(:book_id, :shelf)
-  end
+	
+	def destroy
+    @shelved_book = ShelvedBook.find_by(shelved_book_params)
+    if @shelved_book.destroy
+      render json: params
+    else
+     render json: params, status: :unprocessable_entity
+    end
+	end
+	
+	private
+	def shelved_book_params
+		params.permit(:book_id, :shelf_id)
+	end
+	
 end

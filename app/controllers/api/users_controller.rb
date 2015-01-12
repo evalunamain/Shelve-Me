@@ -20,7 +20,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:friends).find(params[:id])
+    @user = User.includes(:friendships, :books, :shelves).find(params[:id])
   end
 
   def edit

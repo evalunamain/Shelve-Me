@@ -25,7 +25,7 @@ ShelfLife.Views.UsersIndex = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
 		this.collection.each(this.addUserView.bind(this));
-    // this.attachSubviews();
+
     return this;
   },
 	

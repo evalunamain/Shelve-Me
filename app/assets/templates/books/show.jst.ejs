@@ -4,22 +4,61 @@
 
   <h3 class="title"> <%= book.escape('title') %></h3>
   <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
-  <p><%= book.escape('description') %>
+  <p><%= book.escape('description') %> </p>
 
-    <form action="" method="post" id="add-to-shelf">
+		<% if (ShelfLife.currentUser) {%>
+    <div class="add-to-shelf">
 			<fieldset class="form-fieldset small">
 		
-			  <div class="input">
+			<div class="submit">
+	      <button class="js-modal-open">Add book to shelf</button>
+			</div>
+			</fieldset>
+		
+			
+			<div class="modal">
+				<form class="modal-form">
+					<span class="modal-close js-modal-close">&times;</span>
+					
+					<% ShelfLife.currentUser.shelves().each(function (shelf) { %>
+						<div class="input existing-shelf">
+							<label>
+							<input type="checkbox" 
+								name="shelved_book[shelf_id]" 
+								value="<%= shelf.id %>" 
+								class="modal-checkbox"
+								<% if (book.onShelf(shelf.id)) { %>
+									data-on-shelf="true"
+									<%= "checked" %>
+								<% } else { %>
+									data-on-shelf="false"
+								<% } %>>
+								<%= shelf.escape('title') %> 
+							</label>	
+									
+						</div>
+					<% })%>
+					<div class="input new-shelf">
+						<input type="checkbox" 
+							name="shelved_book[shelf]" 
+							value="" 
+							class="modal-new-checkbox">
+						<input type="text" 
+							name="shelved_book[shelf]" 
+							placeholder="Enter new shelf"
+							class="modal-text">
+					</div>
+				</form>
+				<div class="modal-screen js-modal-close"></div>
+			</div>
+		</div>
+	
+	<% } %>
+ 
+</section>
+
+			  <!-- <div class="input">
 	      <input type="hidden" name="shelved_book[book_id]" value="<%= book.id %>">
 				<label>Enter shelf name</label>
 				<input type="text" name="shelved_book[shelf]">
-			</div>
-			<div class="submit">
-	      <button>Add book</button>
-			</div>
-
-			</fieldset>
-    </form>
-
-  </p>
-</section>
+			</div> -->
