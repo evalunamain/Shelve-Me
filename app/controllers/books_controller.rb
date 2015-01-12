@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     #   render :new
     # els
     if @book.save
-      redirect_to book_url(@book)
+      redirect_to root_url
     else
 
       render :new
