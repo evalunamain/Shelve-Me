@@ -1,5 +1,13 @@
 <a href="#users" class="title">See all users</a>
+<a href="#books" class="title">See all books</a>
 
 <h3 class="title"><strong><%= user.escape('name') %></h3></strong>
-<ul class="index group">
+<ul class="index shelves">
+	<h2><strong>Shelved Books</strong></h2>
+	<% user.books().each(function (book) { %>
+		<li><%= book.get('title') %></li>
+		
+		<% })%>
 </ul>
+<section class="index group">
+</section>

@@ -7,25 +7,30 @@ ShelfLife.Models.User = Backbone.Model.extend({
       delete response.friends
     }
 
-    // if (response.pending_friends) {
-    //   this.pending_friends().set(response.pending_friends, {parse: true});
-    //   delete response.pending_friends
-    // }
-    //
-    // if (response.accepted_friends) {
-    //   this.accepted_friends().set(response.accepted_friends, {parse: true});
-    //   delete response.accepted_friends
-    // }
-    //
-    // if (response.requesting_friends) {
-    //   this.requesting_friends().set(response.requesting_friends, {parse: true});
-    //   delete response.requesting_friends
-    // }
+    if (response.pending_friendships) {
+      this.pending_friendships().set(response.pending_friendships, {parse: true});
+      delete response.pending_friendships
+    }
+
+    if (response.accepted_friendships) {
+      this.accepted_friendships().set(response.accepted_friendships, {parse: true});
+      delete response.accepted_friendships
+    }
+
+    if (response.friendship_requests) {
+      this.friendship_requests().set(response.friendship_requests, {parse: true});
+      delete response.friendship_requests
+    }
 
     if (response.friendships) {
-      this._friendships().set(response.friendships, {parse: true});
+      this.friendships().set(response.friendships, {parse: true});
       delete response.friendships
     }
+		
+		if (response.books) {
+			this.books().set(response.books, {parse: true});
+			delete response.books
+		}
 
     return response;
   },
@@ -46,29 +51,37 @@ ShelfLife.Models.User = Backbone.Model.extend({
     return this._friends
   },
 
-  accepted_friends: function (){
-    if (!this._accepted_friends) {
-      this._accepted_friends = new ShelfLife.Collections.Users()
+  accepted_friendships: function (){
+    if (!this._accepted_friendships) {
+      this._accepted_friendships = new ShelfLife.Collections.Friendships()
     }
 
-    return this._accepted_friends
+    return this._accepted_friendships
   },
 
-  pending_friends: function (){
-    if (!this._pending_friends) {
-      this._pending_friends = new ShelfLife.Collections.Users()
+  pending_friendships: function (){
+    if (!this._pending_friendships) {
+      this._pending_friendships = new ShelfLife.Collections.Friendships()
     }
 
-    return this._pending_friends
+    return this._pending_friendships
   },
 
-  requesting_friends: function () {
-    if (!this._requesting_friends) {
-      this._requesting_friends = new ShelfLife.Collections.Users()
+  friendship_requests: function () {
+    if (!this._friendship_requests) {
+      this._friendship_requests = new ShelfLife.Collections.Friendships()
     }
 
-    return this._requesting_friends
+    return this._friendship_requests;
   },
+	
+	books: function () {
+		if (!this._books) {
+			this._books = new ShelfLife.Collections.Books()
+		}
+		
+		return this._books;
+	},
 
   isFriend: function (user){
 

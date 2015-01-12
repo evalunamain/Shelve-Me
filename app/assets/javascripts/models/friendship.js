@@ -1,5 +1,5 @@
 ShelfLife.Models.Friendship = Backbone.Model.extend({
-  urlRoot: 'api/friendship',
+  urlRoot: 'api/friendships',
 
   friend: function(){
     if (!this._friend) {

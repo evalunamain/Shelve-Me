@@ -15,6 +15,7 @@ ShelfLife.Views.UserItem = Backbone.View.extend({
     } else {
       button = "Add as friend"
     }
+		
 
     var content = this.template({user: this.model, isFriend: isFriend, button: button});
     this.$el.html(content);
@@ -40,18 +41,27 @@ ShelfLife.Views.UserItem = Backbone.View.extend({
     console.log("in add friend");
     var friendId = this.model.id;
     var that = this;
-
-    $.ajax({
-      url: "/api/friendships/",
-      type: "POST",
-      dataType: "json",
-      data: {friend_id: friendId},
-      success: function () {
+		
+		var friendship = new ShelfLife.Models.Friendship;
+		friendship.save({friend_id: friendId},{ 
+			success: function () {
         console.log("added friend");
         ShelfLife.currentUser.friends().add(that.model);
         that.render();
-      }
-    })
+			}
+     });
+
+    // $.ajax({
+ //      url: "/api/friendships/",
+ //      type: "POST",
+ //      dataType: "json",
+ //      data: {friend_id: friendId},
+ //      success: function () {
+ //        console.log("added friend");
+ //        ShelfLife.currentUser.friends().add(that.model);
+ //        that.render();
+ //      }
+ //    })
   },
 
   removeFriend: function (){

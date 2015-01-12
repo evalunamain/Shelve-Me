@@ -226,6 +226,11 @@ ul.profile-nav {
 	font-weight: bold;
 }
 
+.form-fieldset.small {
+	width: 200px;
+	margin: 20px 20px;
+}
+
 /*Show pages */
 .profile, .index {
   display: block;

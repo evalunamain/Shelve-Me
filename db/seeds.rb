@@ -15,10 +15,12 @@
 #   book.save
 # end
 
-# [].each do |isbn|
-#   book = Book.create_through_isbn(isbn)
-#   book.save
-# end
+[ "075640407X", "0670020559", "043402080X",
+  "0670015679", "0316134074", "0375404937", "1594488398", "0553383825",
+  "0393328627", "0099478447"].each do |isbn|
+  book = Book.create_through_isbn(isbn)
+  book.save
+end
 
 users = User.create([
   {name: 'Lieke', email: 'lieke@mail.com', password: 'testtest'},

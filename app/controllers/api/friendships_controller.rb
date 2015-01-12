@@ -29,8 +29,10 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def destroy
+		
     friendship = Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id)
     inv_friendship = Friendship.find_by(friend_id: current_user.id, user_id: params[:friend_id])
+		
 
     success = true
     Friendship.transaction do

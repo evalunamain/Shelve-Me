@@ -6,23 +6,26 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.collection, 'sync', this.render);
-
+	
+    // this.listenTo(this.collection, 'sync', this.render);
   },
 
   render: function (){
-    this.attachFriends();
+		console.log('in user show');
     var content = this.template({user: this.model});
     this.$el.html(content);
-    this.attachSubviews();
+		if (this.model.id === ShelfLife.currentUser.id) {
+   		this.addFriendViews();
+		}
     return this;
   },
 
-  attachFriends: function () {
-    this.model.pending_friends && this.attachPendingFriends();
-    this.model.accepted_friends && this.attachPendingFriends();
-    this.model.requesting_friends && this.attachRequestingFriends();
-  },
-
-
+	addFriendViews: function() {
+		var user = this.model;
+		var friendView = new ShelfLife.Views.friendView({
+			model: user
+		});
+		this.addSubview('section.index', friendView);
+	},
+		
 });

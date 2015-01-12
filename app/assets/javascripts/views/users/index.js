@@ -6,6 +6,7 @@ ShelfLife.Views.UsersIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.collection, 'sync', this.render);
+	
 
   },
 
@@ -17,11 +18,27 @@ ShelfLife.Views.UsersIndex = Backbone.CompositeView.extend({
   },
 
   render: function (){
+		console.log("in user show");
+		console.log(this.collection.length);
+		this.$el.empty();
+    
+    var content = this.template();
+    this.$el.html(content);
+		this.collection.each(this.addUserView.bind(this));
+    // this.attachSubviews();
+    return this;
+  },
+	
+  render2: function (){
+		console.log("in user show");
+		this.$el.empty();
+		debugger
     this.collection.each(this.addUserView.bind(this));
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
     return this;
   },
+	
 
 });

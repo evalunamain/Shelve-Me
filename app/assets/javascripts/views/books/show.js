@@ -6,7 +6,7 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 
 
   initialize: function () {
-    this.listenTo(this.model, 'sync', this.render2);
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   render: function (){
@@ -25,6 +25,27 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
-
+	
+	events: {
+		"submit #add-to-shelf": "addToShelf"
+	},
+	
+	addToShelf: function (event) {
+		event.preventDefault();
+		var formData = $(event.currentTarget).serializeJSON();
+		var that = this;
+		
+    $.ajax({
+      url: "/api/shelved_books",
+      type: "POST",
+      dataType: "json",
+      data: formData,
+      success: function () {
+        console.log("added to shelf");
+        // ShelfLife.currentUser.selved_books().remove(that.model);
+        that.render();
+      }
+    })
+	}
 
 });

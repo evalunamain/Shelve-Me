@@ -16,6 +16,8 @@ class ShelvedBooksController < ApplicationController
 
   private
   def shelved_book_params
-    params.require(:shelved_book).permit(:book_id)
+    params.require(:shelved_book).permit(:book_id, :title)
   end
 end
+
+

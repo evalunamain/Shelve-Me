@@ -6,9 +6,19 @@
   <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
   <p><%= book.escape('description') %>
 
-    <form action="" method="post">
-      <input type="hidden" name="shelved_book[book_id]" value="<%= book.id %>">
-      <input type="submit" value="Add to to-read shelf">
+    <form action="" method="post" id="add-to-shelf">
+			<fieldset class="form-fieldset small">
+		
+			  <div class="input">
+	      <input type="hidden" name="shelved_book[book_id]" value="<%= book.id %>">
+				<label>Enter shelf name</label>
+				<input type="text" name="shelved_book[shelf]">
+			</div>
+			<div class="submit">
+	      <button>Add book</button>
+			</div>
+
+			</fieldset>
     </form>
 
   </p>
