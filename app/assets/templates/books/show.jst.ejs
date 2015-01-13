@@ -28,10 +28,10 @@
 								value="<%= shelf.id %>" 
 								class="modal-checkbox"
 								<% if (book.onShelf(shelf.id)) { %>
-									data-on-shelf="true"
+									data-on-shelf=true
 									<%= "checked" %>
 								<% } else { %>
-									data-on-shelf="false"
+									data-on-shelf=false
 								<% } %>>
 								<%= shelf.escape('title') %> 
 							</label>	

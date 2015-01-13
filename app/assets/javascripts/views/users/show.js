@@ -19,7 +19,8 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 		}
     return this;
   },
-
+	
+	
 	addFriendViews: function() {
 		var user = this.model;
 		var friendView = new ShelfLife.Views.friendView({

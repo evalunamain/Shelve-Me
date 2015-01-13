@@ -3,11 +3,17 @@
 
 <h3 class="title"><strong><%= user.escape('name') %></h3></strong>
 <ul class="index shelves">
-	<h2><strong>Shelved Books</strong></h2>
-	<% user.books().each(function (book) { %>
-		<li><%= book.get('title') %></li>
-		
-		<% })%>
-</ul>
+	<h2><strong>Shelves</strong></h2>
+	<% user.shelves().each (function (shelf) { %>
+		<li><h4><strong><%= shelf.escape('title') %></strong></h4>
+		<ul>
+			<% shelf.books().each (function (book) { %>
+				<li><a href="#/books/<%= book.id %>"><%= book.escape('title')%></a></li>
+			<% })%>
+		</ul>
+		</li>
+	<% })%>
+	</ul>
+			
 <section class="index group">
 </section>

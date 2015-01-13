@@ -26,4 +26,7 @@ json.books @user.books do |book|
 	json.author book.author
 end
 
-json.shelves @user.shelves, :id, :title
+json.shelves @user.shelves do |shelf|
+	json.extract! shelf, :id, :title
+	json.books shelf.books
+end

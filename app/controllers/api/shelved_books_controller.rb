@@ -14,11 +14,11 @@ class Api::ShelvedBooksController < ApplicationController
 	
 	def destroy
     @shelved_book = ShelvedBook.find_by(shelved_book_params)
-    if @shelved_book.destroy
-      render json: params
-    else
-     render json: params, status: :unprocessable_entity
-    end
+   	if @shelved_book.destroy
+			render json: nil
+		else
+			render json: nil, status: :unproccesable_entity
+		end
 	end
 	
 	private
