@@ -1,0 +1,5 @@
+<h2 class="title"><%= shelf.escape('title') %><h2>
+
+  <% shelf.books().each(function (book) { %>
+    <li><%= book.escape('title') %></li>
+  <% }) %>

@@ -1,18 +1,18 @@
 class Api::FriendshipsController < ApplicationController
   before_action :require_log_in
-  def create
 
+  def create
     friendship = Friendship.new({
       user_id: current_user.id,
-      friend_id: params[:friend_id]
+      friend_id: params[:friend_id],
+      status: "pending"
     })
 
     inverse_friendship = Friendship.new({
       user_id: params[:friend_id],
-      friend_id: current_user.id
+      friend_id: current_user.id,
+      status: "requested"
     })
-
-    inverse_friendship.set_activation_token
 
     success = true
     Friendship.transaction do
@@ -29,10 +29,9 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def destroy
-		
+
     friendship = Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id)
     inv_friendship = Friendship.find_by(friend_id: current_user.id, user_id: params[:friend_id])
-		
 
     success = true
     Friendship.transaction do

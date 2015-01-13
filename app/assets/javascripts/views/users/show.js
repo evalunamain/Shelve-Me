@@ -6,7 +6,7 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-	
+
     // this.listenTo(this.collection, 'sync', this.render);
   },
 
@@ -19,14 +19,14 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 		}
     return this;
   },
-	
-	
+
+
 	addFriendViews: function() {
 		var user = this.model;
 		var friendView = new ShelfLife.Views.friendView({
-			model: user
+			model: user, collection: user.friends()
 		});
 		this.addSubview('section.index', friendView);
 	},
-		
+
 });

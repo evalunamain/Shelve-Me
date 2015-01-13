@@ -23,6 +23,7 @@
 end
 
 users = User.create([
+  {name: 'Eva', email: 'eva@mail.com', password: 'testtest'},
   {name: 'Lieke', email: 'lieke@mail.com', password: 'testtest'},
   {name: 'Sanne', email: 'sanne@mail.com', password: 'testtest'},
   {name: 'Yolande', email: 'yolande@mail.com', password: 'testtest'},

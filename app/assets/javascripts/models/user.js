@@ -33,8 +33,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 		}
 
 		if (response.shelves) {
-      console.log(response.shelves);
-			this.shelves().set(response.shelves, {parse: true});
+    	this.shelves().set(response.shelves, {parse: true});
 			delete response.shelves
 		}
 

@@ -5,14 +5,12 @@ ShelfLife.Views.pendingFriendView = Backbone.View.extend({
   tagName: "li",
 
   initialize: function () {
-    this.listenTo(this.collection, 'sync', this.render);
-		var friendId = this.model.get('friend_id');
-		this.friend = this.collection.get(friendId);
+    this.friend = this.model.friend();
   },
 
   render: function (){
 		var friend = ShelfLife.currentUser.friends().getOrFetch(this.model.escape('friend_id'));
-		
+
     var content = this.template({
 			friendship: this.model,
 			friend: friend
@@ -31,7 +29,7 @@ ShelfLife.Views.pendingFriendView = Backbone.View.extend({
     event.preventDefault();
     var friendId = this.model.escape('friend_id');
 		var that = this;
-		
+
     $.ajax({
       url: "/api/friendships/destroy",
       type: "DELETE",
@@ -39,11 +37,10 @@ ShelfLife.Views.pendingFriendView = Backbone.View.extend({
       data: {friend_id: friendId},
       success: function () {
         console.log("removed friend");
-        that.collection.remove(friendId);
         that.remove();
       }
     })
-    
+
   },
 
 

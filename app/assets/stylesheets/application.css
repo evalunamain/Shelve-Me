@@ -16,7 +16,7 @@
 
  /*Reset */
 
-html, body, div, h1, h2, h3, a, form, label, ul, input {
+html, body, div, h1, h2, h3, a, form, label, ul, li, section, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -27,7 +27,7 @@ html, body, div, h1, h2, h3, a, form, label, ul, input {
 }
 
 ul {
-  list-style: none
+  list-style: none;
 }
 
 input[type="password"],
@@ -210,6 +210,11 @@ ul.profile-nav {
 	float: right;
 }
 
+#main {
+  width: 1200px;
+  margin: auto;
+}
+
 /*Form */
 
 .form-fieldset {
@@ -318,6 +323,11 @@ ul.profile-nav {
 	position: relative;
 }
 
+.friend-toggle {
+  margin: 5px;
+  display: inline-block;
+}
+
 /* New shelf modal*/
 .modal {
 	display: none;
@@ -405,8 +415,30 @@ ul.profile-nav {
 }
 
 
-/*User index*/
-.friend-toggle {
-  margin: 5px;
-  display: inline-block;
+/*Shelf Show*/
+.shelf-sidebar {
+  width: 300px;
+  border: 1px solid black;
+  display: block;
+  float: left;
+}
+
+.shelf-show {
+  width: 600px;
+  border: 1px solid black;
+  display: block;
+  float: left;
+}
+
+.shelf-books {
+  margin-left: 20px;
+}
+
+li.shelf {
+  padding: 5px;
+  display: block;
+}
+
+li.shelf:hover {
+  font-weight: bold;
 }
