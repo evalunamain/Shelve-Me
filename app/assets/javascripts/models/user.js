@@ -26,13 +26,14 @@ ShelfLife.Models.User = Backbone.Model.extend({
       this.friendships().set(response.friendships, {parse: true});
       delete response.friendships
     }
-		
+
 		if (response.books) {
 			this.books().set(response.books, {parse: true});
 			delete response.books
 		}
-		
+
 		if (response.shelves) {
+      console.log(response.shelves);
 			this.shelves().set(response.shelves, {parse: true});
 			delete response.shelves
 		}
@@ -79,20 +80,20 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
     return this._friendship_requests;
   },
-	
+
 	books: function () {
 		if (!this._books) {
 			this._books = new ShelfLife.Collections.Books()
 		}
-		
+
 		return this._books;
 	},
-	
+
 	shelves: function () {
 		if (!this._shelves) {
 			this._shelves = new ShelfLife.Collections.Shelves()
 		}
-		
+
 		return this._shelves;
 	},
 

@@ -34,13 +34,13 @@ input[type="password"],
 input[type="email"],
 input[type="text"],
 input[type="submit"],
+input[type="checkbox"],
 textarea,
 button {
   background:inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-
 
 .group:after {
   content: "";
@@ -76,6 +76,7 @@ input:-webkit-autofill {
 button,
 input[type="submit"] {
   cursor: pointer;
+  outline: none;
 }
 
 .input .error {
@@ -106,6 +107,57 @@ a.title {
   padding: 10px;
 }
 
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  -webkit-appearance: none;
+  background: white;
+  border:1px solid #ddd;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+}
+label > input[type="checkbox"]:hover input[type="checkbox"]:hover:after,
+input[type="checkbox"]:hover:after {
+  opacity: 0.2;
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 4px;
+  background: transparent;
+  top: 3px;
+  left: 3px;
+  border: 3px solid #450000;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+input[type="checkbox"]:checked:after {
+  opacity: 1;
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 4px;
+  background: transparent;
+  top: 3px;
+  left: 3px;
+  border: 3px solid #450000;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
 
 /*Header*/
 .header {
@@ -246,8 +298,6 @@ ul.profile-nav {
   font-weight: bold
 }
 
-
-
 .book-overview {
   float: left;
   width: 225px;
@@ -279,9 +329,10 @@ ul.profile-nav {
 
 .modal-form {
   position: absolute;
-  top: -50px;
-  left: 200px;
+  top: 50%;
+  left: 140px;
   width: 200px;
+  transform: translateY(-50%);
   padding: 20px;
   background: #FFFAF8;
   z-index: 3;
@@ -291,11 +342,12 @@ ul.profile-nav {
 
 .modal-close {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   right: 20px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1;
   cursor: pointer;
+  border: 1px solid #450000;
 }
 
 .modal-close:hover {
@@ -330,11 +382,11 @@ ul.profile-nav {
   z-index: 2;
 }
 
-.input > .modal-checkbox {
+/*.input > .modal-checkbox {
 	display: inline-block;
 	width: auto;
 	margin-right: 10px;
-}
+}*/
 
 .input > .modal-text {
 	display: inline-block;
@@ -345,7 +397,7 @@ ul.profile-nav {
 .new-shelf {
   float: left;
   border-radius: 5px;
-	
+
 }
 
 .modal-form input:focus {
@@ -358,6 +410,3 @@ ul.profile-nav {
   margin: 5px;
   display: inline-block;
 }
-
-
-

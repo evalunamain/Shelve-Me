@@ -15,7 +15,7 @@
 #   book.save
 # end
 
-[ "075640407X", "0670020559", "043402080X",
+["075640407X", "0670020559", "043402080X",
   "0670015679", "0316134074", "0375404937", "1594488398", "0553383825",
   "0393328627", "0099478447"].each do |isbn|
   book = Book.create_through_isbn(isbn)
@@ -32,3 +32,9 @@ users = User.create([
   {name: 'Benthe', email: 'benthe@mail.com', password: 'testtest'},
   {name: 'Niene', email: 'niene@mail.com', password: 'testtest'},
 ])
+
+["0765326361", "0765326353", "0765330423", "0374284385", "0812993806",
+  "0618329706", "1400043662","0316925284", "034911188X"].each do |isbn|
+    book = Book.create_through_isbn(isbn)
+    book.save
+end

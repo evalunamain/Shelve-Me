@@ -5,15 +5,9 @@
 <ul class="index shelves">
 	<h2><strong>Shelves</strong></h2>
 	<% user.shelves().each (function (shelf) { %>
-		<li><h4><strong><%= shelf.escape('title') %></strong></h4>
-		<ul>
-			<% shelf.books().each (function (book) { %>
-				<li><a href="#/books/<%= book.id %>"><%= book.escape('title')%></a></li>
-			<% })%>
-		</ul>
-		</li>
+		<li><h4><a href="#users/<%= user.id %>/shelves/<%= shelf.id %>"><%= shelf.escape('title') %></a></h4></li>
 	<% })%>
 	</ul>
-			
+
 <section class="index group">
 </section>

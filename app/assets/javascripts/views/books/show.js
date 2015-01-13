@@ -15,29 +15,28 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
-	
+
 	events: {
 		"click .js-modal-open": "openModal",
 		"click .js-modal-close": "closeModal",
 		"click .modal-checkbox": "toggleShelf",
 	},
-	
+
 	openModal: function (event) {
 		event.preventDefault();
 		$('.modal').addClass("is-open");
 	},
-	
+
 	closeModal: function (event) {
 		event.preventDefault();
 		$(".modal").removeClass("is-open");
 	},
-	
+
 	toggleShelf: function (event) {
 		//TODO: check boxes but send all requests upon form closure as transaction to rails
 		event.preventDefault();
 		var onShelf = $(event.currentTarget).data("on-shelf");
-		var shelf = $(event.currentTarget).val();
-		
+
 		$(event.currentTarget).prop('disabled', true);
 		if (onShelf === false) {
 			this.addToShelf(event)
@@ -45,10 +44,12 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 			this.removeFromShelf(event)
 		}
 	},
-	
+
 	addToShelf: function (event) {
+    console.log("adding to shelf");
 		var shelfId = $(event.currentTarget).val();
-	
+    console.log(shelfId);
+
 		$.ajax({
       url: "/api/shelved_books",
       type: "POST",
@@ -61,10 +62,11 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
       }
     })
 	},
-	
+
 	removeFromShelf: function (event) {
+    console.log("removing from shelf");
 		var shelfId = $(event.currentTarget).val();
-	
+    console.log(shelfId);
 		$.ajax({
       url: "/api/shelved_books/destroy",
       type: "DELETE",

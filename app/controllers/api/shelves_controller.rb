@@ -4,11 +4,11 @@ class Api::ShelvesController < ApplicationController
   end
 
   def create
-    
+
   end
-	
+
 	def show
-		@shelf = Shelf.includes(:books).find(params[:id])
+		@shelf = Shelf.includes(:books, :user).find(params[:id])
 	end
 
   private

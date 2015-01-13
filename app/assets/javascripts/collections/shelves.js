@@ -19,8 +19,10 @@ ShelfLife.Collections.Shelves = Backbone.Collection.extend({
     } else {
       shelf.fetch();
     }
-		
+
     return shelf;
   }
 
 });
+
+ShelfLife.Collections.shelves = new ShelfLife.Collections.Shelves;
