@@ -1,5 +1,6 @@
 <h2 class="title"><%= shelf.escape('title') %><h2>
-
-  <% shelf.books().each(function (book) { %>
-    <li><%= book.escape('title') %></li>
-  <% }) %>
+<table class="tftable" border="1">
+<thead>
+<tr><th>cover</th><th>title</th><th>author</th><th>avg rating</th><th>rating</th><th>shelves</th></tr></thead>
+<tbody class="book-rows"></tbody>
+</table>

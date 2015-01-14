@@ -80,7 +80,7 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     window.setTimeout(function () {
       $('.error-message').removeClass('alert')
       console.log("alert removed");
-    }, 1500);
+    }, 1300);
   },
 
 	openModal: function (event) {

@@ -1,7 +1,8 @@
-<header class="header group">
-  <a href="<%= root_url %>" class="header-name">Shelf Life</a>
+<header class="header">
 
-  <nav class="nav-header">
+  <nav class="nav-header group">
+    <a href="<%= root_url %>" class="header-name">Shelf Life</a>
+    <nav class="nav-list">
     <a class="explore" href="/#books/new">Explore</a>
     <ul class="profile-nav">
       <% if signed_in? %>
@@ -24,5 +25,6 @@
       </form>
       <% end %>
     </ul>
+  </nav>
   </nav>
 </header>

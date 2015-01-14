@@ -7,29 +7,16 @@ ShelfLife.Views.ShelfShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     console.log("making shelf view");
     this.user = options.user;
-    this.shelf = this.model;
-    var that = this;
-    this.listenTo(this.user, 'sync', this.render);
-
-  },
-
-  render: function (){
-    console.log("rendering shelf show");
-    var content = this.template({user: this.user});
-
-    this.$el.html(content);
-    this.renderBooks();
-    return this;
+    this.listenToOnce(this.user, 'sync', this.render);
   },
 
   events: {
     "click .shelf": "newShelf",
   },
 
-  render2: function (){
+  render: function (){
     console.log("rendering shelf show");
     var content = this.template({user: this.user});
-    debugger
     this.$el.html(content);
     this.renderBooks();
     return this;
@@ -37,21 +24,21 @@ ShelfLife.Views.ShelfShow = Backbone.CompositeView.extend({
 
   renderBooks: function (newShelf) {
     console.log("rendering books on shelf");
-    var shelf = newShelf || this.shelf;
-    var bookView = new ShelfLife.Views.BookShelf({
-      model: shelf
+    var shelf = newShelf || this.model;
+    var shelfView = new ShelfLife.Views.BookShelf({
+      model: shelf, user: this.user
     });
-    $('.shelf-show').empty();
-    this.addSubview('.shelf-show', bookView);
+    this.$('.shelf-show').empty();
+    this.addSubview('.shelf-show', shelfView);
   },
 
   newShelf: function (event) {
     event.preventDefault();
     var shelfId = $(event.currentTarget).data("id")
     var shelf = this.user.shelves().getOrFetch(shelfId);
-    console.log(shelf);
+    console.log("rendering new shelf", shelf);
     this.renderBooks(shelf);
-  }
+  },
 
 
 
