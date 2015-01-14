@@ -2,4 +2,6 @@ json.extract! @book, :id, :title, :cover, :isbn, :created_at, :updated_at, :auth
 
 json.author @book.author
 
+json.rating @book.average_rating
+
 json.shelves @book.shelves

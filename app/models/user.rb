@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 	before_create :set_standard_shelves
 
-  has_many :submitted_books, class_name: "Book", foreign_key: :submitter_id
+  has_many :ratings
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
-	
+
 	def set_standard_shelves
 		["to-read", "currently-reading", "read"].each do |title|
 			shelf = self.shelves.new(title: title)

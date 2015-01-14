@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
   belongs_to :author
   has_many :shelved_books
   has_many :shelves, through: :shelved_books
+  has_many :ratings
 
   # https://github.com/phoet/asin
   def self.find_by_isbn(isbn)
@@ -46,6 +47,15 @@ class Book < ActiveRecord::Base
     self.author_id = author.id
   end
 
+  def average_rating
+    if self.ratings.count == 0
+      return
+    end
+    rating = self.ratings.average(:rating).to_f
+    rating = rating * 2.0
+    (rating.round) / 2.0
+  end
+
   def self.find_cover(items)
     if items.first.medium_image
       return items.first.medium_image.url
@@ -73,9 +83,7 @@ class Book < ActiveRecord::Base
     self.remove_html_tags(description)
   end
 
-
-
-   def self.remove_html_tags(description)
+  def self.remove_html_tags(description)
     tags = /<("[^"]*"|'[^']*'|[^'">])*>/
     mid_whitespace = /\s{2,}/
     start_whitespace = /^\s/
