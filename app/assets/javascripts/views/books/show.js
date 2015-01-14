@@ -30,16 +30,14 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
   renderRating: function (){
     console.log('rendering rating');
     var content = this.ratingTemplate({book: this.model});
-
+    $('.book-rating').html(content);
     if (ShelfLife.currentUser) {
       this.rating = this.model.ratings().where({user_id: ShelfLife.currentUser.id})[0];
+
       var rating = this.rating.get('rating');
       var ratedStar = $('.rating-input').filter(function () { return this.value == rating});
       ratedStar.attr('checked', true);
     }
-    
-    $('.book-rating').html(content);
-
   },
 
 	events: {
