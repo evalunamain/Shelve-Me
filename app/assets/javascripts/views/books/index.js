@@ -5,12 +5,11 @@ ShelfLife.Views.BooksIndex = Backbone.CompositeView.extend({
   className: "index",
 
   initialize: function () {
-    this.listenTo(this.collection, 'sync', this.render);
-
+    this.listenToOnce(this.collection, 'sync', this.render);
   },
 
   addBookView: function (book) {
-    var bookView = new ShelfLife.Views.BookItem({
+    var bookView = new ShelfLife.Views.indexBookItem({
       model: book
     });
     this.addSubview('ul.index', bookView);

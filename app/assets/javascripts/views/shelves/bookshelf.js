@@ -22,7 +22,7 @@ ShelfLife.Views.BookShelf = Backbone.CompositeView.extend({
   },
 
   renderBook: function (book) {
-    var bookView = new ShelfLife.Views.BookItem({model: book});
+    var bookView = new ShelfLife.Views.shelfBookItem({model: book});
     this.addSubview('.book-rows', bookView);
   },
 
