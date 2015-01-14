@@ -29,7 +29,12 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 		"click .js-modal-open": "openModal",
 		"click .js-modal-close": "closeModal",
 		"click .modal-checkbox": "toggleShelf",
+    "click .rating-input": "rateBook"
 	},
+
+  rateBook: function (event) {
+    debugger
+  },
 
 	openModal: function (event) {
 		event.preventDefault();
