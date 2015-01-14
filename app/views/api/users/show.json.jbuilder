@@ -28,6 +28,8 @@ json.books @user.books do |book|
 	json.author book.author
 end
 
+json.ratings @user.ratings
+
 json.shelves @user.shelves do |shelf|
 	json.extract! shelf, :id, :title
 	json.books shelf.books

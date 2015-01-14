@@ -2,6 +2,11 @@ ShelfLife.Models.User = Backbone.Model.extend({
   urlRoot: 'api/users',
 
   parse: function (response) {
+    if (response.ratings) {
+      this.ratings().set(response.ratings, {parse: true})
+      delete response.ratings
+    }
+
     if (response.friends) {
       this.friends().set(response.friends, {parse: true});
       delete response.friends
@@ -38,6 +43,14 @@ ShelfLife.Models.User = Backbone.Model.extend({
 		}
 
     return response;
+  },
+
+  ratings: function () {
+    if (!this._ratings) {
+      this._ratings = new ShelfLife.Collections.Ratings()
+    }
+
+    return this._ratings
   },
 
   friendships: function (){

@@ -2,27 +2,44 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 
   template: JST['books/show'],
 
+  ratingTemplate: JST['books/rating'],
+
   tagName: "section",
 
-  initialize: function () {
-    this.listenTo(this.model, 'sync', this.render);
+  initialize: function (options) {
+    this.listenToOnce(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.renderRating);
   },
 
   render: function (){
   	console.log('rendering book show');
     var content = this.template({book: this.model});
-
     this.$el.html(content);
+    // this.renderRating();
     return this;
   },
 
   render2: function (){
   	console.log('rendering book show');
     var content = this.template({book: this.model});
-
     this.$el.html(content);
-    debugger
+    this.renderRating();
     return this;
+  },
+
+  renderRating: function (){
+    console.log('rendering rating');
+    var content = this.ratingTemplate({book: this.model});
+
+    if (ShelfLife.currentUser) {
+      this.rating = this.model.ratings().where({user_id: ShelfLife.currentUser.id})[0];
+      var rating = this.rating.get('rating');
+      var ratedStar = $('.rating-input').filter(function () { return this.value == rating});
+      ratedStar.attr('checked', true);
+    }
+    
+    $('.book-rating').html(content);
+
   },
 
 	events: {
@@ -33,7 +50,19 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 	},
 
   rateBook: function (event) {
-    debugger
+    event.preventDefault();
+    var rating = $(event.currentTarget).val();
+    var that = this;
+
+    this.rating.save({
+        rating: rating,
+        book_id: this.model.id,
+      }, {
+      success: function (){
+        console.log("rated!");
+        that.model.fetch();
+      }
+    });
   },
 
 	openModal: function (event) {

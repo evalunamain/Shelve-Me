@@ -3,9 +3,9 @@ class Book < ActiveRecord::Base
   # validates :isbn, message: "Must be a valid ISBN10"
 
   belongs_to :author
-  has_many :shelved_books
+  has_many :shelved_books, dependent: :destroy
   has_many :shelves, through: :shelved_books
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
 
   # https://github.com/phoet/asin
   def self.find_by_isbn(isbn)

@@ -367,6 +367,11 @@ ul.profile-nav {
   display: inline-block;
 }
 
+.rating h4 {
+  display: inline;
+  margin-right: 10px;
+}
+
 /* New shelf modal*/
 .modal {
 	display: none;
@@ -452,7 +457,6 @@ ul.profile-nav {
 .modal-form input:focus {
 	-webkit-box-shadow: none;
 }
-
 
 /*Shelf Show*/
 .shelf-sidebar {

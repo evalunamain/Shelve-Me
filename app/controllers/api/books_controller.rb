@@ -23,7 +23,7 @@ class Api::BooksController < ApplicationController
   end
 
   def show
-    @book = Book.includes(:shelved_books).find(params[:id])
+    @book = Book.includes(:shelved_books, :ratings).find(params[:id])
   end
 
   def edit
@@ -35,10 +35,10 @@ class Api::BooksController < ApplicationController
   def destroy
   end
 
-  private
-  def book_params
-    params.require(:book).permit(:cover, :title, :author_id, :isbn)
-  end
+  # private
+  # def book_params
+  #   params.require(:book).permit(:cover, :title, :author_id, :isbn)
+  # end
 
   def ensure_owner
     unless current_user && current_user.id == params[:book][:user_id]

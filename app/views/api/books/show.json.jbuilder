@@ -5,3 +5,5 @@ json.author @book.author
 json.rating @book.average_rating
 
 json.shelves @book.shelves
+
+json.ratings @book.ratings

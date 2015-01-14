@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 	before_create :set_standard_shelves
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
