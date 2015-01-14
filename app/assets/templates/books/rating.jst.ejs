@@ -3,8 +3,10 @@
 <% } else { %>
   <span class="exception"> This book has not been rated yet. </span> </h4>
 <% } %>
-<% if (ShelfLife.currentUser) {%>
-  <span class="rating"><h4>Your rating: </h4>
+<% if (this.error) { %>
+<p> <%= this.error.(get'message') %> </p>
+<% } %>
+<span class="rating"><h4>Your rating: </h4>
   <input type="radio" class="rating-input"
       id="rating-input-1-5" name="rating-input-1" value="5">
   <label for="rating-input-1-5" class="rating-star"></label>
@@ -21,4 +23,3 @@
       id="rating-input-1-1" name="rating-input-1" value="1">
   <label for="rating-input-1-1" class="rating-star"></label>
 </span>
-<% } %>
