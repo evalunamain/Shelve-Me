@@ -164,6 +164,22 @@ input[type="checkbox"]:checked:after {
   transform: rotate(-45deg);
 }
 
+.error-message {
+  position: absolute;
+  left: 250px;
+  color: #450000;
+  font-style: italic;
+  font-weight: bold;
+  color: black;
+  transition: color 1s ease;
+}
+
+.error-message.alert {
+  color: red;
+  transition: color 1s;
+}
+
+
 /*Header*/
 .header {
   background: #450000;

@@ -6,9 +6,12 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 
   tagName: "section",
 
+  // className: "index",
+
   initialize: function (options) {
     this.listenToOnce(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderRating);
+    this.error = {};
   },
 
   render: function (){
@@ -29,15 +32,17 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 
   renderRating: function (){
     console.log('rendering rating');
-    var content = this.ratingTemplate({book: this.model});
+    var content = this.ratingTemplate({book: this.model, error: this.error});
     $('.book-rating').html(content);
     if (ShelfLife.currentUser) {
       this.rating = this.model.ratings().where({user_id: ShelfLife.currentUser.id})[0];
-      this.rating = this.rating || new ShelfLife.Models.Rating()
-      var rating = this.rating.get('rating');
-      var ratedStar = $('.rating-input').filter(function () { return this.value == rating});
-      ratedStar.attr('checked', true);
     }
+    this.rating = this.rating || new ShelfLife.Models.Rating()
+    var rating = this.rating.get('rating');
+    var ratedStar = $('.rating-input').filter(function () { return this.value == rating});
+    ratedStar.attr('checked', true);
+    $('.error-message').focus();
+    $('.error-message').removeClass('new');
   },
 
 	events: {
@@ -59,8 +64,23 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
       success: function (){
         console.log("rated!");
         that.model.fetch();
+      },
+      error: function () {
+        console.log("didn't work");
+        that.error.rating = "Please sign in to rate this book."
+        that.renderRating();
+        $('.error-message').addClass('alert'),
+        console.log("alert added");
+        that.alertMessage();
       }
     });
+  },
+
+  alertMessage: function () {
+    window.setTimeout(function () {
+      $('.error-message').removeClass('alert')
+      console.log("alert removed");
+    }, 1500);
   },
 
 	openModal: function (event) {
