@@ -143,6 +143,16 @@ input[type="checkbox"]:checked:after {
   transform: rotate(-45deg);
 }
 
+#main {
+  width: 1200px;
+  margin: auto;
+}
+
+.exception {
+  font-weight: normal;
+  font-style: italic;
+}
+
 .error-message {
   position: absolute;
   left: 300px;
@@ -257,16 +267,6 @@ ul.profile-nav {
 
 .header-nav button {
 	float: right;
-}
-
-#main {
-  width: 1200px;
-  margin: auto;
-}
-
-.exception {
-  font-weight: normal;
-  font-style: italic;
 }
 
 /*Book Rating */

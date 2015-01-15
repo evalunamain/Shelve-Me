@@ -20,11 +20,9 @@ class Api::RatingsController < ApplicationController
     end
   end
 
-
-
   private
   def rating_params
-    params.permit(:book_id, :rating)
+    params.require(:rating).permit(:book_id, :rating)
   end
 
 end
