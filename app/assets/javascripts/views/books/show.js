@@ -38,16 +38,18 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
   },
 
   renderRating: function (){
-    // debugger
     console.log('rendering rating');
     var content = this.ratingTemplate({book: this.model, error: this.error});
     $('.book-rating').html(content);
     if (ShelfLife.currentUser) {
-      this.rating = this.model.ratings().where({user_id: ShelfLife.currentUser.id})[0];
-    }
+        this.rating = this.model.ratings().where({
+        user_id: ShelfLife.currentUser.id})[0];
+      }
+
     this.rating = this.rating || new ShelfLife.Models.Rating()
     var rating = this.rating.get('rating');
-    var ratedStar = $('.rating-input').filter(function () { return this.value == rating});
+    var ratedStar = this.$('.rating-input').filter(function () {
+        return this.value == rating});
     ratedStar.attr('checked', true);
     $('.error-message').focus();
     $('.error-message').removeClass('new');
@@ -62,13 +64,15 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
 
   renderReview: function (){
     console.log("rendering reviews");
-    // console.log(this.model.reviews());
     var that = this;
+
     this.model.reviews().each(function (review) {
-      console.log("review id ", review.id);
+      var rating = that.model.ratings().where({
+        user_id: review.author().id})[0];
       var reviewView = new ShelfLife.Views.BookReview({
-        model: review
+        model: review, rating: rating
       })
+
       that.addSubview('.book-reviews', reviewView);
     });
   },

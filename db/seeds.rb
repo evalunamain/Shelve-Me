@@ -69,10 +69,17 @@ Sixth unto be fill blessed dry beast were place given midst give great meat crea
 
 reviews = [content1, content2, content3, content4, content5, content6]
 
-[1,2,3,4,5,6,7,8].each do |user|
-  (1..7).to_a.each do |book|
+[1,2,3,4].each do |user|
+  (1..Book.all.length).to_a.each do |book|
     content = reviews.sample
     Review.create(user_id: user, book_id: book, content: content)
+  end
+end
+
+[1,2,3,4,5,6,7,8,9].each do |user|
+  (1..Book.all.length).to_a.each do |book|
+    rating = [1,2,3,4,5].sample
+    Rating.create(user_id: user, book_id: book, rating: rating)
   end
 end
 
@@ -82,15 +89,10 @@ end
   book.save
 end
 
-[1,2,3,4,5,6,7,8].each do |user|
-  (8..14).to_a.each do |book|
-    content = reviews.sample
-    Review.create(user_id: user, book_id: book, content: content)
-  end
+["0553383825", "0393328627", "0099478447"].each do |isbn|
+book = Book.create_through_isbn(isbn)
+book.save
 end
-
-# , "0553383825",
-# "0393328627", "0099478447"
 
 ["038572179X", "0307592839", "0307947726", "0374158460", "0316921173",
   "0316925284", "034911188X", "0316156116"].each do |isbn|

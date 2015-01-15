@@ -274,7 +274,7 @@ ul.profile-nav {
   overflow: hidden;
   display: inline-block;
 }
-.rating-input {
+.rating-input, .rating-static {
   float: right;
   width: 16px;
   height: 16px;
@@ -282,19 +282,22 @@ ul.profile-nav {
   margin: 0 0 0 -16px;
   opacity: 0;
 }
-.rating-star {
+.rating-star, .rating-star-static {
   position: relative;
   float: right;
   display: block;
   width: 16px;
   height: 16px;
   background: image-url('star.png') 0 -16px;
-
 }
 
 .rating-star:hover,
 .rating-star:hover ~ .rating-star,
 .rating-input:checked ~ .rating-star {
+  background-position: 0 0;
+}
+
+.rating-static:checked ~ .rating-star-static {
   background-position: 0 0;
 }
 
