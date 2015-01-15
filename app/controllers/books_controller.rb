@@ -13,16 +13,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.find_by_isbn(params[:book][:isbn])
 
-    # if !@book
-    #   @book = Book.new
-    #   fail
-    #   # @book.errors.messages[:isbn] = ["Please enter a valid ISBN10"]
-    #   render :new
-    # els
     if @book.save
       redirect_to root_url
     else
-
       render :new
     end
   end

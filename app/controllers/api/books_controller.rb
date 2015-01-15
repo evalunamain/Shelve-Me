@@ -13,7 +13,7 @@ class Api::BooksController < ApplicationController
   end
 
   def create
-	   @book = Book.find_by_isbn(params[:book][:isbn])
+	  @book = Book.find_by_isbn(params[:book][:isbn])
 
     if @book.save
       render json: @book
@@ -23,7 +23,7 @@ class Api::BooksController < ApplicationController
   end
 
   def show
-    @book = Book.includes(:shelved_books, :ratings).find(params[:id])
+    @book = Book.includes(:shelved_books, :ratings, :reviews).find(params[:id])
   end
 
   def edit

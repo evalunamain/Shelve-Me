@@ -2,9 +2,30 @@ ShelfLife.Models.User = Backbone.Model.extend({
   urlRoot: 'api/users',
 
   parse: function (response) {
+
+    if (response.books) {
+      this.books().set(response.books, {parse: true});
+      delete response.books
+    }
+
+    if (response.shelves) {
+      this.shelves().set(response.shelves, {parse: true});
+      delete response.shelves
+    }
+
+    if (response.reviews) {
+      this.reviews().set(response.reviews, {parse: true})
+      delete response.reviews
+    }
+
     if (response.ratings) {
       this.ratings().set(response.ratings, {parse: true})
       delete response.ratings
+    }
+
+    if (response.friendships) {
+      this.friendships().set(response.friendships, {parse: true});
+      delete response.friendships
     }
 
     if (response.friends) {
@@ -27,22 +48,33 @@ ShelfLife.Models.User = Backbone.Model.extend({
       delete response.friendship_requests
     }
 
-    if (response.friendships) {
-      this.friendships().set(response.friendships, {parse: true});
-      delete response.friendships
-    }
 
-		if (response.books) {
-			this.books().set(response.books, {parse: true});
-			delete response.books
-		}
-
-		if (response.shelves) {
-    	this.shelves().set(response.shelves, {parse: true});
-			delete response.shelves
-		}
 
     return response;
+  },
+
+
+  books: function () {
+    if (!this._books) {
+      this._books = new ShelfLife.Collections.Books()
+    }
+
+    return this._books;
+  },
+
+  shelves: function () {
+    if (!this._shelves) {
+      this._shelves = new ShelfLife.Collections.Shelves()
+    }
+
+    return this._shelves;
+  },
+
+  reviews: function () {
+    if (!this._reviews) {
+      this._reviews = new ShelfLife.Collections.Reviews()
+    }
+    return this._reviews
   },
 
   ratings: function () {
@@ -93,21 +125,6 @@ ShelfLife.Models.User = Backbone.Model.extend({
     return this._friendship_requests;
   },
 
-	books: function () {
-		if (!this._books) {
-			this._books = new ShelfLife.Collections.Books()
-		}
-
-		return this._books;
-	},
-
-	shelves: function () {
-		if (!this._shelves) {
-			this._shelves = new ShelfLife.Collections.Shelves()
-		}
-
-		return this._shelves;
-	},
 
   isFriend: function (user){
 

@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 	before_create :set_standard_shelves
 
+  has_many :shelves
+  has_many :shelved_books, through: :shelves
+  has_many :books, through: :shelved_books
+
   has_many :ratings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
@@ -19,10 +25,6 @@ class User < ActiveRecord::Base
 
   has_many :friendship_requests, -> { requested }, class_name: "Friendship", foreign_key: :user_id
   has_many :requesting_friends, through: :friendship_requests, source: :friend
-
-  has_many :shelves
-  has_many :shelved_books, through: :shelves
-  has_many :books, through: :shelved_books
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

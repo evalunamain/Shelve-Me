@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
   has_many :shelved_books, dependent: :destroy
   has_many :shelves, through: :shelved_books
   has_many :ratings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   # https://github.com/phoet/asin
   def self.find_by_isbn(isbn)
