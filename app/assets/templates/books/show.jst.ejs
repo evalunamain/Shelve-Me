@@ -1,6 +1,6 @@
 <a href="#books" class="title">Books Index</a>
 <section class="profile">
-  <img src="<%= book.escape('cover') %>">
+  <img src="<%= book.escape('cover') %>" class="img-profile">
 
   <h3 class="title"> <%= book.escape('title') %></h3>
   <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>

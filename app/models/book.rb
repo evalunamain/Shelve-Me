@@ -52,9 +52,9 @@ class Book < ActiveRecord::Base
     if self.ratings.count == 0
       return
     end
-    rating = self.ratings.average(:rating).to_f
-    rating = rating * 2.0
-    (rating.round) / 2.0
+    rating = self.ratings.average(:rating).to_f.round(2)
+    # rating = rating * 2.0
+    # (rating.round) / 2.0
   end
 
   def self.find_cover(items)
