@@ -20,7 +20,6 @@ ShelfLife.Views.BookReview = Backbone.View.extend({
   renderContent: function () {
     var content = this.template({review: this.model});
     this.$el.html(content);
-
     return this;
   },
 
@@ -29,9 +28,6 @@ ShelfLife.Views.BookReview = Backbone.View.extend({
     var ratedStar = this.$('.rating-static').filter(function () {
       return this.value == rating
     });
-    // debugger
-    console.log(ratedStar);
-    console.log(ratedStar[0]);
     ratedStar.attr('checked', true);
     this.$("input[type=radio]").attr('disabled', true);
     return this;

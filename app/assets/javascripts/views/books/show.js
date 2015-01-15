@@ -15,17 +15,20 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click .js-modal-open": "openModal",
-    "click .js-modal-close": "closeModal",
+    "click .js-modal-open.shelf": "openShelfModal",
+    "click .js-modal-open.review": "openReviewModal",
+    // "click .js-modal-close.shelf": "closeShelfModal",
+    "click .js-modal-close": "closeModals",
     "click .modal-checkbox": "toggleShelf",
-    "click .rating-input": "rateBook"
+    "click .rating-input": "rateBook",
+    "click .save-review": "newReview"
   },
 
   render: function (){
     this
       .renderBook()
-      .renderRating()
-      .renderReviewForm();
+      .renderRating();
+      // .renderReviewForm();
     this.renderReview();
     return this;
   },
@@ -56,11 +59,11 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  renderReviewForm: function (){
-    var content = this.newReviewTemplate({book: this.model});
-    this.$('.new-review').html(content);
-    return this;
-  },
+  // renderReviewForm: function (){
+  //   var content = this.newReviewTemplate({book: this.model});
+  //   this.$('.new-review').html(content);
+  //   return this;
+  // },
 
   renderReview: function (){
     console.log("rendering reviews");
@@ -109,15 +112,20 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
     }, 1300);
   },
 
-	openModal: function (event) {
+	openShelfModal: function (event) {
 		event.preventDefault();
-		$('.modal').addClass("is-open");
+		$('.shelf.modal').addClass("is-open");
 	},
 
-	closeModal: function (event) {
+	closeShelfModal: function (event) {
 		event.preventDefault();
-		$(".modal").removeClass("is-open");
+		$(".shelf.modal").removeClass("is-open");
 	},
+
+  closeModals: function (event) {
+    event.preventDefault();
+    $(".modal").removeClass("is-open");
+  },
 
 	toggleShelf: function (event) {
 		event.preventDefault();
@@ -167,6 +175,18 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
 				$(event.currentTarget).prop('disabled', false);
 			}
     })
-	}
+	},
+
+  openReviewModal: function (event) {
+    event.preventDefault();
+    $('.review.modal').addClass("is-open");
+    console.log("click registered");
+  },
+
+  newReview: function (event) {
+    event.preventDefault();
+    console.log("review registered");
+    debugger
+  },
 
 });

@@ -5,17 +5,14 @@
   <h3 class="title"> <%= book.escape('title') %></h3>
   <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
   <section class="book-rating"></section>
-
-  <p><%= book.escape('description') %> </p>
-
-<% if (ShelfLife.currentUser) {%>
+  <% if (ShelfLife.currentUser) {%>
     <div class="add-to-shelf">
       <div class="submit">
-        <button class="js-modal-open book">Add book to shelf</button>
+        <button class="js-modal-open shelf">Add book to shelf</button>
       </div>
 
-      <div class="modal">
-        <form class="modal-form">
+      <div class="shelf modal">
+        <form class="modal-shelf-form">
 
           <% ShelfLife.currentUser.shelves().each(function (shelf) { %>
             <div class="input existing-shelf">
@@ -45,18 +42,37 @@
                 placeholder="Enter new shelf"
                 class="modal-text">
               </div> -->
-              <button class="modal-close js-modal-close">Save</button>
+              <button class="modal-close js-modal-close shelf">Save</button>
 
             </form>
-            <div class="modal-screen js-modal-close"></div>
+            <div class="modal-screen js-modal-close all"></div>
           </div>
         </div>
-      <% } %>
+        <% } %>
+  <p><%= book.escape('description') %> </p>
+
+
 
   </section>
-  <section class="reviews">
-    <section class="new-review">
-    </section>
+  <section class="reviews index">
+    <% if (ShelfLife.currentUser) {%>
+      <div class="new-review">
+        <div class="submit">
+          <button class="js-modal-open review">Leave review</button>
+        </div>
+
+        <div class="review modal">
+          <form class="modal-review-form">
+            <div class="form-title"><h3>Leave a review</h3></div>
+            <div class="input"><label for="content"></label><textarea>
+            </textarea>
+            <button type="submit" class="save-review">Save</button>
+
+          </form>
+        </div>
+        <div class="modal-screen js-modal-close all"></div>
+      </div>
+    <% } %>
     <ul class="book-reviews">
     </ul>
   </section>

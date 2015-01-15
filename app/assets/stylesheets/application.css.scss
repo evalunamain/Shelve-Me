@@ -40,6 +40,7 @@ button {
   background:inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
+  outline: none;
 }
 
 .group:after {
@@ -84,9 +85,9 @@ input[type="submit"] {
   font-style: italic
 }
 
-.input input:focus {
+.input input:focus, textarea:focus {
   border: 2px solid #ccc;
-  -webkit-box-shadow: 0 0 0px 50px #FFEEDA inset;
+  -webkit-box-shadow: 0 0 0px 500px #FFEEDA inset;
   outline: none;
   font-style: normal;
 }
@@ -380,6 +381,10 @@ ul.profile-nav {
   padding: 20px;
 }
 
+.profile {
+  position: relative;
+}
+
 .profile li, .index li {
   padding: 5px;
 }
@@ -419,16 +424,16 @@ ul.profile-nav {
   margin-right: 10px;
 }
 
-/* New shelf modal*/
+/* New shelf modal, new review modal*/
 .modal {
 	display: none;
 }
 
-.modal.is-open {
+.modal.is-open, .modal.is-open {
 	display: block;
 }
 
-.modal-form {
+.modal-shelf-form {
   position: absolute;
   top: 50%;
   left: 140px;
@@ -441,22 +446,49 @@ ul.profile-nav {
   border: 1px solid #ccc;
 }
 
+.modal-review-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  transform: translateY(-50%) translateX(-50%);
+  padding: 20px 20px 0 20px;
+  background: #FFFAF8;
+  z-index: 3;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .modal-close {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
+  display: block;
   font-size: 14px;
   line-height: 1;
   cursor: pointer;
   border: 1px solid #450000;
 }
 
-.modal-close:hover {
-  color: #450000;
+.modal-close.shelf {
+  margin: 5px auto;
 }
 
-.modal-form .input {
+.save-review {
+  display: block;
+  font-size: 14px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid #450000;
+}
+
+.modal-shelf-form .input,
+.modal-review-form .input {
   margin: 0 0 10px 0;
+}
+
+.modal-review-form textarea {
+  min-height: 150px;
+  outline: none;
 }
 
 /*.modal-form > h1 {
@@ -504,6 +536,7 @@ ul.profile-nav {
 .modal-form input:focus {
 	-webkit-box-shadow: none;
 }
+
 
 // Book Review
 .shelf-show {

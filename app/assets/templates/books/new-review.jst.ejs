@@ -1,12 +1,11 @@
-
 <% if (ShelfLife.currentUser) {%>
   <div class="form-title">
     <div class="submit">
-      <button class="js-modal-open">Leave a review</button>
+      <button class="js-modal-open review">Leave a review</button>
     </div>
 
-    <div class="modal">
-      <form class="modal-form">
+    <div class="review modal">
+      <form class="modal-form new-review">
 
         <div class="form-title"><h3>Leave a review</h3></div>
         <div class="input"><label for="content"></label>
@@ -15,11 +14,11 @@
           name="review[content]">
         </input>
 
-
-        <button class="modal-close js-modal-close">Save</button>
+        <button class="modal-close shelf js-modal-close">Save</button>
 
       </form>
-      <div class="modal-screen js-modal-close"></div>
+
     </div>
   </div>
 <% } %>
+<div class="modal-screen js-modal-close"></div>

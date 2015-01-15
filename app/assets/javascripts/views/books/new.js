@@ -1,6 +1,6 @@
 ShelfLife.Views.BooksNew = Backbone.CompositeView.extend({
 
-  template: JST['books/new'],
+  template: JST['books/new-book'],
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
