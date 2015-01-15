@@ -1,6 +1,6 @@
 json.extract! @shelf, :id, :title, :user_id
 
-json.books @shelf.books
+json.books @shelf.books, partial: 'api/books/book', as: :book
 
 json.user do
   json.id @shelf.user.id
