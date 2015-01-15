@@ -1,4 +1,4 @@
-ShelfLife.Collections.Ratings = Backbone.Collection.extend({
+ShelfLife.Collections.Reviews = Backbone.Collection.extend({
   url: 'api/reviews',
 
   model: ShelfLife.Models.Review,

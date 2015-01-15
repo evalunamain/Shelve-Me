@@ -6,27 +6,31 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 
   tagName: "section",
 
-  // className: "index",
-
   initialize: function (options) {
-    this.listenToOnce(this.model, 'sync', this.render);
+    this.listenToOnce(this.model, 'sync', this.renderBook);
     this.listenTo(this.model, 'sync', this.renderRating);
     this.error = {};
   },
 
+  events: {
+    "click .js-modal-open": "openModal",
+    "click .js-modal-close": "closeModal",
+    "click .modal-checkbox": "toggleShelf",
+    "click .rating-input": "rateBook"
+  },
+
   render: function (){
-  	console.log('rendering book show');
-    var content = this.template({book: this.model});
-    this.$el.html(content);
-    // this.renderRating();
+    this
+      .renderBook()
+      .renderRating()
+      .renderReviews();
     return this;
   },
 
-  render2: function (){
-  	console.log('rendering book show');
+  renderBook: function () {
+    console.log('rendering book show');
     var content = this.template({book: this.model});
     this.$el.html(content);
-    this.renderRating();
     return this;
   },
 
@@ -43,14 +47,12 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     ratedStar.attr('checked', true);
     $('.error-message').focus();
     $('.error-message').removeClass('new');
+    return this;
   },
 
-	events: {
-		"click .js-modal-open": "openModal",
-		"click .js-modal-close": "closeModal",
-		"click .modal-checkbox": "toggleShelf",
-    "click .rating-input": "rateBook"
-	},
+  renderReviews: function (){
+
+  },
 
   rateBook: function (event) {
     event.preventDefault();
