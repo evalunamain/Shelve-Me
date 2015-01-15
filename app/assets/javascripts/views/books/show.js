@@ -1,13 +1,15 @@
-ShelfLife.Views.BookShow = Backbone.View.extend({
+ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
 
   template: JST['books/show'],
 
   ratingTemplate: JST['books/rating'],
 
+  newReviewTemplate: JST['books/new-review'],
+
   tagName: "section",
 
   initialize: function (options) {
-    this.listenToOnce(this.model, 'sync', this.renderBook);
+    this.listenToOnce(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderRating);
     this.error = {};
   },
@@ -23,7 +25,8 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     this
       .renderBook()
       .renderRating()
-      .renderReviews();
+      .renderReviewForm();
+    this.renderReview();
     return this;
   },
 
@@ -35,6 +38,7 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
   },
 
   renderRating: function (){
+    // debugger
     console.log('rendering rating');
     var content = this.ratingTemplate({book: this.model, error: this.error});
     $('.book-rating').html(content);
@@ -50,8 +54,23 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
     return this;
   },
 
-  renderReviews: function (){
+  renderReviewForm: function (){
+    var content = this.newReviewTemplate({book: this.model});
+    this.$('.new-review').html(content);
+    return this;
+  },
 
+  renderReview: function (){
+    console.log("rendering reviews");
+    // console.log(this.model.reviews());
+    var that = this;
+    this.model.reviews().each(function (review) {
+      console.log("review id ", review.id);
+      var reviewView = new ShelfLife.Views.BookReview({
+        model: review
+      })
+      that.addSubview('.book-reviews', reviewView);
+    });
   },
 
   rateBook: function (event) {
@@ -97,7 +116,6 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
 	},
 
 	toggleShelf: function (event) {
-		//TODO: check boxes but send all requests upon form closure as transaction to rails
 		event.preventDefault();
 		var onShelf = $(event.currentTarget).data("on-shelf");
 

@@ -119,7 +119,7 @@ input[type="checkbox"] {
   left: 0;
 }
 
-.js-modal-open:hover {
+.js-modal-open.book:hover {
   cursor: image-url('http://cur.cursors-4u.net/user/use-1/use30.cur'), progress !important;
 }
 
@@ -500,6 +500,11 @@ ul.profile-nav {
 
 .modal-form input:focus {
 	-webkit-box-shadow: none;
+}
+
+// Book Review
+.shelf-show {
+  width: 200px;
 }
 
 /*Shelf Show*/

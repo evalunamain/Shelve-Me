@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :books, through: :shelved_books
 
   has_many :ratings, dependent: :destroy
-  has_many :reviews, dependent: :destroy
+  has_many :reviews, foreign_key: :user_id, dependent: :destroy
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships

@@ -1,5 +1,9 @@
 class Api::ReviewsController < ApplicationController
 	before_action :require_log_in
+	def index
+		@reviews = Review.all
+		render json: @reviews
+	end
 
 	def create
 		review = current_user.reviews.new(review_params)
@@ -8,6 +12,10 @@ class Api::ReviewsController < ApplicationController
 		else
 			render json: params, status: 422
 		end
+	end
+
+	def show
+		@review = Review.includes(:author).find(params[:id])
 	end
 
 	def update

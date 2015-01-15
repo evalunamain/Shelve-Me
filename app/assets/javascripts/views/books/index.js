@@ -20,7 +20,6 @@ ShelfLife.Views.BooksIndex = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
 		this.collection.each(this.addBookView.bind(this));
-    // this.attachSubviews();
     return this;
   },
 

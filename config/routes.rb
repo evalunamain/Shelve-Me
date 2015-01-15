@@ -18,7 +18,7 @@ ShelfLife::Application.routes.draw do
     end
     resources :friendship_activations, only: [:create]
 		resources :ratings, only: [:create, :update]
-		resources :reviews, only: [:create, :update]
+		resources :reviews, only: [:index, :create, :show, :update]
     resources :shelves
     resources :shelved_books, only: [:create] do
 			delete 'destroy', on: :collection
