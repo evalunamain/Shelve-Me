@@ -68,7 +68,8 @@ ShelfLife.Views.BookShow = Backbone.View.extend({
       error: function () {
         console.log("didn't work");
         that.error.rating = "Please sign in to rate this book."
-        that.renderRating();
+				that.renderRating();
+				$('.rating-input').attr('checked', false);
         $('.error-message').addClass('alert'),
         console.log("alert added");
         that.alertMessage();
