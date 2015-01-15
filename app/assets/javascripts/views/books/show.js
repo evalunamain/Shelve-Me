@@ -11,6 +11,7 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.listenToOnce(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderRating);
+    this.listenTo(this.model, 'sync', this.renderReview);
     this.error = {};
   },
 
@@ -21,7 +22,7 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
     "click .js-modal-close": "closeModals",
     "click .modal-checkbox": "toggleShelf",
     "click .rating-input": "rateBook",
-    "click .save-review": "newReview"
+    "submit .modal-review-form": "newReview"
   },
 
   render: function (){
@@ -68,7 +69,7 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
   renderReview: function (){
     console.log("rendering reviews");
     var that = this;
-
+    this.$('.book-reviews').empty();
     this.model.reviews().each(function (review) {
       var rating = that.model.ratings().where({
         user_id: review.author().id})[0];
@@ -185,8 +186,19 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
 
   newReview: function (event) {
     event.preventDefault();
+    var that = this;
     console.log("review registered");
-    debugger
+    var data = $(event.currentTarget).serializeJSON().review;
+    var review = new ShelfLife.Models.Review();
+    review.save(data, {
+      success: function (model, response){
+        // debugger
+        console.log('review saved');
+        that.model.fetch();
+        $(".review.modal").removeClass("is-open");
+        // that.renderReview();
+      }
+    })
   },
 
 });

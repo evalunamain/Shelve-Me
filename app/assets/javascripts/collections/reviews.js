@@ -3,6 +3,10 @@ ShelfLife.Collections.Reviews = Backbone.Collection.extend({
 
   model: ShelfLife.Models.Review,
 
+  comparator: function (review) {
+    return -review.get('id');
+  },
+
   getOrFetch: function (id){
     var review = this.get(id);
     var reviews = this;

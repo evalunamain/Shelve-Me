@@ -5,7 +5,7 @@ ShelfLife.Views.BookReview = Backbone.View.extend({
   template: JST['books/review'],
 
   initialize: function (options) {
-    this.rating = options.rating;
+    this.rating = options.rating || new ShelfLife.Models.Rating();
     this.listenToOnce(this.model, 'sync', this.render);
   },
 

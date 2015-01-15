@@ -38,7 +38,7 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
     var book = ShelfLife.Collections.books.getOrFetch(id);
 
     var bookShow = new ShelfLife.Views.BookShow({
-      model: book
+      model: book, collection: book.reviews()
     });
 
     this._swapView(bookShow);
