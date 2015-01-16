@@ -6,7 +6,8 @@ ShelfLife.Views.indexView = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenToOnce(this.collection, "sync", this.renderTrendingBooks);
-    this.listenToOnce(ShelfLife.currentUser, "sync", this.renderFriendBooks);
+    this.currentUser = ShelfLife.currentUser || new ShelfLife.Models.User()
+    this.listenToOnce(this.currentUser, "sync", this.renderFriendBooks);
   },
 
   render: function (){
@@ -18,10 +19,7 @@ ShelfLife.Views.indexView = Backbone.CompositeView.extend({
   },
 
   renderFriendBooks: function (){
-    if (!ShelfLife.currentUser){
-      var message = "Sign In to see what your friends have been up to!"
-      this.$(".friend-feed").append(message);
-    } else {
+    if (ShelfLife.currentUser){
       console.log("current user found");
       console.log(ShelfLife.currentUser);
       ShelfLife.currentUser.acceptedFriends().each(this.addFriendView.bind(this));
