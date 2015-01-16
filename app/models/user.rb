@@ -32,6 +32,11 @@ class User < ActiveRecord::Base
     user
   end
 
+  def favorite_book
+    highest_rating = self.ratings.find_by(rating: self.ratings.maximum(:rating))
+    highest_rating.book
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

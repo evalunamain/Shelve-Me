@@ -18,7 +18,6 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
   events: {
     "click .js-modal-open.shelf": "openShelfModal",
     "click .js-modal-open.review": "openReviewModal",
-    // "click .js-modal-close.shelf": "closeShelfModal",
     "click .js-modal-close": "closeModals",
     "click .modal-checkbox": "toggleShelf",
     "click .rating-input": "rateBook",

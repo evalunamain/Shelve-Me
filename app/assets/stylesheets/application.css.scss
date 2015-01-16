@@ -168,7 +168,7 @@ input[type="checkbox"]:checked:after {
 
 .error-message {
   position: absolute;
-  left: 300px;
+  left: 400px;
   color: #450000;
   font-style: italic;
   font-weight: bold;
@@ -192,7 +192,7 @@ input[type="checkbox"]:checked:after {
 .header {
   background: #450000;
   color: #FFEEDA;
-	opacity: .9;
+	// opacity: .9;
   border-bottom: 1px solid #ccc;
 	padding: 5px;
 }
@@ -481,7 +481,7 @@ section.new-book {
 
 .shelf-overview {
 	display: block;
-	
+
 }
 
 .shelf-overview a {
@@ -493,7 +493,7 @@ section.new-book {
 	padding: 0;
 	border-bottom: 1px solid #ccc;
 }
-	
+
 /* New shelf modal, new review modal*/
 .modal {
 	display: none;
@@ -539,6 +539,21 @@ section.new-book {
 
 .modal-close.shelf {
   margin: 5px auto;
+}
+
+.modal-close.review {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  border: none;
+  padding: 5px;
+}
+
+.modal-close:hover {
+  color: #450000;
+  font-size: 26px;
+
 }
 
 .save-review {

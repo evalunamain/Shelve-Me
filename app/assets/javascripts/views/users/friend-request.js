@@ -34,7 +34,8 @@ ShelfLife.Views.friendRequestView = Backbone.View.extend({
 
 
   events: {
-    "click .friend-toggle":"acceptFriend"
+    "click .friend-accept":"acceptFriend",
+    "click .friend-ignore":"ignoreFriend"
   },
 
   acceptFriend: function (event) {
@@ -55,6 +56,11 @@ ShelfLife.Views.friendRequestView = Backbone.View.extend({
       }
     })
 	},
+
+  ignoreFriend: function (event) {
+    console.log("ignoring friend");
+    event.preventDefault();
+  }
 
 
 });

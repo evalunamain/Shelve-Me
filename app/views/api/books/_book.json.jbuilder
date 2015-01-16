@@ -8,4 +8,4 @@ json.shelves book.shelves
 
 json.ratings book.ratings
 
-json.reviews book.reviews, partial: 'api/reviews/review', as: :review
+json.reviews book.reviews

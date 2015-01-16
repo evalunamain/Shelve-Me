@@ -3,6 +3,11 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   parse: function (response) {
 
+    if (response.favorite_book) {
+      this.favorite_book().set(response.favorite_book, {parse: true});
+      delete response.favorite_book
+    }
+
     if (response.books) {
       this.books().set(response.books, {parse: true});
       delete response.books
@@ -33,6 +38,11 @@ ShelfLife.Models.User = Backbone.Model.extend({
       delete response.friends
     }
 
+    if (response.accepted_friends) {
+      this.acceptedFriends().set(response.accepted_friends, {parse: true});
+      delete response.accepted_friends
+    }
+
     if (response.pending_friendships) {
       this.pending_friendships().set(response.pending_friendships, {parse: true});
       delete response.pending_friendships
@@ -48,11 +58,16 @@ ShelfLife.Models.User = Backbone.Model.extend({
       delete response.friendship_requests
     }
 
-
-
     return response;
   },
 
+  favorite_book: function () {
+    if (!this._favorite_book) {
+      this._favorite_book = new ShelfLife.Models.Book()
+    }
+
+    return this._favorite_book;
+  },
 
   books: function () {
     if (!this._books) {
@@ -99,6 +114,14 @@ ShelfLife.Models.User = Backbone.Model.extend({
     }
 
     return this._friends
+  },
+
+  acceptedFriends: function (){
+    if (!this._accepted_friends) {
+      this._accepted_friends = new ShelfLife.Collections.Users()
+    }
+
+    return this._accepted_friends
   },
 
   accepted_friendships: function (){

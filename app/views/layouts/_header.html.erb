@@ -4,13 +4,13 @@
     <a href="<%= root_url %>" class="header-name">Shelf Life</a>
     <ul class="nav-list">
 			<!-- <ul class="profile-nav"> -->
-    		<li><a class="explore" href="/#books/new">Explore</a></li>
-    
+    		<li><a class="explore" href="/#explore">Explore</a></li>
+
       <% if signed_in? %>
 			<li> <a class="header-profile" href="/#users/<%= current_user.id %>"><%= current_user.name.capitalize %></a></li>
       <li><form action="<%= session_url %>" method="post" class="group">
         <%= auth_token %>
-       
+
         <input name="_method" type="hidden" value="delete">
         <button class="log-out">Sign Out</button>
       </form></li>

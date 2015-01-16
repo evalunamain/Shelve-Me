@@ -15,7 +15,11 @@ json.ratings @user.ratings
 
 json.reviews @user.reviews
 
-json.friends @user.friends, :id, :name, :email
+json.friends @user.friends do |friend|
+	json.extract! friend, :id, :name, :email
+end
+
+json.accepted_friends @user.accepted_friends, partial: 'api/users/user', as: :user
 
 json.friendships @user.friendships do |friendship|
 	json.extract! friendship, :id, :friend_id, :user_id

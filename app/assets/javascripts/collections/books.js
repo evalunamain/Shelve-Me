@@ -3,7 +3,15 @@ ShelfLife.Collections.Books = Backbone.Collection.extend({
 
   model: ShelfLife.Models.Book,
 
-  comparator: "title",
+  comparator: function (book) {
+    var str = book.get("updated_at");
+    str = str.toLowerCase();
+    str = str.split("");
+    str = _.map(str, function(letter) {
+      return String.fromCharCode(-(letter.charCodeAt(0)));
+    });
+    return str;
+  },
 
   getOrFetch: function (id){
     var book = this.get(id);
@@ -21,8 +29,7 @@ ShelfLife.Collections.Books = Backbone.Collection.extend({
     }
 
     return book;
-  }
-
+  },
 });
 
 ShelfLife.Collections.books = new ShelfLife.Collections.Books
