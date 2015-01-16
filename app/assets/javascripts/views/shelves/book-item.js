@@ -15,11 +15,12 @@ ShelfLife.Views.shelfBookItem = Backbone.View.extend({
   },
 
   render: function (){
-		if (ShelfLife.currentUser) {
-			 this.rating = this.model.ratings().where({user_id: ShelfLife.currentUser.id})[0]
+		if (!ShelfLife.currentUser) {
+			this.rating =  new ShelfLife.Models.Rating();
 		} else {
-			this.rating = new ShelfLife.Models.Rating()
+		this.rating = this.model.ratings().where({user_id: 			ShelfLife.currentUser.id})[0] || new ShelfLife.Models.Rating()
 		}
+		console.log(this.rating);
     var rating = this.rating.get('rating');
     var content = this.template({book: this.model});
     this.$el.html(content);
