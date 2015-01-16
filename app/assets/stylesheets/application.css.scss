@@ -50,13 +50,31 @@ button {
 }
 
 /*General Styles*/
+h2, h3, h4 {
+	//font-family: 'Lobster', cursive;
+		font-family: 'PT Sans', sans-serif;
+}
+
 h3 {
   font-weight: bold;
   font-size: 24px;
 }
 
 body {
+	background: white;
+//	font-family: 'Vollkorn', serif;
+	font-family: 'Gentium Book Basic', serif;
+}
+
+p {
+	line-height: 1.5;
+}
+#main {
+	width: 1000px;
+	margin: auto;
   background: #FFFAF8;
+	border: 1px solid #ccc;
+	min-height: 600px;
 }
 
 button,
@@ -144,11 +162,6 @@ input[type="checkbox"]:checked:after {
   transform: rotate(-45deg);
 }
 
-#main {
-  width: 1200px;
-  margin: auto;
-}
-
 .exception {
   font-weight: normal;
   font-style: italic;
@@ -175,6 +188,72 @@ input[type="checkbox"]:checked:after {
   float: left;
   margin: 0 15px 10px 5px;
 }
+
+/*Header*/
+.header {
+  background: #450000;
+  color: #FFEEDA;
+  border-bottom: 1px solid #ccc;
+	padding: 5px;
+}
+
+.nav-header {
+  width: 1000px;
+  margin: auto;
+}
+
+.header-name {
+	font-weight: bold;
+	letter-spacing: 2px;
+	font-size: 22px;
+	letter-spacing: 2px;
+	float: left;
+	padding: 10px 0 10px 0;
+}
+
+.nav-list {
+	float: right;
+	width: 300px;
+}
+
+.nav-list li {
+	float: left;
+
+}
+
+.nav-list button {
+	margin: 7px 0 8px -15px;
+}
+
+.nav-list a {
+	display: block;
+	padding: 10px 25px 10px 25px;
+	border-left: 2px solid #FFEEDA;
+}
+
+ul.profile-nav {
+	float: left;
+	padding: 5px 10px;
+	position: relative;
+	border-left: 2px solid #FFEEDA;
+}
+
+
+.header-profile {
+	display: inline-block;
+	padding-top: 5px;
+	margin: 0 20px 0 15px;
+	font-weight: bold;
+}
+
+.header-nav form {
+	display: inline-block;
+}
+
+.header-nav button {
+	float: right;
+}
+
 /*Book Table*/
 
 .tftable {
@@ -216,62 +295,6 @@ input[type="checkbox"]:checked:after {
 
 .table-rating {
   width: 80px;
-}
-
-
-/*Header*/
-.header {
-  background: #450000;
-  color: #FFEEDA;
-  border-bottom: 1px solid #ccc;
-	padding: 5px;
-}
-
-.nav-header {
-  width: 1200px;
-  margin: auto;
-}
-
-.header-name {
-	font-weight: bold;
-	letter-spacing: 2px;
-	font-size: 18px;
-	float: left;
-	padding: 10px;
-}
-
-.nav-list {
-	float: right;
-}
-
-a.explore {
-	float: left;
-	padding: 10px 25px 10px 25px;
-	border-left: 2px solid #FFEEDA;
-}
-
-ul.profile-nav {
-	float: left;
-	padding: 5px 10px;
-	position: relative;
-	border-left: 2px solid #FFEEDA;
-}
-
-
-.header-profile {
-	display: inline-block;
-	padding-top: 5px;
-	margin: 0 20px 0 15px;
-	font-weight: bold;
-}
-
-
-.header-nav form {
-	display: inline-block;
-}
-
-.header-nav button {
-	float: right;
 }
 
 /*Book Rating */
@@ -379,6 +402,11 @@ ul.profile-nav {
 	margin: 20px 20px;
 }
 
+//New Book
+section.new-book {
+	margin: 50px;
+}
+
 /*Show pages */
 .profile, .index {
   display: block;
@@ -428,6 +456,34 @@ ul.profile-nav {
   margin-right: 10px;
 }
 
+//User show
+.main {
+	width: 660px;
+	margin: 20px;
+	float: left;
+}
+
+.sidebar {
+	margin-top: 20px;
+	width: 300px;
+	float: left;
+}
+
+.shelf-overview {
+	display: block;
+	
+}
+
+.shelf-overview a {
+	padding: 20px;
+	display: block;
+}
+
+.shelf-overview li {
+	padding: 0;
+	border-bottom: 1px solid #ccc;
+}
+	
 /* New shelf modal, new review modal*/
 .modal {
 	display: none;

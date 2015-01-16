@@ -3,6 +3,8 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
   template: JST['users/show'],
 
   tagName: "section",
+	
+	className: "group",
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);

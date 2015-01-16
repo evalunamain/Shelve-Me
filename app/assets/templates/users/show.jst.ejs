@@ -1,13 +1,17 @@
-<a href="#users" class="title">See all users</a>
-<a href="#books" class="title">See all books</a>
-
-<h3 class="title"><strong><%= user.escape('name') %></h3></strong>
-<ul class="index shelves">
-	<h2><strong>Shelves</strong></h2>
-	<% user.shelves().each (function (shelf) { %>
-		<li><h4><a href="#users/<%= user.id %>/shelves/<%= shelf.id %>"><%= shelf.escape('title') %></a></h4></li>
-	<% })%>
-	</ul>
-
-<section class="index group">
+<section class="main">
+	<h3 class="title"><strong><%= user.escape('name') %></h3></strong>
+</section>
+<section class="sidebar">
+	<section class="shelf-overview">
+		
+		<ul class="index shelves">
+			<h2><strong>Shelves</strong></h2>
+				<% user.shelves().each (function (shelf) { %>
+					<li><a href="#users/<%= user.id %>/shelves/<%= shelf.id %>">
+						<%= shelf.escape('title') %></a></li>
+					<% })%>
+		</ul>
+	</section>
+	<section class="friend-overview index group">
+	</section>
 </section>

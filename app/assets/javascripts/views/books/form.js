@@ -22,12 +22,17 @@ ShelfLife.Views.BookForm = Backbone.View.extend({
 	
 	addBook: function (event){
 		event.preventDefault();
+		var that = this;
 		formData = this.$el.serializeJSON();
 		book = new ShelfLife.Models.Book(formData);
 		book.save({}, {
 			success: function (){
 				console.log('book added');
 				Backbone.history.navigate("", {trigger: true})
+			},
+			error: function (){
+				that.$('input#isbn').val("");
+				that.$('input#isbn').attr('placeholder', "Please enter a valid ISBN10");
 			}
 		})
 	}

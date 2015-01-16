@@ -2,29 +2,30 @@
 
   <nav class="nav-header group">
     <a href="<%= root_url %>" class="header-name">Shelf Life</a>
-    <nav class="nav-list">
-    <a class="explore" href="/#books/new">Explore</a>
-    <ul class="profile-nav">
+    <ul class="nav-list">
+			<!-- <ul class="profile-nav"> -->
+    		<li><a class="explore" href="/#books/new">Explore</a></li>
+    
       <% if signed_in? %>
-
-      <form action="<%= session_url %>" method="post" class="group">
+			<li> <a class="header-profile" href="/#users/<%= current_user.id %>"><%= current_user.name.capitalize %></a></li>
+      <li><form action="<%= session_url %>" method="post" class="group">
         <%= auth_token %>
-        <a class="header-profile" href="/#users/<%= current_user.id %>"><%= current_user.name.capitalize %></a>
+       
         <input name="_method" type="hidden" value="delete">
         <button class="log-out">Sign Out</button>
-      </form>
+      </form></li>
       <% else%>
 
       <!-- <form action="<%= new_user_url %>" method="get" class="group">
         <%= auth_token %>
         <button class="log-in">Sign Up</button>
       </form> -->
-      <form action="<%= new_session_url %>" method="get" class="group">
+      <li><form action="<%= new_session_url %>" method="get" class="group">
         <%= auth_token %>
         <button class="log-in">Sign In</button>
-      </form>
+      </form></li>
       <% end %>
-    </ul>
-  </nav>
+    <!-- </ul> -->
+	</ul>
   </nav>
 </header>
