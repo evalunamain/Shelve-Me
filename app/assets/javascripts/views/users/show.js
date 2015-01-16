@@ -16,8 +16,10 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 		console.log('in user show');
     var content = this.template({user: this.model});
     this.$el.html(content);
-		if (this.model.id === ShelfLife.currentUser.id) {
+		if (this.model &&  ShelfLife.currentUser) {
+			if (this.model.id === ShelfLife.currentUser.id) {
    		this.addFriendViews();
+			}
 		}
     return this;
   },

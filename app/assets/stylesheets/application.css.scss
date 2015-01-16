@@ -61,8 +61,9 @@ h3 {
 }
 
 body {
-	background: white;
-//	font-family: 'Vollkorn', serif;
+	background-image: url('https://ununsplash.imgix.net/38/zEk8RJdmQrqja2XwbjgJ_DSC_2368.jpg?q=75&fm=jpg&s=0a7f72fcbef949b219b2c83813bc3c45');
+	 background-size:   cover;
+	 opacity: .95;
 	font-family: 'Gentium Book Basic', serif;
 }
 
@@ -73,6 +74,7 @@ p {
 	width: 1000px;
 	margin: auto;
   background: #FFFAF8;
+	opacity: 0.9;
 	border: 1px solid #ccc;
 	min-height: 600px;
 }
@@ -193,6 +195,7 @@ input[type="checkbox"]:checked:after {
 .header {
   background: #450000;
   color: #FFEEDA;
+	opacity: .9;
   border-bottom: 1px solid #ccc;
 	padding: 5px;
 }
@@ -221,7 +224,11 @@ input[type="checkbox"]:checked:after {
 
 }
 
-.nav-list button {
+.nav-list .log-in {
+	margin: 7px 0 8px 0px;
+}
+
+.nav-list .log-out {
 	margin: 7px 0 8px -15px;
 }
 

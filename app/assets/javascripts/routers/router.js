@@ -4,7 +4,7 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "bookIndex",
+    "": "index",
     "books": "bookIndex",
     "books/new": "bookNew",
     "books/:id": "bookShow",
@@ -15,7 +15,10 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
   },
 
   index: function (){
-    console.log("in index")
+    console.log("in index");
+		var indexView = new ShelfLife.Views.indexView({
+		});
+		this._swapView(indexView);
   },
 
   bookIndex: function (){
