@@ -186,7 +186,7 @@ input[type="checkbox"]:checked:after {
 
 .img-profile {
   float: left;
-  margin: 0 15px 10px 5px;
+  margin: 0 20px;
 }
 
 /*Header*/
@@ -428,7 +428,7 @@ section.new-book {
 
 .book-overview {
   float: left;
-  width: 225px;
+  width: 220px;
   height: 260px;
   position: relative;
 }
@@ -450,6 +450,12 @@ section.new-book {
   margin: 5px;
   display: inline-block;
 }
+
+.friend-accept, .friend-ignore {
+	width: 80px;
+	margin: 5px;
+}
+
 
 .rating h4 {
   display: inline;
@@ -599,21 +605,21 @@ section.new-book {
 
 
 // Book Review
-.shelf-show {
-  width: 200px;
-}
+//.shelf-show {
+//  width: 200px;
+//}
 
 /*Shelf Show*/
 .shelf-sidebar {
-  width: 300px;
-  // border: 1px solid black;
+  width: 210px;
+	margin: 20px;
   display: block;
   float: left;
 }
 
 .shelf-show {
-  width: 800px;
-  // border: 1px solid black;
+  width: 620px;
+	margin:20px;
   display: block;
   float: left;
 }

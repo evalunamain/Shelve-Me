@@ -4,9 +4,7 @@ ShelfLife.Views.BookShelf = Backbone.CompositeView.extend({
 
   bookTemplate: JST['shelves/book-item'],
 
-  tagName: "ul",
-
-  className: "shelf-books index",
+  className: "shelf-books",
 
   initialize: function (options) {
     this.listenTo(this.model, 'sync', this.render);

@@ -2,7 +2,7 @@ ShelfLife.Views.ShelfShow = Backbone.CompositeView.extend({
 
   template: JST['shelves/show'],
 
-  className: "index",
+  className: "index group",
 
   initialize: function (options) {
     console.log("making shelf view");
