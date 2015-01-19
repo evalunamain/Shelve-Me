@@ -1,4 +1,4 @@
-ShelfLife.Routers.Router = Backbone.Router.extend({
+ShelveMe.Routers.Router = Backbone.Router.extend({
   initialize: function (options){
     this.$rootEl = options.$rootEl
   },
@@ -16,34 +16,34 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
 
   index: function (){
     console.log("in index");
-    ShelfLife.currentUser && ShelfLife.currentUser.fetch();
-    ShelfLife.Collections.books.fetch();
-		var indexView = new ShelfLife.Views.indexView({
-      collection: ShelfLife.Collections.books
+    ShelveMe.currentUser && ShelveMe.currentUser.fetch();
+    ShelveMe.Collections.books.fetch();
+		var indexView = new ShelveMe.Views.indexView({
+      collection: ShelveMe.Collections.books
 		});
 		this._swapView(indexView);
   },
 
   bookIndex: function (){
-    ShelfLife.Collections.books.fetch();
-    var bookIndexView = new ShelfLife.Views.BooksIndex({
-      collection: ShelfLife.Collections.books
+    ShelveMe.Collections.books.fetch();
+    var bookIndexView = new ShelveMe.Views.BooksIndex({
+      collection: ShelveMe.Collections.books
     });
     this._swapView(bookIndexView);
   },
 
   explore: function (){
-    var newBookView = new ShelfLife.Views.BooksNew({
-      model: new ShelfLife.Models.Book
+    var newBookView = new ShelveMe.Views.BooksNew({
+      model: new ShelveMe.Models.Book
     });
 
     this._swapView(newBookView);
   },
 
   bookShow: function (id){
-    var book = ShelfLife.Collections.books.getOrFetch(id);
+    var book = ShelveMe.Collections.books.getOrFetch(id);
 
-    var bookShow = new ShelfLife.Views.BookShow({
+    var bookShow = new ShelveMe.Views.BookShow({
       model: book, collection: book.reviews()
     });
 
@@ -51,35 +51,35 @@ ShelfLife.Routers.Router = Backbone.Router.extend({
   },
 
   authorShow: function (id){
-    var author = ShelfLife.Collections.authors.getOrFetch(id);
+    var author = ShelveMe.Collections.authors.getOrFetch(id);
     author.books().fetch();
-    var authorShowView = new ShelfLife.Views.AuthorShow({
+    var authorShowView = new ShelveMe.Views.AuthorShow({
       model: author, collection: author.books()
     });
     this._swapView(authorShowView);
   },
 
   userIndex: function (){
-    ShelfLife.Collections.users.fetch();
+    ShelveMe.Collections.users.fetch();
 
-    var userIndexView = new ShelfLife.Views.UsersIndex({
-      collection: ShelfLife.Collections.users
+    var userIndexView = new ShelveMe.Views.UsersIndex({
+      collection: ShelveMe.Collections.users
     });
     this._swapView(userIndexView);
   },
 
   userShow: function (id) {
-    var user = ShelfLife.Collections.users.getOrFetch(id);
-    var userShowView = new ShelfLife.Views.UserShow({
+    var user = ShelveMe.Collections.users.getOrFetch(id);
+    var userShowView = new ShelveMe.Views.UserShow({
       model: user, collection: user.friends()
     });
     this._swapView(userShowView);
   },
 
   shelfShow: function (userId, shelfId) {
-    var shelf = ShelfLife.Collections.shelves.getOrFetch(shelfId);
-    var user = ShelfLife.Collections.users.getOrFetch(userId);
-    var shelfShowView = new ShelfLife.Views.ShelfShow({
+    var shelf = ShelveMe.Collections.shelves.getOrFetch(shelfId);
+    var user = ShelveMe.Collections.users.getOrFetch(userId);
+    var shelfShowView = new ShelveMe.Views.ShelfShow({
       model: shelf, user: user
     });
     this._swapView(shelfShowView);

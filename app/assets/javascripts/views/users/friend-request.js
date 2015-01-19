@@ -1,4 +1,4 @@
-ShelfLife.Views.friendRequestView = Backbone.View.extend({
+ShelveMe.Views.friendRequestView = Backbone.View.extend({
 
   template: JST['users/friend-request'],
 

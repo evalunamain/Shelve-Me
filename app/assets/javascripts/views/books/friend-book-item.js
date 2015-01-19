@@ -1,4 +1,4 @@
-ShelfLife.Views.friendBookItem = Backbone.View.extend({
+ShelveMe.Views.friendBookItem = Backbone.View.extend({
 
   template: JST['books/friend-index-item'],
 

@@ -1,4 +1,4 @@
-ShelfLife.Views.UserItem = Backbone.View.extend({
+ShelveMe.Views.UserItem = Backbone.View.extend({
 
   template: JST['users/index-item'],
 
@@ -9,7 +9,7 @@ ShelfLife.Views.UserItem = Backbone.View.extend({
   },
 
   render: function (){
-    var isFriend = ShelfLife.currentUser && ShelfLife.currentUser.isFriend(this.model);
+    var isFriend = ShelveMe.currentUser && ShelveMe.currentUser.isFriend(this.model);
     if (isFriend) {
       button = "Remove as friend"
     } else {
@@ -42,11 +42,11 @@ ShelfLife.Views.UserItem = Backbone.View.extend({
     var friendId = this.model.id;
     var that = this;
 		
-		var friendship = new ShelfLife.Models.Friendship;
+		var friendship = new ShelveMe.Models.Friendship;
 		friendship.save({friend_id: friendId},{ 
 			success: function () {
         console.log("added friend");
-        ShelfLife.currentUser.friends().add(that.model);
+        ShelveMe.currentUser.friends().add(that.model);
         that.render();
 			}
      });
@@ -58,7 +58,7 @@ ShelfLife.Views.UserItem = Backbone.View.extend({
  //      data: {friend_id: friendId},
  //      success: function () {
  //        console.log("added friend");
- //        ShelfLife.currentUser.friends().add(that.model);
+ //        ShelveMe.currentUser.friends().add(that.model);
  //        that.render();
  //      }
  //    })
@@ -76,7 +76,7 @@ ShelfLife.Views.UserItem = Backbone.View.extend({
       data: {friend_id: friendId},
       success: function () {
         console.log("removed friend");
-        ShelfLife.currentUser.friends().remove(that.model);
+        ShelveMe.currentUser.friends().remove(that.model);
         that.render();
       }
     })

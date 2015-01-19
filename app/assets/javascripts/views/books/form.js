@@ -1,4 +1,4 @@
-ShelfLife.Views.BookForm = Backbone.View.extend({
+ShelveMe.Views.BookForm = Backbone.View.extend({
 
   template: JST['books/form'],
 
@@ -24,7 +24,7 @@ ShelfLife.Views.BookForm = Backbone.View.extend({
 		event.preventDefault();
 		var that = this;
 		formData = this.$el.serializeJSON();
-		book = new ShelfLife.Models.Book(formData);
+		book = new ShelveMe.Models.Book(formData);
 		book.save({}, {
 			success: function (){
 				console.log('book added');

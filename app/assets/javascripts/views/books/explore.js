@@ -1,4 +1,4 @@
-ShelfLife.Views.BooksNew = Backbone.CompositeView.extend({
+ShelveMe.Views.BooksNew = Backbone.CompositeView.extend({
 
   template: JST['books/new-book'],
 
@@ -8,8 +8,8 @@ ShelfLife.Views.BooksNew = Backbone.CompositeView.extend({
   },
 
   addFormView: function (book) {
-    var formView = new ShelfLife.Views.BookForm({
-      model: new ShelfLife.Models.Book
+    var formView = new ShelveMe.Views.BookForm({
+      model: new ShelveMe.Models.Book
     });
     this.addSubview('.new-book', formView);
   },

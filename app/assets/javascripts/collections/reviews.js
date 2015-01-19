@@ -1,7 +1,7 @@
-ShelfLife.Collections.Reviews = Backbone.Collection.extend({
+ShelveMe.Collections.Reviews = Backbone.Collection.extend({
   url: 'api/reviews',
 
-  model: ShelfLife.Models.Review,
+  model: ShelveMe.Models.Review,
 
   comparator: function (review) {
     return -review.get('id');
@@ -12,7 +12,7 @@ ShelfLife.Collections.Reviews = Backbone.Collection.extend({
     var reviews = this;
 
     if (!review) {
-      review = new ShelfLife.Models.Review({id: id});
+      review = new ShelveMe.Models.Review({id: id});
       review.fetch({
         success: function (){
           reviews.add(review);

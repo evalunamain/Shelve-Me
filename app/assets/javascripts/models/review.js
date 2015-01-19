@@ -1,4 +1,4 @@
-ShelfLife.Models.Review = Backbone.Model.extend({
+ShelveMe.Models.Review = Backbone.Model.extend({
   urlRoot: 'api/reviews',
 
 	toJSON: function (options) {
@@ -15,7 +15,7 @@ ShelfLife.Models.Review = Backbone.Model.extend({
 
   author: function () {
     if (!this._author){
-      this._author = new ShelfLife.Models.User();
+      this._author = new ShelveMe.Models.User();
     }
     return this._author;
   }

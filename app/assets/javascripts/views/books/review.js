@@ -1,11 +1,11 @@
-ShelfLife.Views.BookReview = Backbone.View.extend({
+ShelveMe.Views.BookReview = Backbone.View.extend({
 
   tagName: "li",
 
   template: JST['books/review'],
 
   initialize: function (options) {
-    this.rating = options.rating || new ShelfLife.Models.Rating();
+    this.rating = options.rating || new ShelveMe.Models.Rating();
     this.listenToOnce(this.model, 'sync', this.render);
   },
 

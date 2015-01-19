@@ -1,4 +1,4 @@
-ShelfLife.Views.acceptedFriendView = Backbone.View.extend({
+ShelveMe.Views.acceptedFriendView = Backbone.View.extend({
 
   template: JST['users/accepted-friend'],
 

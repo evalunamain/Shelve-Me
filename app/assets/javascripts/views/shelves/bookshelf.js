@@ -1,4 +1,4 @@
-ShelfLife.Views.BookShelf = Backbone.CompositeView.extend({
+ShelveMe.Views.BookShelf = Backbone.CompositeView.extend({
 
   template: JST['shelves/book-shelf'],
 
@@ -20,7 +20,7 @@ ShelfLife.Views.BookShelf = Backbone.CompositeView.extend({
   },
 
   renderBook: function (book) {
-    var bookView = new ShelfLife.Views.shelfBookItem({model: book});
+    var bookView = new ShelveMe.Views.shelfBookItem({model: book});
     this.addSubview('.book-rows', bookView);
   },
 

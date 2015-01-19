@@ -1,4 +1,4 @@
-ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
+ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
 
   template: JST['books/show'],
 
@@ -44,12 +44,12 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
     console.log('rendering rating');
     var content = this.ratingTemplate({book: this.model, error: this.error});
     $('.book-rating').html(content);
-    if (ShelfLife.currentUser) {
+    if (ShelveMe.currentUser) {
         this.rating = this.model.ratings().where({
-        user_id: ShelfLife.currentUser.id})[0];
+        user_id: ShelveMe.currentUser.id})[0];
       }
 
-    this.rating = this.rating || new ShelfLife.Models.Rating()
+    this.rating = this.rating || new ShelveMe.Models.Rating()
     var rating = this.rating.get('rating');
     var ratedStar = this.$('.rating-input').filter(function () {
         return this.value == rating});
@@ -72,7 +72,7 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
     this.model.reviews().each(function (review) {
       var rating = that.model.ratings().where({
         user_id: review.author().id})[0];
-      var reviewView = new ShelfLife.Views.BookReview({
+      var reviewView = new ShelveMe.Views.BookReview({
         model: review, rating: rating
       })
 
@@ -188,7 +188,7 @@ ShelfLife.Views.BookShow = Backbone.CompositeView.extend({
     var that = this;
     console.log("review registered");
     var data = $(event.currentTarget).serializeJSON().review;
-    var review = new ShelfLife.Models.Review();
+    var review = new ShelveMe.Models.Review();
     review.save(data, {
       success: function (model, response){
         // debugger

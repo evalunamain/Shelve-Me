@@ -1,7 +1,7 @@
-ShelfLife.Collections.Users = Backbone.Collection.extend({
+ShelveMe.Collections.Users = Backbone.Collection.extend({
   url: 'api/users',
 
-  model: ShelfLife.Models.User,
+  model: ShelveMe.Models.User,
 
   comparator: "name",
 
@@ -10,7 +10,7 @@ ShelfLife.Collections.Users = Backbone.Collection.extend({
     var users = this;
 
     if (!user) {
-      user = new ShelfLife.Models.User({id: id});
+      user = new ShelveMe.Models.User({id: id});
       user.fetch({
         success: function (){
           users.add(user);
@@ -25,4 +25,4 @@ ShelfLife.Collections.Users = Backbone.Collection.extend({
 
 });
 
-ShelfLife.Collections.users = new ShelfLife.Collections.Users
+ShelveMe.Collections.users = new ShelveMe.Collections.Users

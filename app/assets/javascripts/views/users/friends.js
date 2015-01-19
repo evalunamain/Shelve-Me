@@ -1,4 +1,4 @@
-ShelfLife.Views.friendView = Backbone.CompositeView.extend({
+ShelveMe.Views.friendView = Backbone.CompositeView.extend({
 
   template: JST['users/friends'],
 
@@ -31,21 +31,21 @@ ShelfLife.Views.friendView = Backbone.CompositeView.extend({
 
 
 	attachPendingFriends: function(friendship) {
-		var friendView = new ShelfLife.Views.pendingFriendView({
+		var friendView = new ShelveMe.Views.pendingFriendView({
 			model: friendship
 		});
 		this.addSubview('ul.pending-friends', friendView);
 	},
 
 	attachAcceptedFriends: function(friendship) {
-		var friendView = new ShelfLife.Views.acceptedFriendView({
+		var friendView = new ShelveMe.Views.acceptedFriendView({
 			model: friendship
 		});
 		this.addSubview('ul.accepted-friends', friendView);
 	},
 
   attachFriendRequests: function (friendship) {
-		var friendView = new ShelfLife.Views.friendRequestView({
+		var friendView = new ShelveMe.Views.friendRequestView({
 			model: friendship, user: this.model
 		});
 		this.addSubview('ul.friendship-requests', friendView);

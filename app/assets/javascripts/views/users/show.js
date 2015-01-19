@@ -1,4 +1,4 @@
-ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
+ShelveMe.Views.UserShow = Backbone.CompositeView.extend({
 
   template: JST['users/show'],
 
@@ -16,8 +16,8 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 		console.log('in user show');
     var content = this.template({user: this.model});
     this.$el.html(content);
-		if (this.model &&  ShelfLife.currentUser) {
-			if (this.model.id === ShelfLife.currentUser.id) {
+		if (this.model &&  ShelveMe.currentUser) {
+			if (this.model.id === ShelveMe.currentUser.id) {
    		this.addFriendViews();
 			}
 		}
@@ -27,7 +27,7 @@ ShelfLife.Views.UserShow = Backbone.CompositeView.extend({
 
 	addFriendViews: function() {
 		var user = this.model;
-		var friendView = new ShelfLife.Views.friendView({
+		var friendView = new ShelveMe.Views.friendView({
 			model: user, collection: user.friends()
 		});
 		this.addSubview('section.index', friendView);

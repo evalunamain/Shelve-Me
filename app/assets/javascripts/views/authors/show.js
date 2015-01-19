@@ -1,4 +1,4 @@
-ShelfLife.Views.AuthorShow = Backbone.CompositeView.extend({
+ShelveMe.Views.AuthorShow = Backbone.CompositeView.extend({
 
   template: JST['authors/show'],
 
@@ -9,7 +9,7 @@ ShelfLife.Views.AuthorShow = Backbone.CompositeView.extend({
   },
 
   addBookView: function (book) {
-    var bookView = new ShelfLife.Views.BookItem({
+    var bookView = new ShelveMe.Views.BookItem({
       model: book
     });
     this.addSubview('ul.index', bookView);

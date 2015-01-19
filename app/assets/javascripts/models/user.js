@@ -1,4 +1,4 @@
-ShelfLife.Models.User = Backbone.Model.extend({
+ShelveMe.Models.User = Backbone.Model.extend({
   urlRoot: 'api/users',
 
   parse: function (response) {
@@ -63,7 +63,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   favorite_book: function () {
     if (!this._favorite_book) {
-      this._favorite_book = new ShelfLife.Models.Book()
+      this._favorite_book = new ShelveMe.Models.Book()
     }
 
     return this._favorite_book;
@@ -71,7 +71,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   books: function () {
     if (!this._books) {
-      this._books = new ShelfLife.Collections.Books()
+      this._books = new ShelveMe.Collections.Books()
     }
 
     return this._books;
@@ -79,7 +79,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   shelves: function () {
     if (!this._shelves) {
-      this._shelves = new ShelfLife.Collections.Shelves()
+      this._shelves = new ShelveMe.Collections.Shelves()
     }
 
     return this._shelves;
@@ -87,14 +87,14 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   reviews: function () {
     if (!this._reviews) {
-      this._reviews = new ShelfLife.Collections.Reviews()
+      this._reviews = new ShelveMe.Collections.Reviews()
     }
     return this._reviews
   },
 
   ratings: function () {
     if (!this._ratings) {
-      this._ratings = new ShelfLife.Collections.Ratings()
+      this._ratings = new ShelveMe.Collections.Ratings()
     }
 
     return this._ratings
@@ -102,7 +102,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   friendships: function (){
     if (!this._friendships) {
-      this._friendships = new ShelfLife.Collections.Friendships()
+      this._friendships = new ShelveMe.Collections.Friendships()
     }
 
     return this._friendships
@@ -110,7 +110,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   friends: function (){
     if (!this._friends) {
-      this._friends = new ShelfLife.Collections.Users()
+      this._friends = new ShelveMe.Collections.Users()
     }
 
     return this._friends
@@ -118,7 +118,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   acceptedFriends: function (){
     if (!this._accepted_friends) {
-      this._accepted_friends = new ShelfLife.Collections.Users()
+      this._accepted_friends = new ShelveMe.Collections.Users()
     }
 
     return this._accepted_friends
@@ -126,7 +126,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   accepted_friendships: function (){
     if (!this._accepted_friendships) {
-      this._accepted_friendships = new ShelfLife.Collections.Friendships()
+      this._accepted_friendships = new ShelveMe.Collections.Friendships()
     }
 
     return this._accepted_friendships
@@ -134,7 +134,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   pending_friendships: function (){
     if (!this._pending_friendships) {
-      this._pending_friendships = new ShelfLife.Collections.Friendships()
+      this._pending_friendships = new ShelveMe.Collections.Friendships()
     }
 
     return this._pending_friendships
@@ -142,7 +142,7 @@ ShelfLife.Models.User = Backbone.Model.extend({
 
   friendship_requests: function () {
     if (!this._friendship_requests) {
-      this._friendship_requests = new ShelfLife.Collections.Friendships()
+      this._friendship_requests = new ShelveMe.Collections.Friendships()
     }
 
     return this._friendship_requests;

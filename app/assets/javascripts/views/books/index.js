@@ -1,4 +1,4 @@
-ShelfLife.Views.BooksIndex = Backbone.CompositeView.extend({
+ShelveMe.Views.BooksIndex = Backbone.CompositeView.extend({
 
   template: JST['books/index'],
 
@@ -9,7 +9,7 @@ ShelfLife.Views.BooksIndex = Backbone.CompositeView.extend({
   },
 
   addBookView: function (book) {
-    var bookView = new ShelfLife.Views.indexBookItem({
+    var bookView = new ShelveMe.Views.indexBookItem({
       model: book
     });
     this.addSubview('ul.index', bookView);

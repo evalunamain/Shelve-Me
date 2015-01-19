@@ -1,4 +1,4 @@
-ShelfLife.Views.shelfBookItem = Backbone.View.extend({
+ShelveMe.Views.shelfBookItem = Backbone.View.extend({
 
   template: JST['shelves/book-item'],
 
@@ -15,10 +15,10 @@ ShelfLife.Views.shelfBookItem = Backbone.View.extend({
   },
 
   render: function (){
-		if (!ShelfLife.currentUser) {
-			this.rating =  new ShelfLife.Models.Rating();
+		if (!ShelveMe.currentUser) {
+			this.rating =  new ShelveMe.Models.Rating();
 		} else {
-		this.rating = this.model.ratings().where({user_id: 			ShelfLife.currentUser.id})[0] || new ShelfLife.Models.Rating()
+		this.rating = this.model.ratings().where({user_id: 			ShelveMe.currentUser.id})[0] || new ShelveMe.Models.Rating()
 		}
 		console.log(this.rating);
     var rating = this.rating.get('rating');

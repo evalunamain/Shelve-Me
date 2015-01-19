@@ -1,9 +1,9 @@
-ShelfLife.Models.Friendship = Backbone.Model.extend({
+ShelveMe.Models.Friendship = Backbone.Model.extend({
   urlRoot: 'api/friendships',
 
   friend: function(){
     if (!this._friend) {
-      this._friend = new ShelfLife.Models.User()
+      this._friend = new ShelveMe.Models.User()
     }
 
     return this._friend

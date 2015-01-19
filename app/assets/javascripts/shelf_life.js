@@ -1,15 +1,15 @@
-window.ShelfLife = {
+window.ShelveMe = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    new ShelfLife.Routers.Router({
+    new ShelveMe.Routers.Router({
       $rootEl: $('#main')
     });
 
     if (this.userId) {
-      this.currentUser = new ShelfLife.Models.User({id :this.userId});
+      this.currentUser = new ShelveMe.Models.User({id :this.userId});
       this.currentUser.fetch();
     }
 
@@ -19,5 +19,5 @@ window.ShelfLife = {
 };
 
 $(document).ready(function(){
-  ShelfLife.initialize();
+  ShelveMe.initialize();
 });

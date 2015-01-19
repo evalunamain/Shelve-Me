@@ -1,7 +1,7 @@
-ShelfLife.Collections.Shelves = Backbone.Collection.extend({
+ShelveMe.Collections.Shelves = Backbone.Collection.extend({
   url: 'api/shelves',
 
-  model: ShelfLife.Models.Shelf,
+  model: ShelveMe.Models.Shelf,
 
   comparator: "title",
 
@@ -10,7 +10,7 @@ ShelfLife.Collections.Shelves = Backbone.Collection.extend({
     var shelves = this;
 
     if (!shelf) {
-      shelf = new ShelfLife.Models.Shelf({id: id});
+      shelf = new ShelveMe.Models.Shelf({id: id});
       shelf.fetch({
         success: function (){
           shelves.add(shelf);
@@ -25,4 +25,4 @@ ShelfLife.Collections.Shelves = Backbone.Collection.extend({
 
 });
 
-ShelfLife.Collections.shelves = new ShelfLife.Collections.Shelves;
+ShelveMe.Collections.shelves = new ShelveMe.Collections.Shelves;

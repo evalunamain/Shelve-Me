@@ -1,4 +1,4 @@
-ShelfLife.Views.pendingFriendView = Backbone.View.extend({
+ShelveMe.Views.pendingFriendView = Backbone.View.extend({
 
   template: JST['users/pending-friend'],
 
@@ -9,7 +9,7 @@ ShelfLife.Views.pendingFriendView = Backbone.View.extend({
   },
 
   render: function (){
-		var friend = ShelfLife.currentUser.friends().getOrFetch(this.model.escape('friend_id'));
+		var friend = ShelveMe.currentUser.friends().getOrFetch(this.model.escape('friend_id'));
 
     var content = this.template({
 			friendship: this.model,

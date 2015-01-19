@@ -1,7 +1,7 @@
-ShelfLife.Collections.Authors = Backbone.Collection.extend({
+ShelveMe.Collections.Authors = Backbone.Collection.extend({
   url: 'api/authors',
 
-  model: ShelfLife.Models.Author,
+  model: ShelveMe.Models.Author,
 
   comparator: "title",
 
@@ -10,7 +10,7 @@ ShelfLife.Collections.Authors = Backbone.Collection.extend({
     var authors = this;
 
     if (!author) {
-      author = new ShelfLife.Models.Author({id: id});
+      author = new ShelveMe.Models.Author({id: id});
       author.fetch({
         success: function (){
           authors.add(author);
@@ -25,4 +25,4 @@ ShelfLife.Collections.Authors = Backbone.Collection.extend({
 
 });
 
-ShelfLife.Collections.authors = new ShelfLife.Collections.Authors
+ShelveMe.Collections.authors = new ShelveMe.Collections.Authors

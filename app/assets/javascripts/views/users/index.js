@@ -1,4 +1,4 @@
-ShelfLife.Views.UsersIndex = Backbone.CompositeView.extend({
+ShelveMe.Views.UsersIndex = Backbone.CompositeView.extend({
 
   template: JST['users/index'],
 
@@ -9,7 +9,7 @@ ShelfLife.Views.UsersIndex = Backbone.CompositeView.extend({
   },
 
   addUserView: function (user) {
-    var userView = new ShelfLife.Views.UserItem({
+    var userView = new ShelveMe.Views.UserItem({
       model: user
     });
     this.addSubview('ul.index', userView);

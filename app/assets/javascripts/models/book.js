@@ -1,4 +1,4 @@
-ShelfLife.Models.Book = Backbone.Model.extend({
+ShelveMe.Models.Book = Backbone.Model.extend({
   urlRoot: 'api/books',
 
   parse: function (response) {
@@ -27,7 +27,7 @@ ShelfLife.Models.Book = Backbone.Model.extend({
 
   author: function () {
     if (!this._author) {
-      this._author = new ShelfLife.Models.Author()
+      this._author = new ShelveMe.Models.Author()
     }
 
     return this._author
@@ -35,21 +35,21 @@ ShelfLife.Models.Book = Backbone.Model.extend({
 
 	shelves: function () {
 		if (!this._shelves) {
-			this._shelves = new ShelfLife.Collections.Shelves()
+			this._shelves = new ShelveMe.Collections.Shelves()
 		}
 		return this._shelves
 	},
 
   reviews: function () {
     if (!this._reviews) {
-      this._reviews = new ShelfLife.Collections.Reviews()
+      this._reviews = new ShelveMe.Collections.Reviews()
     }
     return this._reviews
   },
 
   ratings: function () {
     if (!this._ratings) {
-      this._ratings = new ShelfLife.Collections.Ratings()
+      this._ratings = new ShelveMe.Collections.Ratings()
     }
 
     return this._ratings

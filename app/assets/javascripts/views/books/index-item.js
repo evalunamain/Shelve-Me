@@ -1,4 +1,4 @@
-ShelfLife.Views.indexBookItem = Backbone.View.extend({
+ShelveMe.Views.indexBookItem = Backbone.View.extend({
 
   template: JST['books/book-item'],
 

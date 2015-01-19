@@ -1,7 +1,7 @@
-ShelfLife.Collections.Books = Backbone.Collection.extend({
+ShelveMe.Collections.Books = Backbone.Collection.extend({
   url: 'api/books',
 
-  model: ShelfLife.Models.Book,
+  model: ShelveMe.Models.Book,
 
   comparator: function (book) {
     var str = book.get("updated_at");
@@ -18,7 +18,7 @@ ShelfLife.Collections.Books = Backbone.Collection.extend({
     var books = this;
 
     if (!book) {
-      book = new ShelfLife.Models.Book({id: id});
+      book = new ShelveMe.Models.Book({id: id});
       book.fetch({
         success: function (){
           books.add(book);
@@ -32,4 +32,4 @@ ShelfLife.Collections.Books = Backbone.Collection.extend({
   },
 });
 
-ShelfLife.Collections.books = new ShelfLife.Collections.Books
+ShelveMe.Collections.books = new ShelveMe.Collections.Books

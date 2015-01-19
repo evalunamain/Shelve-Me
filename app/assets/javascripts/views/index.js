@@ -1,4 +1,4 @@
-ShelfLife.Views.indexView = Backbone.CompositeView.extend({
+ShelveMe.Views.indexView = Backbone.CompositeView.extend({
 
   template: JST['index'],
 
@@ -6,7 +6,7 @@ ShelfLife.Views.indexView = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenToOnce(this.collection, "sync", this.renderTrendingBooks);
-    this.currentUser = ShelfLife.currentUser || new ShelfLife.Models.User()
+    this.currentUser = ShelveMe.currentUser || new ShelveMe.Models.User()
     this.listenToOnce(this.currentUser, "sync", this.renderFriendBooks);
   },
 
@@ -19,17 +19,17 @@ ShelfLife.Views.indexView = Backbone.CompositeView.extend({
   },
 
   renderFriendBooks: function (){
-    if (ShelfLife.currentUser){
+    if (ShelveMe.currentUser){
       console.log("current user found");
-      console.log(ShelfLife.currentUser);
-      ShelfLife.currentUser.acceptedFriends().each(this.addFriendView.bind(this));
+      console.log(ShelveMe.currentUser);
+      ShelveMe.currentUser.acceptedFriends().each(this.addFriendView.bind(this));
     }
     return this;
   },
 
   addFriendView: function (friend) {
     console.log(friend);
-    var friendView = new ShelfLife.Views.friendBookItem({
+    var friendView = new ShelveMe.Views.friendBookItem({
       model: friend
     });
     this.addSubview('ul.friend-feed', friendView);
@@ -37,13 +37,13 @@ ShelfLife.Views.indexView = Backbone.CompositeView.extend({
 
   renderTrendingBooks: function (){
     console.log("rendering books");
-    var newBooks = ShelfLife.Collections.books.first(8);
+    var newBooks = ShelveMe.Collections.books.first(8);
     console.log(newBooks);
     _.chain(newBooks).each(this.addBookView.bind(this));
   },
 
   addBookView: function (book) {
-    var bookView = new ShelfLife.Views.indexBookItem({
+    var bookView = new ShelveMe.Views.indexBookItem({
       model: book
     });
     this.addSubview('ul.trending-books', bookView);

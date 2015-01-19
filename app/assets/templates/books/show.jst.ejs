@@ -5,7 +5,7 @@
   <h3 class="title"> <%= book.escape('title') %></h3>
   <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
   <section class="book-rating"></section>
-  <% if (ShelfLife.currentUser) {%>
+  <% if (ShelveMe.currentUser) {%>
     <div class="add-to-shelf">
       <div class="submit">
         <button class="js-modal-open shelf">Add book to shelf</button>
@@ -14,7 +14,7 @@
       <div class="shelf modal">
         <form class="modal-shelf-form">
 
-          <% ShelfLife.currentUser.shelves().each(function (shelf) { %>
+          <% ShelveMe.currentUser.shelves().each(function (shelf) { %>
             <div class="input existing-shelf">
               <label>
                 <input type="checkbox"
@@ -55,7 +55,7 @@
 
   </section>
   <section class="reviews index">
-    <% if (ShelfLife.currentUser) {%>
+    <% if (ShelveMe.currentUser) {%>
       <div class="new-review">
         <div class="submit">
           <button class="js-modal-open review">Leave review</button>

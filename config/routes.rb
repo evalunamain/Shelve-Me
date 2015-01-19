@@ -1,4 +1,4 @@
-ShelfLife::Application.routes.draw do
+ShelveMe::Application.routes.draw do
   root to: "root#index"
   resources :users
   resource :session, only: [:new, :create, :destroy]

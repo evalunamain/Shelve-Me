@@ -1,14 +1,14 @@
-ShelfLife.Collections.Friendships = Backbone.Collection.extend({
+ShelveMe.Collections.Friendships = Backbone.Collection.extend({
   url: 'api/friendships',
 
-  model: ShelfLife.Models.Friendship,
+  model: ShelveMe.Models.Friendship,
 
   getOrFetch: function (id){
     var friendship = this.get(id);
     var friendships = this;
 
     if (!friendship) {
-      friendship = new ShelfLife.Models.Book({id: id});
+      friendship = new ShelveMe.Models.Book({id: id});
       friendship.fetch({
         success: function (){
           friendships.add(friendship);
