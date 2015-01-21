@@ -7,8 +7,8 @@
   <section class="book-rating"></section>
   <section class="shelves index">
     <% if(ShelveMe.currentUser.isSignedIn()) {%>
-  <h4><strong> On shelves:</strong> </h4> <% shelves.each(function (shelf) { %>
-      <a href="">◦ <%= shelf.escape('title') %></a>
+  <h4><strong> On your shelves:</strong> </h4> <% shelves.each(function (shelf) { %>
+      <a href="#users/<%= ShelveMe.currentUser.id %>/shelves/<%= shelf.id %>">◦ <%= shelf.escape('title') %></a>
         <% })%>
     <div class="add-to-shelf">
       <div class="submit">
