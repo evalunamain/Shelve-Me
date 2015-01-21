@@ -1,3 +1,7 @@
 <a href="/#users/<%= friend.id %>" class="title"><%= friend.escape('name') %> loved:</a>
-<a href="#/books/<%= book.id %>"><h2><%= book.escape('title') %></h2></a>
-<a href="#/books/<%= book.id %>"><img src="<%= book.escape('cover') %>"></a>
+<% if (book.isNew()) { %>
+  <p class='index'><%= friend.escape('name') %> hasn't rated any books yet. Recommend her one of your favorites! </p>
+<%} else {%>
+  <a href="#/books/<%= book.id %>"><h2><%= book.escape('title') %></h2></a>
+  <a href="#/books/<%= book.id %>"><img src="<%= book.escape('cover') %>"></a>
+<%} %>
