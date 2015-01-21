@@ -1,11 +1,11 @@
-ShelfLife.Views.BookReview = Backbone.View.extend({
+ShelveMe.Views.BookReview = Backbone.View.extend({
 
   tagName: "li",
 
   template: JST['books/review'],
 
   initialize: function (options) {
-    this.rating = options.rating || new ShelfLife.Models.Rating();
+    this.rating = options.rating || new ShelveMe.Models.Rating();
     this.listenTo(this.model, 'sync', this.render);
   },
 
@@ -40,7 +40,7 @@ ShelfLife.Views.BookReview = Backbone.View.extend({
 
   makeEditable: function (event){
     event.preventDefault();
-    if (this.model.author().id != ShelfLife.currentUser.id) {
+    if (this.model.author().id != ShelveMe.currentUser.id) {
       console.log("you can't edit this, dummy!");
       return;
     } else {
