@@ -1,6 +1,8 @@
 ShelveMe.Routers.Router = Backbone.Router.extend({
   initialize: function (options){
-    this.$rootEl = options.$rootEl
+    this.$rootEl = options.$rootEl;
+    this.collection = ShelveMe.Collections.users;
+    this.collection.fetch();
   },
 
   routes: {
@@ -10,8 +12,10 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     "books/:id": "bookShow",
     "authors/:id": "authorShow",
     "users": "userIndex",
+    "users/new": "newUser",
     "users/:id": "userShow",
     "users/:user_id/shelves/:shelf_id": "shelfShow",
+    "session/new": "signIn"
   },
 
   index: function (){
@@ -76,6 +80,17 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     this._swapView(userShowView);
   },
 
+  newUser: function(){
+    if (!this._requireSignedOut()) { return; }
+
+    var model = new this.collection.model();
+    var formView = new ShelveMe.Views.UsersForm({
+      collection: this.collection,
+      model: model
+    });
+    this._swapView(formView);
+  },
+
   shelfShow: function (userId, shelfId) {
     var shelf = ShelveMe.Collections.shelves.getOrFetch(shelfId);
     var user = ShelveMe.Collections.users.getOrFetch(userId);
@@ -83,6 +98,39 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
       model: shelf, user: user
     });
     this._swapView(shelfShowView);
+  },
+
+  signIn: function(callback){
+    if (!this._requireSignedOut(callback)) { return; }
+
+    var signInView = new ShelveMe.Views.SignIn({
+      callback: callback
+    });
+    this._swapView(signInView);
+  },
+
+  _requireSignedIn: function(callback){
+    if (!ShelveMe.currentUser.isSignedIn()) {
+      callback = callback || this._goHome.bind(this);
+      this.signIn(callback);
+      return false;
+    }
+
+    return true;
+  },
+
+  _requireSignedOut: function(callback){
+    if (ShelveMe.currentUser.isSignedIn()) {
+      callback = callback || this._goHome.bind(this);
+      callback();
+      return false;
+    }
+
+    return true;
+  },
+
+  _goHome: function(){
+    Backbone.history.navigate("", { trigger: true });
   },
 
   _swapView: function (view){

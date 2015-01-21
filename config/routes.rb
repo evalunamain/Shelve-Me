@@ -12,7 +12,7 @@ ShelveMe::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :books
     resources :authors, only: [:show]
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :create, :show]
     resources :friendships, only: [:create] do
       delete 'destroy', on: :collection
     end
@@ -23,5 +23,6 @@ ShelveMe::Application.routes.draw do
     resources :shelved_books, only: [:create] do
 			delete 'destroy', on: :collection
 		end
+    resource :session, only: [:show, :create, :destroy]
   end
 end

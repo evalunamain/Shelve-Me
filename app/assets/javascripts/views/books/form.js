@@ -15,11 +15,11 @@ ShelveMe.Views.BookForm = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
-	
+
 	events: {
 		"submit": "addBook"
 	},
-	
+
 	addBook: function (event){
 		event.preventDefault();
 		var that = this;

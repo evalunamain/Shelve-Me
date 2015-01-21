@@ -15,7 +15,7 @@
 //= require underscore
 //= require backbone
 //= require serializejson.min.js
-//= require shelf_life
+//= require shelve_me
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models
