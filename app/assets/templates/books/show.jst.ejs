@@ -6,7 +6,7 @@
   <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
   <section class="book-rating"></section>
   <section class="shelves index">
-    <% if (ShelveMe.currentUser) {%>
+    <% if(ShelveMe.currentUser.isSignedIn()) {%>
   <h4><strong> On shelves:</strong> </h4> <% shelves.each(function (shelf) { %>
       <a href="">◦ <%= shelf.escape('title') %></a>
         <% })%>
@@ -36,16 +36,7 @@
 
                 </div>
                 <% })%>
-                <!-- <div class="input new-shelf">
-                <input type="checkbox"
-                name="shelved_book[shelf]"
-                value=""
-                class="modal-new-checkbox">
-                <input type="text"
-                name="shelved_book[shelf]"
-                placeholder="Enter new shelf"
-                class="modal-text">
-              </div> -->
+
               <button class="modal-close js-modal-close shelf">Save</button>
 
             </form>
@@ -60,7 +51,7 @@
 
   </section>
   <section class="reviews index">
-    <% if (ShelveMe.currentUser) {%>
+    <% if(ShelveMe.currentUser.isSignedIn()) {%>
       <div class="new-review">
         <div class="submit">
           <button class="js-modal-open review">Leave review</button>

@@ -35,7 +35,7 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
 
   renderBook: function () {
     console.log('rendering book show');
-    var content = this.template({book: this.model});
+    var content = this.template({book: this.model, shelves: this.model.shelves()});
     this.$el.html(content);
     return this;
   },
@@ -54,16 +54,10 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
     var ratedStar = this.$('.rating-input').filter(function () {
         return this.value == rating});
     ratedStar.attr('checked', true);
-    $('.error-message').focus();
-    $('.error-message').removeClass('new');
+    // $('.error-message').focus();
+    // $('.error-message').removeClass('new');
     return this;
   },
-
-  // renderReviewForm: function (){
-  //   var content = this.newReviewTemplate({book: this.model});
-  //   this.$('.new-review').html(content);
-  //   return this;
-  // },
 
   renderReview: function (){
     console.log("rendering reviews");

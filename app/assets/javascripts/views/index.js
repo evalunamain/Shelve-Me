@@ -6,8 +6,7 @@ ShelveMe.Views.indexView = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenToOnce(this.collection, "sync", this.renderTrendingBooks);
-    this.currentUser = ShelveMe.currentUser || new ShelveMe.Models.User()
-    this.listenToOnce(this.currentUser, "sync", this.renderFriendBooks);
+    this.listenToOnce(ShelveMe.currentUser, "sync", this.render);
   },
 
   render: function (){
@@ -19,7 +18,7 @@ ShelveMe.Views.indexView = Backbone.CompositeView.extend({
   },
 
   renderFriendBooks: function (){
-    if (ShelveMe.currentUser){
+    if(ShelveMe.currentUser.isSignedIn()){
       console.log("current user found");
       console.log(ShelveMe.currentUser);
       ShelveMe.currentUser.acceptedFriends().each(this.addFriendView.bind(this));
@@ -37,6 +36,7 @@ ShelveMe.Views.indexView = Backbone.CompositeView.extend({
 
   renderTrendingBooks: function (){
     console.log("rendering books");
+    this.$('ul.trending-books').empty();
     var newBooks = ShelveMe.Collections.books.first(8);
     console.log(newBooks);
     _.chain(newBooks).each(this.addBookView.bind(this));
