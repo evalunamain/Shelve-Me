@@ -6,7 +6,8 @@ ShelveMe.Views.SignIn = Backbone.View.extend({
   },
 
   events: {
-    "submit form": "submit"
+    "submit form": "submit",
+    "click .demo-user": "preFill"
   },
 
   template: JST['shared/sign_in'],
@@ -37,6 +38,14 @@ ShelveMe.Views.SignIn = Backbone.View.extend({
     } else {
       Backbone.history.navigate("", { trigger: true });
     }
+  },
+
+  preFill: function () {
+    var $email = this.$("#email");
+    var $password = this.$("#password");
+
+    $email.val("demo@mail.com");
+    $password.val("testtest");
   }
 
 });

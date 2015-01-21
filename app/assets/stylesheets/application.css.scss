@@ -465,6 +465,10 @@ section.new-book {
   margin-right: 10px;
 }
 
+.demo-user {
+  margin-left: 10px;
+}
+
 //User show
 .main {
 	width: 660px;
@@ -575,16 +579,6 @@ section.new-book {
   outline: none;
 }
 
-/*.modal-form > h1 {
-  font-size: 36px;
-  line-height: 1;
-  font-weight: 300;
-}
-
-.modal-form > p {
-  margin: 0 0 20px 0;
-}*/
-
 .modal-form label {
 	font-weight: normal;
 }
@@ -598,12 +592,6 @@ section.new-book {
   right: 0;
   z-index: 2;
 }
-
-/*.input > .modal-checkbox {
-	display: inline-block;
-	width: auto;
-	margin-right: 10px;
-}*/
 
 .input > .modal-text {
 	display: inline-block;
@@ -620,12 +608,6 @@ section.new-book {
 .modal-form input:focus {
 	-webkit-box-shadow: none;
 }
-
-
-// Book Review
-//.shelf-show {
-//  width: 200px;
-//}
 
 /*Shelf Show*/
 .shelf-sidebar {
