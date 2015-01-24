@@ -5,8 +5,7 @@ ShelveMe.Views.indexView = Backbone.CompositeView.extend({
   // tagName: "li",
 
   initialize: function (options) {
-    this.listenToOnce(this.collection, "sync", this.renderTrendingBooks);
-    this.listenToOnce(ShelveMe.currentUser, "sync", this.render);
+    this.listenTo(ShelveMe.currentUser, "sync", this.render);
   },
 
   render: function (){
@@ -38,7 +37,6 @@ ShelveMe.Views.indexView = Backbone.CompositeView.extend({
     console.log("rendering books");
     this.$('ul.trending-books').empty();
     var newBooks = ShelveMe.Collections.books.first(8);
-    console.log(newBooks);
     _.chain(newBooks).each(this.addBookView.bind(this));
   },
 

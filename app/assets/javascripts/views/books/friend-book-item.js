@@ -11,19 +11,17 @@ ShelveMe.Views.friendBookItem = Backbone.View.extend({
   },
 
   render: function (){
+    console.log("friend found");
     var book = this.model.favorite_book()
-    var content = this.template({friend: this.model, book: book});
+    console.log(book);
+    // if (book.isNew()) {
+    //   var content = "<p class='index'></p>"
+    //
+    // } else {
+      var content = this.template({friend: this.model, book: book});
+    // }
     this.$el.html(content);
     return this;
   },
-
-  render2: function (){
-    var rating = this.model.ratings().first;
-    console.log("ratings" , this.model.ratings());
-    debugger
-    var content = this.template({book: this.model});
-    this.$el.html(content);
-    return this;
-  }
 
 });
