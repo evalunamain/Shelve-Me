@@ -5,6 +5,7 @@ class Api::ApplicationController < ActionController::Base
   helper_method :signed_in?, :current_user, :ensure_owner
 
   def current_user
+    return nil if self.session[:session_token].nil?
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
