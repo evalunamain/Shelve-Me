@@ -32,6 +32,8 @@ gem 'asin'
 
 gem 'rack'
 
+gem 'paperclip'
+
 gem 'figaro'
 
 gem 'backbone-on-rails'
