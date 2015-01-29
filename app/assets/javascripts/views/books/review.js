@@ -2,11 +2,11 @@ ShelveMe.Views.BookReview = Backbone.View.extend({
 
   tagName: "li",
 
-  template: JST['books/review'],
+  template: JST["books/review"],
 
   initialize: function (options) {
     this.rating = options.rating || new ShelveMe.Models.Rating();
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, "sync", this.render);
   },
 
   events: {
@@ -14,11 +14,10 @@ ShelveMe.Views.BookReview = Backbone.View.extend({
     "keyup .editable":"editReview",
   },
 
-  render: function (){
-    console.log("rendering existing review");
+  render: function () {
     this
-    .renderContent()
-    .renderRating();
+      .renderContent()
+      .renderRating();
     return this;
   },
 
@@ -29,32 +28,33 @@ ShelveMe.Views.BookReview = Backbone.View.extend({
   },
 
   renderRating: function (){
-    var rating = this.rating.get('rating');
+    var rating = this.rating.get("rating");
+
     var ratedStar = this.$('.rating-static').filter(function () {
       return this.value == rating;
     });
-    ratedStar.attr('checked', true);
-    this.$("input[type=radio]").attr('disabled', true);
+
+    ratedStar.attr("checked", true);
+    this.$("input[type=radio]").attr("disabled", true);
     return this;
   },
 
   makeEditable: function (event){
     event.preventDefault();
+
     if (this.model.author().id != ShelveMe.currentUser.id) {
-      console.log("you can't edit this, dummy!");
       return;
     } else {
-      console.log("yay edits!");
-      var textBlock = $(event.currentTarget);
-      var height = event.target.clientHeight * 1.5;
-      var textBox = $('<textarea class="editable"/>');
-      var val = this.$('.review-content').html();
-      textBox.html(val);
-      textBox.css('height', height);
+      var textBlock = $(event.currentTarget),
+        height = (event.target.clientHeight * 1.5),
+        textBox = $("<textarea class='editable'/>"),
+        val = this.$(".review-content").html();
+
+      textBox.html(val)
+             .css("height", height);
+
       textBlock.empty();
       this.$el.append(textBox);
-      var button = $('<button type="submit" value="save">');
-      this.$el.append(button);
     }
   },
 
@@ -70,12 +70,11 @@ ShelveMe.Views.BookReview = Backbone.View.extend({
 
   submitReview: function (content) {
     var that = this;
+
     this.model.save({content: content},
-    {patch: true, success: function (){
-      console.log("saved it");
+      {patch: true, success: function (){
       that.model.fetch();
     }});
   },
-
 
 });

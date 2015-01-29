@@ -1,5 +1,5 @@
 ShelveMe.Collections.Books = Backbone.Collection.extend({
-  url: 'api/books',
+  url: "api/books",
 
   model: ShelveMe.Models.Book,
 
@@ -7,13 +7,15 @@ ShelveMe.Collections.Books = Backbone.Collection.extend({
     var str = book.get("updated_at");
     str = str.toLowerCase();
     str = str.split("");
+
     str = _.map(str, function(letter) {
       return String.fromCharCode(-(letter.charCodeAt(0)));
     });
+
     return str;
   },
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var book = this.get(id);
     var books = this;
 

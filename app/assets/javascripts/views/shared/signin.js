@@ -10,18 +10,17 @@ ShelveMe.Views.SignIn = Backbone.View.extend({
     "click .demo-user": "preFill"
   },
 
-  template: JST['shared/sign_in'],
+  template: JST["shared/sign_in"],
 
   render: function(){
     this.$el.html(this.template());
-
     return this;
   },
 
   submit: function(event){
     event.preventDefault();
-    var $form = $(event.currentTarget);
-    var formData = $form.serializeJSON().user;
+    var $form = $(event.currentTarget),
+      formData = $form.serializeJSON().user;
 
     ShelveMe.currentUser.signIn({
       email: formData.email,
@@ -33,7 +32,7 @@ ShelveMe.Views.SignIn = Backbone.View.extend({
   },
 
   signInCallback: function(event){
-    if(this.callback) {
+    if (this.callback) {
       this.callback();
     } else {
       Backbone.history.navigate("", { trigger: true });
@@ -41,8 +40,8 @@ ShelveMe.Views.SignIn = Backbone.View.extend({
   },
 
   preFill: function () {
-    var $email = this.$("#email");
-    var $password = this.$("#password");
+    var $email = this.$("#email"),
+      $password = this.$("#password");
 
     $email.val("demo@mail.com");
     $password.val("testtest");

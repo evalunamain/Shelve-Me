@@ -1,5 +1,5 @@
 ShelveMe.Routers.Router = Backbone.Router.extend({
-  initialize: function (options){
+  initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.collection = ShelveMe.Collections.users;
     this.collection.fetch();
@@ -18,25 +18,28 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     "session/new": "signIn"
   },
 
-  index: function (){
-    console.log("in index");
+  index: function () {
     ShelveMe.currentUser && ShelveMe.currentUser.fetch();
     ShelveMe.Collections.books.fetch();
+
 		var indexView = new ShelveMe.Views.indexView({
       collection: ShelveMe.Collections.books
 		});
+
 		this._swapView(indexView);
   },
 
-  bookIndex: function (){
+  bookIndex: function () {
     ShelveMe.Collections.books.fetch();
+
     var bookIndexView = new ShelveMe.Views.BooksIndex({
       collection: ShelveMe.Collections.books
     });
+
     this._swapView(bookIndexView);
   },
 
-  explore: function (){
+  explore: function () {
     var newBookView = new ShelveMe.Views.BooksNew({
       model: new ShelveMe.Models.Book
     });
@@ -44,7 +47,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     this._swapView(newBookView);
   },
 
-  bookShow: function (id){
+  bookShow: function (id) {
     var book = ShelveMe.Collections.books.getOrFetch(id);
 
     var bookShow = new ShelveMe.Views.BookShow({
@@ -54,49 +57,58 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     this._swapView(bookShow);
   },
 
-  authorShow: function (id){
+  authorShow: function (id) {
     var author = ShelveMe.Collections.authors.getOrFetch(id);
     author.books().fetch();
+
     var authorShowView = new ShelveMe.Views.AuthorShow({
       model: author, collection: author.books()
     });
+
     this._swapView(authorShowView);
   },
 
-  userIndex: function (){
+  userIndex: function () {
     ShelveMe.Collections.users.fetch();
 
     var userIndexView = new ShelveMe.Views.UsersIndex({
       collection: ShelveMe.Collections.users
     });
+
     this._swapView(userIndexView);
   },
 
   userShow: function (id) {
     var user = ShelveMe.Collections.users.getOrFetch(id);
+
     var userShowView = new ShelveMe.Views.UserShow({
       model: user, collection: user.friends()
     });
+
     this._swapView(userShowView);
   },
 
-  newUser: function(){
+  newUser: function () {
     if (!this._requireSignedOut()) { return; }
 
     var model = new this.collection.model();
+
     var formView = new ShelveMe.Views.UsersForm({
       collection: this.collection,
       model: model
     });
+
     this._swapView(formView);
   },
 
   shelfShow: function (userId, shelfId) {
     var shelf = ShelveMe.Collections.shelves.getOrFetch(shelfId);
     var user = ShelveMe.Collections.users.getOrFetch(userId);
+
     var shelfShowView = new ShelveMe.Views.ShelfShow({
       model: shelf, user: user
     });
+
     this._swapView(shelfShowView);
   },
 
@@ -106,6 +118,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     var signInView = new ShelveMe.Views.SignIn({
       callback: callback
     });
+
     this._swapView(signInView);
   },
 
@@ -135,7 +148,6 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
 
   _swapView: function (view){
     this._currentView && this._currentView.remove();
-		console.log('swapping views');
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
   }

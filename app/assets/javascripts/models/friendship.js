@@ -1,7 +1,7 @@
 ShelveMe.Models.Friendship = Backbone.Model.extend({
-  urlRoot: 'api/friendships',
+  urlRoot: "api/friendships",
 
-  friend: function(){
+  friend: function () {
     if (!this._friend) {
       this._friend = new ShelveMe.Models.User()
     }

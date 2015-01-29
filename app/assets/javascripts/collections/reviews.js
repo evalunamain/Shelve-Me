@@ -1,13 +1,13 @@
 ShelveMe.Collections.Reviews = Backbone.Collection.extend({
-  url: 'api/reviews',
+  url: "api/reviews",
 
   model: ShelveMe.Models.Review,
 
   comparator: function (review) {
-    return -review.get('id');
+    return -review.get("id");
   },
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var review = this.get(id);
     var reviews = this;
 

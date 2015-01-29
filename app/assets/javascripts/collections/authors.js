@@ -1,11 +1,11 @@
 ShelveMe.Collections.Authors = Backbone.Collection.extend({
-  url: 'api/authors',
+  url: "api/authors",
 
   model: ShelveMe.Models.Author,
 
   comparator: "title",
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var author = this.get(id);
     var authors = this;
 

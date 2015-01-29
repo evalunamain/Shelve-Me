@@ -1,15 +1,16 @@
 ShelveMe.Models.User = Backbone.Model.extend({
-  urlRoot: 'api/users',
+  urlRoot: "api/users",
 
-  toJSON: function(){
+  toJSON: function () {
     var json = { user: _.clone(this.attributes) };
     return json;
   },
 
   parse: function (response) {
-
     if (response.favorite_book) {
-      this.favorite_book().set(response.favorite_book, {parse: true});
+      this.favorite_book().set(
+        response.favorite_book, {parse: true}
+      );
       delete response.favorite_book
     }
 
@@ -34,7 +35,9 @@ ShelveMe.Models.User = Backbone.Model.extend({
     }
 
     if (response.friendships) {
-      this.friendships().set(response.friendships, {parse: true});
+      this.friendships().set(
+        response.friendships, {parse: true}
+      );
       delete response.friendships
     }
 
@@ -44,22 +47,30 @@ ShelveMe.Models.User = Backbone.Model.extend({
     }
 
     if (response.accepted_friends) {
-      this.acceptedFriends().set(response.accepted_friends, {parse: true});
+      this.acceptedFriends().set(
+        response.accepted_friends, {parse: true}
+      );
       delete response.accepted_friends
     }
 
     if (response.pending_friendships) {
-      this.pending_friendships().set(response.pending_friendships, {parse: true});
+      this.pending_friendships().set(
+        response.pending_friendships, {parse: true}
+      );
       delete response.pending_friendships
     }
 
     if (response.accepted_friendships) {
-      this.accepted_friendships().set(response.accepted_friendships, {parse: true});
+      this.accepted_friendships().set(
+        response.accepted_friendships, {parse: true}
+      );
       delete response.accepted_friendships
     }
 
     if (response.friendship_requests) {
-      this.friendship_requests().set(response.friendship_requests, {parse: true});
+      this.friendship_requests().set(
+        response.friendship_requests, {parse: true}
+      );
       delete response.friendship_requests
     }
 
@@ -68,7 +79,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   favorite_book: function () {
     if (!this._favorite_book) {
-      this._favorite_book = new ShelveMe.Models.Book()
+      this._favorite_book = new ShelveMe.Models.Book();
     }
 
     return this._favorite_book;
@@ -76,7 +87,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   books: function () {
     if (!this._books) {
-      this._books = new ShelveMe.Collections.Books()
+      this._books = new ShelveMe.Collections.Books();
     }
 
     return this._books;
@@ -84,7 +95,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   shelves: function () {
     if (!this._shelves) {
-      this._shelves = new ShelveMe.Collections.Shelves()
+      this._shelves = new ShelveMe.Collections.Shelves();
     }
 
     return this._shelves;
@@ -92,14 +103,14 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   reviews: function () {
     if (!this._reviews) {
-      this._reviews = new ShelveMe.Collections.Reviews()
+      this._reviews = new ShelveMe.Collections.Reviews();
     }
     return this._reviews
   },
 
   ratings: function () {
     if (!this._ratings) {
-      this._ratings = new ShelveMe.Collections.Ratings()
+      this._ratings = new ShelveMe.Collections.Ratings();
     }
 
     return this._ratings
@@ -107,7 +118,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   friendships: function (){
     if (!this._friendships) {
-      this._friendships = new ShelveMe.Collections.Friendships()
+      this._friendships = new ShelveMe.Collections.Friendships();
     }
 
     return this._friendships
@@ -115,7 +126,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   friends: function (){
     if (!this._friends) {
-      this._friends = new ShelveMe.Collections.Users()
+      this._friends = new ShelveMe.Collections.Users();
     }
 
     return this._friends
@@ -123,7 +134,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   acceptedFriends: function (){
     if (!this._accepted_friends) {
-      this._accepted_friends = new ShelveMe.Collections.Users()
+      this._accepted_friends = new ShelveMe.Collections.Users();
     }
 
     return this._accepted_friends
@@ -131,7 +142,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   accepted_friendships: function (){
     if (!this._accepted_friendships) {
-      this._accepted_friendships = new ShelveMe.Collections.Friendships()
+      this._accepted_friendships = new ShelveMe.Collections.Friendships();
     }
 
     return this._accepted_friendships
@@ -139,7 +150,7 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   pending_friendships: function (){
     if (!this._pending_friendships) {
-      this._pending_friendships = new ShelveMe.Collections.Friendships()
+      this._pending_friendships = new ShelveMe.Collections.Friendships();
     }
 
     return this._pending_friendships
@@ -147,34 +158,34 @@ ShelveMe.Models.User = Backbone.Model.extend({
 
   friendship_requests: function () {
     if (!this._friendship_requests) {
-      this._friendship_requests = new ShelveMe.Collections.Friendships()
+      this._friendship_requests = new ShelveMe.Collections.Friendships();
     }
 
     return this._friendship_requests;
   },
 
 
-  isFriend: function (user){
-
+  isFriend: function (user) {
     var friend = this.friends().get(user.id);
 
     return !!friend
   }
 });
 
+
 ShelveMe.Models.CurrentUser = ShelveMe.Models.User.extend({
 
   url: "/api/session",
 
-  initialize: function(options){
+  initialize: function (options) {
     this.listenTo(this, "change", this.fireSessionEvent);
   },
 
-  isSignedIn: function() {
+  isSignedIn: function () {
     return !this.isNew();
   },
 
-  signIn: function(options){
+  signIn: function (options){
     var model = this;
     var credentials = {
       "user[email]": options.email,
@@ -196,7 +207,7 @@ ShelveMe.Models.CurrentUser = ShelveMe.Models.User.extend({
     });
   },
 
-  signOut: function(options){
+  signOut: function (options){
     var model = this;
 
     $.ajax({
@@ -210,13 +221,11 @@ ShelveMe.Models.CurrentUser = ShelveMe.Models.User.extend({
     });
   },
 
-  fireSessionEvent: function(){
+  fireSessionEvent: function () {
     if(this.isSignedIn()){
       this.trigger("signIn");
-      console.log("currentUser is signed in!", this);
     } else {
       this.trigger("signOut");
-      console.log("currentUser is signed out!", this);
     }
   }
 

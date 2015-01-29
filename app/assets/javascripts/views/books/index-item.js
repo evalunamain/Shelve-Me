@@ -1,16 +1,16 @@
 ShelveMe.Views.indexBookItem = Backbone.View.extend({
 
-  template: JST['books/book-item'],
+  template: JST["books/book-item"],
 
   tagName: "li",
 
   className: "book-overview",
 
   initialize: function () {
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, "sync", this.render);
   },
 
-  render: function (){
+  render: function () {
     var content = this.template({book: this.model});
     this.$el.html(content);
     return this;

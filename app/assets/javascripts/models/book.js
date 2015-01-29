@@ -1,5 +1,5 @@
 ShelveMe.Models.Book = Backbone.Model.extend({
-  urlRoot: 'api/books',
+  urlRoot: "api/books",
 
   parse: function (response) {
     if (response.author) {

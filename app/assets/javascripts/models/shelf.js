@@ -1,5 +1,5 @@
 ShelveMe.Models.Shelf = Backbone.Model.extend({
-  urlRoot: 'api/shelves',
+  urlRoot: "api/shelves",
 
   books: function () {
     if (!this._books) {

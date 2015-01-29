@@ -1,11 +1,11 @@
 ShelveMe.Collections.Shelves = Backbone.Collection.extend({
-  url: 'api/shelves',
+  url: "api/shelves",
 
   model: ShelveMe.Models.Shelf,
 
   comparator: "title",
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var shelf = this.get(id);
     var shelves = this;
 

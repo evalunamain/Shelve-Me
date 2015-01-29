@@ -7,7 +7,7 @@ window.ShelveMe = {
     this.currentUser = new ShelveMe.Models.CurrentUser();
     this.currentUser.fetch();
 
-    this.header = new ShelveMe.Views.Header({ el: "#header" });
+    this.header = new ShelveMe.Views.Header({el: "#header"});
     this.router = new ShelveMe.Routers.Router({
       $rootEl: $('#main')
     });

@@ -1,9 +1,9 @@
 ShelveMe.Collections.Ratings = Backbone.Collection.extend({
-  url: 'api/ratings',
+  url: "api/ratings",
 
   model: ShelveMe.Models.Rating,
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var rating = this.get(id);
     var ratings = this;
 

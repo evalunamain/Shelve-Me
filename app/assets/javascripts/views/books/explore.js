@@ -1,9 +1,9 @@
 ShelveMe.Views.BooksNew = Backbone.CompositeView.extend({
 
-  template: JST['books/new-book'],
+  template: JST["books/new-book"],
 
   initialize: function () {
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, "sync", this.render);
     this.addFormView();
   },
 
@@ -11,10 +11,11 @@ ShelveMe.Views.BooksNew = Backbone.CompositeView.extend({
     var formView = new ShelveMe.Views.BookForm({
       model: new ShelveMe.Models.Book
     });
-    this.addSubview('.new-book', formView);
+
+    this.addSubview(".new-book", formView);
   },
 
-  render: function (){
+  render: function () {
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();

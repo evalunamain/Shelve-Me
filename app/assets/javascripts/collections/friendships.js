@@ -1,9 +1,9 @@
 ShelveMe.Collections.Friendships = Backbone.Collection.extend({
-  url: 'api/friendships',
+  url: "api/friendships",
 
   model: ShelveMe.Models.Friendship,
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var friendship = this.get(id);
     var friendships = this;
 

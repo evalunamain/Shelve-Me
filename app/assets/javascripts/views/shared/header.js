@@ -9,21 +9,21 @@ ShelveMe.Views.Header = Backbone.View.extend({
     "click #sign-out-link": "signOut"
   },
 
-  template: JST['shared/header'],
+  template: JST["shared/header"],
 
-  render: function(){
-    console.log("rendering header");
-    var html = this.template({ currentUser: ShelveMe.currentUser });
+  render: function () {
+    var html = this.template({currentUser: ShelveMe.currentUser});
     this.$el.html(html);
 
     return this;
   },
 
-  signOut: function(event){
+  signOut: function (event) {
     event.preventDefault();
+
     ShelveMe.currentUser.signOut({
       success: function(){
-        Backbone.history.navigate("session/new", { trigger: true });
+        Backbone.history.navigate("session/new", {trigger: true});
       }
     });
   }

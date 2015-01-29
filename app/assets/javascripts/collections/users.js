@@ -1,11 +1,11 @@
 ShelveMe.Collections.Users = Backbone.Collection.extend({
-  url: 'api/users',
+  url: "api/users",
 
   model: ShelveMe.Models.User,
 
   comparator: "name",
 
-  getOrFetch: function (id){
+  getOrFetch: function (id) {
     var user = this.get(id);
     var users = this;
 
@@ -19,7 +19,7 @@ ShelveMe.Collections.Users = Backbone.Collection.extend({
     } else {
       user.fetch();
     }
-		
+
     return user;
   }
 
