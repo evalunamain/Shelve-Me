@@ -16,13 +16,13 @@ class Api::ReviewsController < ApplicationController
 
 	def show
 		@review = Review.includes(:author).find(params[:id])
-		
+
 	end
 
 	def update
 		review = Review.find(params[:id])
-		if review.update
-			render json: nil
+		if review.update(review_params)
+			render json: review
 		else
 			render json: params, status: 422
 		end

@@ -11,7 +11,7 @@ ShelveMe.Views.BookReview = Backbone.View.extend({
 
   events: {
     "dblclick .review-content": "makeEditable",
-    "keyup .editable":"editReview",
+    "keyup .editable": "editReview",
   },
 
   render: function () {
