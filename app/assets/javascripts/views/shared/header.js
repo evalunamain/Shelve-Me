@@ -1,6 +1,6 @@
 ShelveMe.Views.Header = Backbone.View.extend({
 
-  initialize: function(options){
+  initialize: function (options) {
     this.listenTo(ShelveMe.currentUser, "signIn signOut", this.render);
     this.render();
   },

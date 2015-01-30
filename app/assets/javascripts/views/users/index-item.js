@@ -8,16 +8,21 @@ ShelveMe.Views.UserItem = Backbone.View.extend({
     this.listenTo(this.model, 'sync', this.render);
   },
 
-  render: function (){
-    var isFriend = ShelveMe.currentUser && ShelveMe.currentUser.isFriend(this.model);
-    if (isFriend) {
-      button = "Remove as friend"
-    } else {
-      button = "Add as friend"
-    }
-		
+  render: function () {
+    var button,
+      isFriend = (ShelveMe.currentUser.isSignedIn() &&
+                  ShelveMe.currentUser.isFriend(this.model));
 
-    var content = this.template({user: this.model, isFriend: isFriend, button: button});
+    if (isFriend) {
+      button = "Remove as friend";
+    } else {
+      button = "Add as friend";
+    }
+
+    var content = this.template({
+      user: this.model, isFriend: isFriend, button: button
+    });
+
     this.$el.html(content);
     return this;
   },
@@ -27,8 +32,8 @@ ShelveMe.Views.UserItem = Backbone.View.extend({
   },
 
   toggleFriend: function (event) {
-    console.log("in toggle friend");
     event.preventDefault();
+
     var isFriend = $(event.currentTarget).data("initial-friend-state");
     if (!isFriend) {
       this.addFriend()
@@ -38,36 +43,21 @@ ShelveMe.Views.UserItem = Backbone.View.extend({
   },
 
   addFriend: function (event) {
-    console.log("in add friend");
-    var friendId = this.model.id;
-    var that = this;
-		
-		var friendship = new ShelveMe.Models.Friendship;
-		friendship.save({friend_id: friendId},{ 
+    var friendId = this.model.id,
+      friendship = new ShelveMe.Models.Friendship,
+      that = this;
+
+		friendship.save({friend_id: friendId}, {
 			success: function () {
-        console.log("added friend");
         ShelveMe.currentUser.friends().add(that.model);
         that.render();
 			}
-     });
-
-    // $.ajax({
- //      url: "/api/friendships/",
- //      type: "POST",
- //      dataType: "json",
- //      data: {friend_id: friendId},
- //      success: function () {
- //        console.log("added friend");
- //        ShelveMe.currentUser.friends().add(that.model);
- //        that.render();
- //      }
- //    })
+    });
   },
 
-  removeFriend: function (){
-    console.log("in remove friend");
-    var friendId = this.model.id;
-    var that = this;
+  removeFriend: function () {
+    var friendId = this.model.id,
+      that = this;
 
     $.ajax({
       url: "/api/friendships/destroy",
@@ -75,12 +65,10 @@ ShelveMe.Views.UserItem = Backbone.View.extend({
       dataType: "json",
       data: {friend_id: friendId},
       success: function () {
-        console.log("removed friend");
         ShelveMe.currentUser.friends().remove(that.model);
         that.render();
       }
     })
   }
-
 
 });

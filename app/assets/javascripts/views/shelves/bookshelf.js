@@ -7,12 +7,11 @@ ShelveMe.Views.BookShelf = Backbone.CompositeView.extend({
   className: "shelf-books",
 
   initialize: function (options) {
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, "sync", this.render);
     this.user = options.user;
   },
 
-  render: function (){
-    console.log("rendering shelf header");
+  render: function () {
     var content = this.template({shelf: this.model});
     this.$el.html(content);
     this.model.books().each(this.renderBook.bind(this));
@@ -21,7 +20,7 @@ ShelveMe.Views.BookShelf = Backbone.CompositeView.extend({
 
   renderBook: function (book) {
     var bookView = new ShelveMe.Views.shelfBookItem({model: book});
-    this.addSubview('.book-rows', bookView);
+    this.addSubview(".book-rows", bookView);
   },
 
 });

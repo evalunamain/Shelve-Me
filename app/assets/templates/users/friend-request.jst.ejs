@@ -1,8 +1,11 @@
-<a href="#users/<%= friendship.escape('friend_id') %>"><h2><%= friend.escape('name') %></h2></a>
+<a href="#users/<%= friendship.escape('friend_id') %>">
+  <h2><%= friend.escape('name') %></h2>
+</a>
 
 <button class="friend-accept" data-friendship-id="<%= friendship.id %>">
     Accept
 </button>
+
 <button class="friend-ignore" data-friendship-id="<%= friendship.id %>">
     Ignore
 </button>

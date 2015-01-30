@@ -1,9 +1,14 @@
-  <td><img src="<%= book.escape('cover') %>"></td>
-  <td><a href="/#books/<%= book.id %>"><%= book.escape('title') %></a></td>
-  <td><%= book.author().escape('name') %> </td>
-  <td><%= book.escape('rating') %> </td>
-  <td class="table-rating">
-    <form><input type="radio" class="rating-input"
+<td><img src="<%= book.escape('cover') %>"></td>
+
+<td><a href="/#books/<%= book.id %>"><%= book.escape('title') %></a></td>
+
+<td><%= book.author().escape('name') %></td>
+
+<td><%= book.escape('rating') %></td>
+
+<td class="table-rating">
+  <form>
+    <input type="radio" class="rating-input"
         id="rating-input-1-5" name="rating-input-1" value="5">
     <label for="rating-input-1-5" class="rating-star"></label>
     <input type="radio" class="rating-input"
@@ -17,5 +22,6 @@
     <label for="rating-input-1-2" class="rating-star"></label>
     <input type="radio" class="rating-input"
         id="rating-input-1-1" name="rating-input-1" value="1">
-    <label for="rating-input-1-1" class="rating-star"></label></form>
-  </td>
+    <label for="rating-input-1-1" class="rating-star"></label>
+  </form>
+</td>

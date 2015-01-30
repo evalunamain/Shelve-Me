@@ -1,21 +1,16 @@
 <header class="header">
-
   <nav class="nav-header group">
     <a href="#" class="header-name">Shelve Me</a>
     <ul class="nav-list">
-
       <li><a class="explore" href="/#explore">Explore</a></li>
 
       <% if(ShelveMe.currentUser.isSignedIn()) { %>
-      <li> <a class="header-profile" href="/#users/<%= ShelveMe.currentUser.id %>"><%= ShelveMe.currentUser.escape('name') %>'s profile</a></li>
-      <li><a href="#" id="sign-out-link">Sign Out</a></li>
+        <li><a class="header-profile" href="/#users/<%= ShelveMe.currentUser.id %>"><%= ShelveMe.currentUser.escape('name') %>'s profile</a></li>
+        <li><a href="#" id="sign-out-link">Sign Out</a></li>
       <% } else { %>
-
-
-    <li><a href="#users/new">Sign Up</a></li>
-    <li><a href="#session/new">Sign In</a></li>
-    <% } %>
-
-  </ul>
-</nav>
+        <li><a href="#users/new">Sign Up</a></li>
+        <li><a href="#session/new">Sign In</a></li>
+      <% } %>
+    </ul>
+  </nav>
 </header>

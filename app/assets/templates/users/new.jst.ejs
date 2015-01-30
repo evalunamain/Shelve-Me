@@ -3,30 +3,26 @@
   <form class="new-user">
     <fieldset class="form-fieldset">
       <div class="form-title"><h3>Sign Up</h3></div>
-      <div class="errors">
-      </div>
-      <div class="input"><label>
-        Name  </label>
+      <div class="errors"></div>
+      <div class="input">
+        <label>Name</label>
         <input type="text" name="user[name]"
-        value="<%= user.escape("name") %>" id="name">
+          value="<%= user.escape("name") %>" id="name">
 
-
-      <label>
-        Email  </label>
+        <label>Email</label>
         <input type="email" name="user[email]"
-        value="<%= user.escape("email") %>" id="email">
+          value="<%= user.escape("email") %>" id="email">
 
 
-      <label>
-        Password</label>
+        <label>Password</label>
         <input type="password" name="user[password]"
-        value="<%= user.escape("password") %>" id="password">
-
+          value="<%= user.escape("password") %>" id="password">
       </div>
 
       <div class="submit">
         <button>Sign Up</button>
       </div>
+
     </fieldset>
   </form>
 <section>

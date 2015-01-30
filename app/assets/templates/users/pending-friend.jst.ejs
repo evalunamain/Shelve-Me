@@ -1,6 +1,7 @@
-<a href="#users/<%= friendship.escape('friend_id') %>"><h2><%= friend.escape('name') %></h2></a>
+<a href="#users/<%= friendship.escape('friend_id') %>">
+  <h2><%= friend.escape('name') %></h2>
+</a>
 
 <button class="friend-toggle" data-friendship-id="<%= friendship.id %>">
     Cancel request
 </button>
-

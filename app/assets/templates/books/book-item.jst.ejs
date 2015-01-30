@@ -1,2 +1,4 @@
-<a href="#/books/<%= book.id %>"><h2><%= book.escape('title') %></h2></a>
-<a href="#/books/<%= book.id %>"><img src="<%= book.escape('cover') %>"></a>
+<a href="#/books/<%= book.id %>">
+  <h2><%= book.escape('title') %></h2>
+  <img src="<%= book.escape('cover') %>">
+</a>

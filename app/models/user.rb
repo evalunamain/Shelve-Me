@@ -59,10 +59,6 @@ class User < ActiveRecord::Base
     self.friends.exists?(id: user.id)
   end
 
-  # def friendship_requests
-  #   friendships.where(accepted: false).where.not(activation_token: nil)
-  # end
-
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)

@@ -3,11 +3,13 @@
 <% } else { %>
   <span class="exception"> This book has not been rated yet. </span> </h4>
 <% } %>
+
 <section class="error-message new">
-<% if (error.rating) { %>
- <%= error.rating %>
-<% } %>
- </section>
+  <% if (error.rating) { %>
+    <%= error.rating %>
+    <% } %>
+</section>
+
 <span class="rating"><h4>Your rating: </h4>
   <input type="radio" class="rating-input user"
       id="rating-input-1-5" name="rating-input-1" value="5">

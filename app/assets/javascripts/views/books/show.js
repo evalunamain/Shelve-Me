@@ -13,9 +13,6 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.renderRating);
     this.listenTo(this.model, "sync", this.renderReview);
     this.error = {};
-
-    this.$reviewModal = $(".review.modal");
-    this.$shelfModal = $('.shelf.modal');
   },
 
   events: {
@@ -45,7 +42,7 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
     var content = this.ratingTemplate({book: this.model, error: this.error});
     $(".book-rating").html(content);
 
-    if (ShelveMe.currentUser) {
+    if (ShelveMe.currentUser.isSignedIn()) {
       this.rating = this.model.ratings().where({
       user_id: ShelveMe.currentUser.id})[0];
     }
@@ -110,6 +107,7 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
   },
 
 	openShelfModal: function (event) {
+    this.$shelfModal = $(".shelf.modal");
 		event.preventDefault();
 	  this.$shelfModal.addClass("is-open");
 	},
@@ -121,8 +119,7 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
 
   closeModals: function (event) {
     event.preventDefault();
-    this.$shelfModal.removeClass("is-open");
-    this.$reviewModal.removeClass("is-open");
+    $('.modal').removeClass("is-open");
   },
 
 	toggleShelf: function (event) {
@@ -174,7 +171,9 @@ ShelveMe.Views.BookShow = Backbone.CompositeView.extend({
 
   openReviewModal: function (event) {
     event.preventDefault();
-    that.$reviewModal.addClass("is-open");
+
+    this.$reviewModal = $(".review.modal");
+    this.$reviewModal.addClass("is-open");
   },
 
   newReview: function (event) {

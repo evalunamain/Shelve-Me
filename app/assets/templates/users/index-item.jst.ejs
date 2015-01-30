@@ -1,6 +1,7 @@
 <a href="#users/<%= user.id %>"><h2><%= user.escape('name') %></h2></a>
-<% if (ShelveMe.currentUser && ShelveMe.currentUser.id != user.id) { %>
-<button class="friend-toggle" data-initial-friend-state="<%= isFriend %>">
+
+<% if (ShelveMe.currentUser.isSignedIn() && ShelveMe.currentUser.id != user.id) { %>
+  <button class="friend-toggle" data-initial-friend-state="<%= isFriend %>">
     <%= button %>
+  </button>
 <% } %>
-</button>

@@ -33,6 +33,7 @@ gem 'asin'
 gem 'rack'
 
 gem 'paperclip'
+gem 'aws-sdk'
 
 gem 'figaro'
 

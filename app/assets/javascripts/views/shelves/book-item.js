@@ -4,29 +4,27 @@ ShelveMe.Views.shelfBookItem = Backbone.View.extend({
 
   tagName: "tr",
 
-  // className: "book-overview",
-
   initialize: function () {
-    // this.model.fetch();
-
-    this.listenToOnce(this.model, 'sync', this.render);
-
-    // debugger
+    this.listenToOnce(this.model, "sync", this.render);
   },
 
-  render: function (){
-		if (!ShelveMe.currentUser) {
-			this.rating =  new ShelveMe.Models.Rating();
+  render: function () {
+		if (!ShelveMe.currentUser.isSignedIn()) {
+			this.rating = new ShelveMe.Models.Rating();
 		} else {
-		this.rating = this.model.ratings().where({user_id: 			ShelveMe.currentUser.id})[0] || new ShelveMe.Models.Rating()
+		    this.rating = this.model.ratings().where({
+          user_id: ShelveMe.currentUser.id
+        })[0] || new ShelveMe.Models.Rating();
 		}
-		console.log(this.rating);
-    var rating = this.rating.get('rating');
-    var content = this.template({book: this.model});
+
+    var rating = this.rating.get("rating"),
+      content = this.template({book: this.model});
+
     this.$el.html(content);
-    var ratedStar = this.$('.rating-input').filter(function () {
+
+    var ratedStar = this.$(".rating-input").filter(function () {
       return this.value == rating});
-    ratedStar.attr('checked', true);
+    ratedStar.attr("checked", true);
 
     return this;
   }

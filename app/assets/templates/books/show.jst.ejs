@@ -1,77 +1,82 @@
 <a href="#books" class="title">Books Index</a>
+
 <section class="profile">
   <img src="<%= book.escape('cover') %>" class="img-profile">
-
   <h3 class="title"> <%= book.escape('title') %></h3>
-  <a href="#/authors/<%= book.author().id %>" class="author"><%= book.author().escape('name') %></a>
+  <a href="#/authors/<%= book.author().id %>" class="author">
+    <%= book.author().escape('name') %>
+  </a>
+
   <section class="book-rating"></section>
+
   <section class="shelves index">
     <% if(ShelveMe.currentUser.isSignedIn()) {%>
-  <h4><strong> On your shelves:</strong> </h4> <% shelves.each(function (shelf) { %>
-      <a href="#users/<%= ShelveMe.currentUser.id %>/shelves/<%= shelf.id %>">◦ <%= shelf.escape('title') %></a>
+        <h4><strong> On your shelves:</strong> </h4>
+        <% shelves.each(function (shelf) { %>
+          <a href="#users/<%= ShelveMe.currentUser.id %>/shelves/<%= shelf.id %>">
+            ◦ <%= shelf.escape('title') %>
+          </a>
         <% })%>
-    <div class="add-to-shelf">
-      <div class="submit">
-        <button class="js-modal-open shelf">Add book to shelf</button>
-      </div>
-
-      <div class="shelf modal">
-        <form class="modal-shelf-form">
-
-          <% ShelveMe.currentUser.shelves().each(function (shelf) { %>
-            <div class="input existing-shelf">
-              <label>
-                <input type="checkbox"
-                name="shelved_book[shelf_id]"
-                value="<%= shelf.id %>"
-                class="modal-checkbox"
-                <% if (book.onShelf(shelf.id)) { %>
-                  data-on-shelf=true
-                  <%= "checked" %>
-                  <% } else { %>
-                    data-on-shelf=false
-                    <% } %>>
-                    <%= shelf.escape('title') %>
-                  </label>
-
-                </div>
-                <% })%>
-
-              <button class="modal-close js-modal-close shelf">Save</button>
-
-            </form>
-            <div class="modal-screen js-modal-close all"></div>
-          </div>
-        </div>
-        <% } %>
-      </section>
-  <p><%= book.escape('description') %> </p>
-
-
-
-  </section>
-  <section class="reviews index">
-    <% if(ShelveMe.currentUser.isSignedIn()) {%>
-      <div class="new-review">
+      <div class="add-to-shelf">
         <div class="submit">
-          <button class="js-modal-open review">Leave review</button>
+          <button class="js-modal-open shelf">Add book to shelf</button>
         </div>
 
-        <div class="review modal">
-          <form class="modal-review-form">
-            <span class="modal-close review js-modal-close">&times;</span>
-            <div class="form-title"><h3>Leave a review</h3></div>
-            <div class="input"><label for="content"></label>
-              <input type="hidden" name="review[book_id]" value="<%= book.id %>">
-            </input>
-              <textarea name="review[content]" id="content"></textarea>
-            <button type="submit" class="save-review">Save</button>
+        <div class="shelf modal">
+          <form class="modal-shelf-form">
+
+            <% ShelveMe.currentUser.shelves().each(function (shelf) { %>
+              <div class="input existing-shelf">
+                <label>
+                  <input type="checkbox"
+                    name="shelved_book[shelf_id]"
+                    value="<%= shelf.id %>"
+                    class="modal-checkbox"
+                    <% if (book.onShelf(shelf.id)) { %>
+                      data-on-shelf=true
+                      <%= "checked" %>
+                    <% } else { %>
+                      data-on-shelf=false
+                    <% } %>>
+                  <%= shelf.escape('title') %>
+                </label>
+              </div>
+            <% })%>
+
+            <button class="modal-close js-modal-close shelf">Save</button>
 
           </form>
+          <div class="modal-screen js-modal-close all"></div>
         </div>
-        <div class="modal-screen js-modal-close all"></div>
       </div>
     <% } %>
-    <ul class="book-reviews">
-    </ul>
   </section>
+
+  <p><%= book.escape('description') %> </p>
+</section>
+
+<section class="reviews index">
+  <% if(ShelveMe.currentUser.isSignedIn()) {%>
+    <article class="new-review">
+      <div class="submit">
+        <button class="js-modal-open review">Leave review</button>
+      </div>
+
+      <div class="review modal">
+        <form class="modal-review-form">
+          <span class="modal-close review js-modal-close">&times;</span>
+          <div class="form-title"><h3>Leave a review</h3></div>
+          <div class="input"><label for="content"></label>
+            <input type="hidden" name="review[book_id]" value="<%= book.id %>">
+            <textarea name="review[content]" id="content"></textarea>
+            <button type="submit" class="save-review">Save</button>
+          </div>
+        </form>
+
+        <div class="modal-screen js-modal-close all"></div>
+      </div>
+    </article>
+  <% } %>
+  <ul class="book-reviews">
+  </ul>
+</section>

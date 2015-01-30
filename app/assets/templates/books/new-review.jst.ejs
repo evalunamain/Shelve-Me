@@ -1,4 +1,4 @@
-<% if (ShelveMe.currentUser) {%>
+<% if (ShelveMe.currentUser.isSignedIn()) {%>
   <div class="form-title">
     <div class="submit">
       <button class="js-modal-open review">Leave a review</button>
@@ -7,17 +7,19 @@
     <div class="review modal">
       <form class="modal-form new-review">
         <span class="modal-close review js-modal-close">&times;</span>
-        <div class="form-title"><h3>Leave a review</h3></div>
+
+        <div class="form-title">
+          <h3>Leave a review</h3>
+        </div>
+
         <div class="input"><label for="content"></label>
           <input type="textarea"
           id="content"
           name="review[content]">
         </input>
 
-        <button class="">Save</button>
-
+        <button>Save</button>
       </form>
-
     </div>
   </div>
 <% } %>

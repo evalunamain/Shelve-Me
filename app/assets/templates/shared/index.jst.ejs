@@ -1,12 +1,16 @@
 <section class="friend-feed index">
 	<h4 class="title">Friend's Favorites</h4>
+
 	<% if (!ShelveMe.currentUser.isSignedIn()) { %>
-		<p class="index"><a href="/#session/new"><strong>Sign in</strong></a> to see what your friends love to read!</p>
+		<p class="index"><a href="/#session/new">
+			<strong>Sign in</strong></a> to see what your friends love to read!
+		</p>
 	<% } %>
+
 	<ul class="friend-feed group"></ul>
-	</section>
+</section>
+
 <section class="trending-books index">
 	<h4 class="title">Trending Books</h4>
-	<ul class="trending-books">
-	</ul>
-	</section>
+	<ul class="trending-books"></ul>
+</section>

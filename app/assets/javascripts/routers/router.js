@@ -19,7 +19,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
   },
 
   index: function () {
-    ShelveMe.currentUser && ShelveMe.currentUser.fetch();
+    ShelveMe.currentUser.isSignedIn() && ShelveMe.currentUser.fetch();
     ShelveMe.Collections.books.fetch();
 
 		var indexView = new ShelveMe.Views.indexView({
@@ -112,7 +112,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     this._swapView(shelfShowView);
   },
 
-  signIn: function(callback){
+  signIn: function (callback) {
     if (!this._requireSignedOut(callback)) { return; }
 
     var signInView = new ShelveMe.Views.SignIn({
@@ -122,7 +122,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     this._swapView(signInView);
   },
 
-  _requireSignedIn: function(callback){
+  _requireSignedIn: function (callback) {
     if (!ShelveMe.currentUser.isSignedIn()) {
       callback = callback || this._goHome.bind(this);
       this.signIn(callback);
@@ -132,7 +132,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     return true;
   },
 
-  _requireSignedOut: function(callback){
+  _requireSignedOut: function (callback) {
     if (ShelveMe.currentUser.isSignedIn()) {
       callback = callback || this._goHome.bind(this);
       callback();
@@ -142,7 +142,7 @@ ShelveMe.Routers.Router = Backbone.Router.extend({
     return true;
   },
 
-  _goHome: function(){
+  _goHome: function () {
     Backbone.history.navigate("", { trigger: true });
   },
 

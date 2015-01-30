@@ -1,6 +1,6 @@
 ShelveMe.Views.UsersIndex = Backbone.CompositeView.extend({
 
-  template: JST['users/index'],
+  template: JST["users/index"],
 
   className: "index",
 

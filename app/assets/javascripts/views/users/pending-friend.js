@@ -1,6 +1,6 @@
 ShelveMe.Views.pendingFriendView = Backbone.View.extend({
 
-  template: JST['users/pending-friend'],
+  template: JST["users/pending-friend"],
 
   tagName: "li",
 
@@ -9,7 +9,7 @@ ShelveMe.Views.pendingFriendView = Backbone.View.extend({
   },
 
   render: function (){
-		var friend = ShelveMe.currentUser.friends().getOrFetch(this.model.escape('friend_id'));
+		var friend = ShelveMe.currentUser.friends().getOrFetch(this.model.escape("friend_id"));
 
     var content = this.template({
 			friendship: this.model,
@@ -25,9 +25,8 @@ ShelveMe.Views.pendingFriendView = Backbone.View.extend({
   },
 
   toggleFriend: function (event) {
-    console.log("in toggle friend");
     event.preventDefault();
-    var friendId = this.model.escape('friend_id');
+    var friendId = this.model.escape("friend_id");
 		var that = this;
 
     $.ajax({
@@ -36,7 +35,6 @@ ShelveMe.Views.pendingFriendView = Backbone.View.extend({
       dataType: "json",
       data: {friend_id: friendId},
       success: function () {
-        console.log("removed friend");
         that.remove();
       }
     })

@@ -3,9 +3,8 @@
     <h2 class="title"><%= user.escape('name') %>'s shelves</h2>
     <% user.shelves().each(function (shelf) { %>
       <li data-id="<%= shelf.id %>" class="shelf"><%= shelf.escape('title') %></li>
-      <% }) %>
-    </ul>
+    <% }) %>
+  </ul>
 </section>
-<section class="shelf-show">
 
-</section>
+<section class="shelf-show"></section>
